@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Dni:</b>
+  <%= @ciudadano.dni %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @ciudadano.nombre %>
+</p>
+
+<p>
+  <b>Apellido:</b>
+  <%= @ciudadano.apellido %>
+</p>
+
+<p>
+  <b>Clave:</b>
+  <%= @ciudadano.clave %>
+</p>
+
+<p>
+  <b>Barrio:</b>
+  <%= @ciudadano.barrio_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_ciudadano_path(@ciudadano) %> |
+<%= link_to 'Back', ciudadanos_path %>

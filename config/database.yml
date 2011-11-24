@@ -1,0 +1,53 @@
+# SQLite version 3.x
+#   gem install sqlite3
+development:
+#  adapter: ibm_db2
+#  database: sondeo
+#  username: instdb2
+#  schema: db2inst1
+#  password: db2admin
+#  host: localhost
+#  port: 50000
+
+
+#  adapter:      ibm_db
+#  database:     sondeo
+#  username:     instdb2
+#  password:     db2admin
+#  schema:       sondeo
+#  application:  Sondeo
+#  account:      devuser
+#  workstation:  devbox
+  adapter: jdbc
+  driver: com.ibm.db2.jcc.DB2Driver
+  url: jdbc:db2://localhost:50000/sondeo
+  schema: instdb2
+  #database: sondeo
+  username: instdb2
+  password: db2admin
+## Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: jdbc
+  driver: com.ibm.db2.jcc.DB2Driver
+  url: jdbc:db2://localhost:50000/sondeo
+  username: instdb2
+  password: db2admin
+#  adapter: jdbc
+#  driver: com.ibm.db2.jcc.DB2Driver
+#  url: jdbc:db2://hostname:50002/sondeo
+#  username: db2inst1
+#  password: db2admin
+  
+production:
+  adapter: jdbc
+  driver: com.ibm.db2.jcc.DB2Driver
+  url: jdbc:db2://localhost:50000/sondeo
+  username: instdb2
+  password: db2admin
+#  adapter: jdbc
+#  driver: com.ibm.db2.jcc.DB2Driver
+#  url: jdbc:db2://hostname:50002/sondeo
+#  username: db2inst1
+#  password: db2admin

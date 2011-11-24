@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dni: MyString
+  nombre: MyString
+  apellido: MyString
+  clave: MyString
+  barrio_id: 1
+
+two:
+  dni: MyString
+  nombre: MyString
+  apellido: MyString
+  clave: MyString
+  barrio_id: 1

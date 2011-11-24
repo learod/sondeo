@@ -1,0 +1,31 @@
+<h1>Listing ciudadanos</h1>
+
+<table>
+  <tr>
+    <th>Dni</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Clave</th>
+    <th>Barrio</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ciudadanos.each do |ciudadano| %>
+  <tr>
+    <td><%= ciudadano.dni %></td>
+    <td><%= ciudadano.nombre %></td>
+    <td><%= ciudadano.apellido %></td>
+    <td><%= ciudadano.clave %></td>
+    <td><%= ciudadano.barrio_id %></td>
+    <td><%= link_to 'Show', ciudadano %></td>
+    <td><%= link_to 'Edit', edit_ciudadano_path(ciudadano) %></td>
+    <td><%= link_to 'Destroy', ciudadano, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ciudadano', new_ciudadano_path %>
