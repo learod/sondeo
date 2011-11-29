@@ -1,0 +1,23 @@
+<h1>Listing barrios</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @barrios.each do |barrio| %>
+  <tr>
+    <td><%= barrio.nombre %></td>
+    <td><%= link_to 'Show', barrio %></td>
+    <td><%= link_to 'Edit', edit_barrio_path(barrio) %></td>
+    <td><%= link_to 'Destroy', barrio, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Barrio', new_barrio_path %>

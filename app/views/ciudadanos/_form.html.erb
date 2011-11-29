@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :barrio_id %><br />
-    <%= f.number_field :barrio_id %>
+    <%= f.select :barrio_id, Barrio.all.collect{|t| [t.nombre, t.id]}, :include_blank=>true %>
   </div>
   <div class="actions">
     <%= f.submit %>

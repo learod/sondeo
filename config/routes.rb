@@ -1,4 +1,6 @@
 Sondeo::Application.routes.draw do
+  resources :barrios
+
   resources :ciudadanos
 
   # The priority is based upon order of creation:
