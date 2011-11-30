@@ -6,6 +6,9 @@
     <th>Nombre</th>
     <th>Apellido</th>
     <th>Clave</th>
+    <th>Email</th>
+    <th>Direccion</th>
+    <th>Telefono</th>
     <th>Barrio</th>
     <th></th>
     <th></th>
@@ -18,7 +21,10 @@
     <td><%= ciudadano.nombre %></td>
     <td><%= ciudadano.apellido %></td>
     <td><%= ciudadano.clave %></td>
-    <td><%= ciudadano.barrio_id %></td>
+    <td><%= ciudadano.email %></td>
+    <td><%= ciudadano.direccion %></td>
+    <td><%= ciudadano.telefono %></td>
+    <td><%= ciudadano.barrio_nombre %></td>
     <td><%= link_to 'Show', ciudadano %></td>
     <td><%= link_to 'Edit', edit_ciudadano_path(ciudadano) %></td>
     <td><%= link_to 'Destroy', ciudadano, :confirm => 'Are you sure?', :method => :delete %></td>

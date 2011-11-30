@@ -1,7 +1,7 @@
 <%= form_for(@ciudadano) do |f| %>
   <% if @ciudadano.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@ciudadano.errors.count, "error") %> prohibited this ciudadano from being saved:</h2>
+      <h2><%= pluralize(@ciudadano.errors.count, "errore") %> en los siguentes campos:</h2>
 
       <ul>
       <% @ciudadano.errors.full_messages.each do |msg| %>
@@ -24,8 +24,16 @@
     <%= f.text_field :apellido %>
   </div>
   <div class="field">
-    <%= f.label :clave %><br />
-    <%= f.text_field :clave %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :direccion %><br />
+    <%= f.text_field :direccion %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono %><br />
+    <%= f.text_field :telefono %>
   </div>
   <div class="field">
     <%= f.label :barrio_id %><br />
