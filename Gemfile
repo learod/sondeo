@@ -13,6 +13,7 @@ gem 'jdbc-postgres'
 gem 'jruby-openssl'
 gem 'json'
 gem 'execjs'
+gem 'haml'
 
 # Gems used only for assets and not required
 # in production environments by default.

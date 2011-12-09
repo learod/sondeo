@@ -1,4 +1,20 @@
 Sondeo::Application.routes.draw do
+  get "main/index"
+
+  resources :users
+
+  resource :session, :only => [:new, :create, :destroy]
+
+  match 'signup' => 'users#new', :as => :signup
+
+  match 'register' => 'users#create', :as => :register
+
+  match 'login' => 'sessions#new', :as => :login
+
+  match 'logout' => 'sessions#destroy', :as => :logout
+
+  match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
+
   resources :barrios
 
   resources :ciudadanos
@@ -53,6 +69,7 @@ Sondeo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+  root :to => "main#index"
 
   # See how all your routes lay out with "rake routes"
 
