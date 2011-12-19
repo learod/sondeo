@@ -14,6 +14,7 @@ gem 'jruby-openssl'
 gem 'json'
 gem 'execjs'
 gem 'haml'
+gem 'client_side_validations'
 
 # Gems used only for assets and not required
 # in production environments by default.

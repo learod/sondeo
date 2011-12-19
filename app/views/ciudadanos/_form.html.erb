@@ -1,4 +1,4 @@
-<%= form_for(@ciudadano) do |f| %>
+<%= form_for(@ciudadano, :validate => true) do |f| %>
   <% if @ciudadano.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ciudadano.errors.count, "errore") %> en los siguentes campos:</h2>

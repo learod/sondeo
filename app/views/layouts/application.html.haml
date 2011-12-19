@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Sondeo
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "jquery-1.6.2.min", "jquery.validate", "rails.validations"
+    = csrf_meta_tags
+  %body
+    .topbar
+      .fill
+        .container
+          %a.brand{:href => "#"} Sondeo
+          %ul.nav
+            %li.active
+              %a{:href => "#"} Home
+            %li
+              %a{:href => "#about"} About
+            %li
+              %a{:href => "#contact"} Contact
+          %a#incio.pull-right.btn{:href => "/logout"} Salir
+    = yield

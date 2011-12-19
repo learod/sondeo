@@ -1,0 +1,30 @@
+a:hover {text-decoration: none;}
+a:visited {text-decoration: none;}
+
+#box 
+{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 40px;
+  border-style:solid;
+  border-width:5px;
+  width: 500px; 
+  background-color: #EBF2FE; 
+  -webkit-border-bottom-right-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+//  border-bottom : 1px solid #cccccc; 
+//  border-left : 1px solid #cccccc; 
+//  float:right;
+  
+}
+
+.login 
+{
+  float: right;
+}
+
+
