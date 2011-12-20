@@ -6,11 +6,12 @@ gem 'rails', '3.1.3'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 #gem 'activerecord-jdbc-adapter','1.2.0'
-gem 'activerecord-jdbcpostgresql-adapter'
+#gem 'activerecord-jdbcpostgresql-adapter'
 
-gem 'jdbc-postgres'
+#gem 'jdbc-postgres'
 
-gem 'jruby-openssl'
+#gem 'jruby-openssl'
+gem 'pg'
 gem 'json'
 gem 'execjs'
 gem 'haml'

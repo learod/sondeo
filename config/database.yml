@@ -1,5 +1,5 @@
 development:
-  adapter: jdbcpostgresql
+  adapter: postgresql
   encoding: unicode
   database: sondeo
   pool: 5
