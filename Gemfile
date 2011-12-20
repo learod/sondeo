@@ -13,7 +13,7 @@ gem 'rails', '3.1.3'
 #gem 'jruby-openssl'
 gem 'pg'
 gem 'json'
-gem 'execjs'
+#gem 'execjs'
 gem 'haml'
 gem 'client_side_validations'
 
