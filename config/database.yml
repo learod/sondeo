@@ -1,12 +1,9 @@
 development:
   adapter: postgresql
-  encoding: unicode
   database: sondeoci_dev
-  pool: 5
   username: sondeoci
   password: "GUTN237#PP7G"
   host: localhost
-  port: 5432
 
 test:
   adapter: jdbcpostgresql
