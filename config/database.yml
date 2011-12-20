@@ -1,8 +1,8 @@
 development:
   adapter: postgresql
   database: sondeoci_dev
-  username: sondeoci
-  password: "GUTN237#PP7G"
+  username: sondeoci_dev
+  password: psqllea87
   host: localhost
 
 test:
