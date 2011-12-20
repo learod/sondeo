@@ -11,7 +11,7 @@ gem 'rails', '3.1.3'
 #gem 'jdbc-postgres'
 
 #gem 'jruby-openssl'
-gem 'mysql'
+gem 'mysql2'
 gem 'json'
 gem 'johnson'
 gem 'execjs'

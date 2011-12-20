@@ -1,8 +1,8 @@
 development:
-  adapter: mysql
+  adapter: mysql2
   database: sondeoci_dev
-  username: sondeoci_dev
-  password: psqllea87
+  username: sondeoci
+  password: "GUTN237#PP7G"
 
 test:
   adapter: jdbcpostgresql
