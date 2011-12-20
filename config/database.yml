@@ -1,10 +1,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: sondeo
+  database: sondeoci_dev
   pool: 5
-  username: postgres
-  password: postgres
+  username: sondeoci
+  password: "GUTN237#PP7G"
   host: localhost
   port: 5432
 
