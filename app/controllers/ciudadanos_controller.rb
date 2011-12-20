@@ -1,4 +1,5 @@
 class CiudadanosController < ApplicationController
+  before_filter :login_required
   # GET /ciudadanos
   # GET /ciudadanos.json
   def index

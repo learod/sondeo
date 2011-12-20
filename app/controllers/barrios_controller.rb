@@ -1,4 +1,5 @@
 class BarriosController < ApplicationController
+  before_filter :login_required
   # GET /barrios
   # GET /barrios.json
   def index

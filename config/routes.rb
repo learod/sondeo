@@ -1,4 +1,10 @@
 Sondeo::Application.routes.draw do
+  resources :municipios
+
+  resources :provincias
+
+  resources :paises
+
   get "main/index"
 
   resources :users

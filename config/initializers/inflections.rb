@@ -6,5 +6,10 @@
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
    inflect.irregular 'error', 'errores'
+   inflect.irregular 'ciudadano', 'ciudadanos'
+   inflect.irregular 'barrio', 'barrios'
+   inflect.irregular 'pais', 'paises'
+   inflect.irregular 'provincia', 'provincias'
+   inflect.irregular 'municipio', 'municipios'
 #   inflect.uncountable %w( fish sheep )
  end

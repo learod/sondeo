@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111209203416) do
+ActiveRecord::Schema.define(:version => 20111220145157) do
 
   create_table "barrios", :force => true do |t|
     t.string   "nombre"
@@ -31,6 +31,26 @@ ActiveRecord::Schema.define(:version => 20111209203416) do
     t.datetime "updated_at"
   end
 
+  create_table "municipios", :force => true do |t|
+    t.string   "nombre"
+    t.integer  "provincia_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "paises", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "provincias", :force => true do |t|
+    t.string   "nombre"
+    t.integer  "pais_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100, :default => ""
@@ -41,6 +61,9 @@ ActiveRecord::Schema.define(:version => 20111209203416) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.integer  "pais_id"
+    t.integer  "provincia_id"
+    t.integer  "municipio_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
