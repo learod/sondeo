@@ -1,9 +1,8 @@
 development:
-  adapter: postgresql
+  adapter: mysql
   database: sondeoci_dev
   username: sondeoci_dev
   password: psqllea87
-  host: localhost
 
 test:
   adapter: jdbcpostgresql
