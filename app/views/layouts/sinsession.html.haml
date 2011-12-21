@@ -3,15 +3,14 @@
   %head
     %title Sondeo
     = stylesheet_link_tag    "application"
-    = javascript_include_tag "jquery-1.6.2.min", "jquery.validate"
+    = javascript_include_tag "jquery-1.6.2.min", "jquery.validate", "jquery.barousel"
     = csrf_meta_tags
   %body
     .topbar
       .fill
         .container
           %a.brand Bienvenido
-          
-          
+                   
           .pull-right
             = form_tag session_path do 
               

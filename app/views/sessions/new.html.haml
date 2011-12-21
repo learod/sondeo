@@ -3,3 +3,17 @@
 
 .row
   .span10
+    #carousel.barrousel
+      .barrousel_image
+        = image_tag 'encuesta/ee2010.png', :class => 'default'
+        = image_tag('encuesta/encuesta.gif')
+      .barrousel_content
+        .default algun text
+        %div nasa
+
+      .barrousel_nav
+
+
+
+:javascript 
+  $('#carousel').barousel({navType: 2});
