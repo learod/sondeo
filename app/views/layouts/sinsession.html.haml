@@ -17,5 +17,22 @@
               %a{:href => "#about"} About
             %li
               %a{:href => "#contact"} Contact
-          %a#incio.pull-right.btn{:href => "#"} Iniciar
+          
+          .pull-right
+            = form_tag session_path do 
+              
+                 
+              = text_field_tag 'login', @login, :placeholder => "usuario", :class=>"input-small" 
+
+            
+              
+              = password_field_tag 'password', nil , :placeholder => "password", :class=>"input-small" 
+
+              =# label_tag 'remember_me', 'Remember me' 
+              =# check_box_tag 'remember_me', '1', @remember_me 
+
+
+              = submit_tag 'Iniciar', :class => "btn"
+
+          
     = yield
