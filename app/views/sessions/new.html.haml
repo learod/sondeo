@@ -1,29 +1,5 @@
-.login
-  #box
-  
-    %h1 Inicio de Sesion 
+.page-header
+  %h1 S.E.C. <small> Sistema de Encuestas Cuidadanas</small>
 
-    = form_tag session_path do 
-      %p
-        = label_tag 'login' 
-        %br 
-        = text_field_tag 'login', @login 
-
-      %p
-        = label_tag 'password' 
-        %br
-        = password_field_tag 'password', nil 
-
-      =# label_tag 'remember_me', 'Remember me' 
-      =# check_box_tag 'remember_me', '1', @remember_me 
-
-
-      = submit_tag 'Iniciar'
-      %a{:href=>"#",:id=>'subir'} subir
-      
-:javascript
-  $("#box").hide();
-  $("#incio").click(function(){ $("#box").fadeIn(800); })
-  $("#subir").click(function(){ $("#box").fadeOut(800); })
-     
-
+.row
+  .span10
