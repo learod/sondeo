@@ -3,17 +3,25 @@
 
 .row
   .span10
-    #carousel.barrousel
-      .barrousel_image
-        = image_tag 'encuesta/ee2010.png', :class => 'default'
-        = image_tag('encuesta/encuesta.gif')
-      .barrousel_content
-        .default algun text
-        %div nasa
-
-      .barrousel_nav
-
-
-
-:javascript 
-  $('#carousel').barousel({navType: 2});
+    #gallery
+      %a.show{:href=>'#'}
+        = image_tag 'encuesta/survey.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Lorem</h3> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>"#"}
+        = image_tag 'encuesta/ee2010.png',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/encuesta.gif',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/encuesta1.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/encuesta2.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/encuesta3.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/Encuesta.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/encuestas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      %a{:href=>'#'}
+        = image_tag 'encuesta/fraude-encuestas-remuneradas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+      
+      .caption
+        .content
