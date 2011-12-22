@@ -3,19 +3,39 @@
   %head
     %title Sondeo
     = stylesheet_link_tag    "application"
-    = javascript_include_tag "jquery-1.6.2.min", "jquery.validate", "rails.validations"
+    = javascript_include_tag "jquery-1.6.2.min", "jquery.validate"
     = csrf_meta_tags
   %body
     .topbar
       .fill
         .container
-          %a.brand{:href => "#"} Sondeo
-          %ul.nav
-            %li.active
-              %a{:href => "#"} Home
-            %li
-              %a{:href => "#about"} About
-            %li
-              %a{:href => "#contact"} Contact
-          %a#incio.pull-right.btn{:href => "/logout"} Salir
-    = yield
+          .brand S. E. C.
+                   
+          .pull-right
+            .usuario-leyenda
+              Usuario: 
+              %span.usuario
+                = current_user.name
+            .cerrar-session
+              %a{:href => '/logout'} Cerrar Sesion
+
+    .container
+      - unless flash[:error].blank?
+        %br
+        .alert-message.error
+          
+          = flash[:error]
+
+      - unless flash[:notice].blank?
+        %br
+        .alert-message.success
+          
+          = flash[:notice]
+              
+      = yield
+
+
+:javascript
+  $(document).ready(function(){
+    $('.alert-message').delay(2000).fadeOut(400);
+  });

@@ -6,3 +6,10 @@
  *= require_tree . 
 */
 
+.usuario {
+	color:#D1F191;
+}
+.usuario-leyenda {
+	color:#C2BEBE;
+}
+

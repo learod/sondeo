@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       @time_left = (session[:expires_at] - Time.now).to_i
       unless @time_left > 0 
         logout_killing_session!
-        flash[:error] = 'Your session expired. Please, login again.'
+        flash[:error] = 'La session ha expirado.'
         redirect_to login_url
       end 
     end 
