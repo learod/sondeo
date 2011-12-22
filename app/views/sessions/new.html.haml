@@ -1,27 +1,43 @@
-.page-header
-  %h1 S.E.C. <small> Sistema de Encuestas Cuidadanas</small>
+.content
+  .page-header
+    %h1 S.E.C. <small> Sistema de Encuestas Cuidadanas</small>
 
-.row
-  .span10
-    #gallery
-      %a.show{:href=>'#'}
-        = image_tag 'encuesta/survey.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Lorem</h3> ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>"#"}
-        = image_tag 'encuesta/ee2010.png',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/encuesta.gif',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/encuesta1.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/encuesta2.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/encuesta3.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/Encuesta.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/encuestas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-      %a{:href=>'#'}
-        = image_tag 'encuesta/fraude-encuestas-remuneradas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+  .row
+    .span10
+      #gallery
+        %a.show{:href=>'#'}
+          = image_tag 'encuesta/survey.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Encuestas</h3>Consultas a la ciudadania."
+        %a{:href=>"#"}
+          = image_tag 'encuesta/ee2010.png',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Estad&iacute;sticas</h3>Posterior al proceso de Encuestas"
+        %a{:href=>'#'}
+          = image_tag 'encuesta/encuesta.gif',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Opinion</h3>Abierta a la ciudadania"
+        %a{:href=>'#'}
+          = image_tag 'encuesta/encuesta1.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+        %a{:href=>'#'}
+          = image_tag 'encuesta/encuesta2.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+        %a{:href=>'#'}
+          = image_tag 'encuesta/encuesta3.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+        %a{:href=>'#'}
+          = image_tag 'encuesta/Encuesta.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+        %a{:href=>'#'}
+          = image_tag 'encuesta/encuestas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+        %a{:href=>'#'}
+          = image_tag 'encuesta/fraude-encuestas-remuneradas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+        
+        .caption
+          .content
+    .span4
+      #logo_unne
+        = image_tag "images.jpg" , :width=>180, :height => 150
+      %br
+      %hr
+      %h3 U.N.N.E.
+      #texto 
+        El presente sistema es desarrollado como Trabajo Final de Aplicaci&oacute;n, en cumplementaci&oacute;n
+        de la carrera Licenciatura en Sistemas de Informaci&oacute;n, correspindiente a la Universidad Nacional del Nordeste
       
-      .caption
-        .content
+      = image_tag "rails_gris.png" , :class => "img_rails"
+      
+%footer 
+  %p
+    Rodriguez, Leandro Ariel
