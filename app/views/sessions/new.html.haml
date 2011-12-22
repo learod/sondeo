@@ -35,8 +35,10 @@
       #texto 
         El presente sistema es desarrollado como Trabajo Final de Aplicaci&oacute;n, en cumplementaci&oacute;n
         de la carrera Licenciatura en Sistemas de Informaci&oacute;n, correspindiente a la Universidad Nacional del Nordeste
-      
-      = image_tag "rails_gris.png" , :class => "img_rails"
+      .logo_rails
+        %span{:style=>'position: absolute; right: 36px; bottom: 0;'}
+          %sub developed on
+        = image_tag "rails_gris.png" , :with => 35, :height => 40
       
 %footer 
   %p

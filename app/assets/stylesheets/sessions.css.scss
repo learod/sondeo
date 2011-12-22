@@ -101,7 +101,10 @@ body{
         text-align: center;
       }
 
-      img_rails { position: absolute; right: 0; bottom: 0; }
+      div.logo_rails { position: relative; height: 120px; }
+      div.logo_rails img { position: absolute; right: 0; bottom: 0; }
+
+      
       
 
 
