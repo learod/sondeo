@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20111220145157) do
     t.integer  "pais_id"
     t.integer  "provincia_id"
     t.integer  "municipio_id"
+    t.string   "tipo"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

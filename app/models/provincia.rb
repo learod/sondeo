@@ -3,6 +3,8 @@ class Provincia < ActiveRecord::Base
 
 	has_many :municipios
 
+	delegate :nombre, :to => :pais, :prefix=>true
+
 	validates :nombre, :presence   => true,
                     :uniqueness => true,
                     :length     => { :within => 3..40 }

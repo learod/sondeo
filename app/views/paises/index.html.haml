@@ -1,0 +1,21 @@
+.content
+  .page-header
+    %h1 Paises
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th Nombre
+          %th
+          
+        - @paises.each do |pais|
+          %tr
+            %td= pais.nombre
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), pais, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_pais_path(pais), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),pais , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo Pais', new_pais_path, :class => 'btn primary'

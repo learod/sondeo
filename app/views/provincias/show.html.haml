@@ -1,0 +1,19 @@
+
+.content
+  .page-header
+    %h1 Pais
+  .row
+    .span14
+      %p
+        %b Nombre:
+        = @provincia.nombre
+
+      %p
+
+        %b Pais:
+        = @provincia.pais_nombre
+
+      %hr
+      = link_to 'Editar',  edit_provincia_path(@provincia),:class=>'btn info'
+      
+      = link_to 'Volver',provincias_path  ,:class=>'btn default'

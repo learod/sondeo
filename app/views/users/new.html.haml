@@ -1,0 +1,37 @@
+.content
+  .page-header
+    %h1 Alta de Nuevo Usuario
+
+  .row
+    .span16
+        
+
+      - @user.password = @user.password_confirmation = nil
+      = form_for @user, :url => users_path do |f|
+        .clearfix
+          = label_tag 'usuario'
+          .input
+            = f.text_field :login
+        .clearfix
+          = label_tag 'Nombre y Apellido', 'Nombre y Apellido'
+          .input
+            = f.text_field :name
+        .clearfix
+          = label_tag 'email'
+          .input
+            = f.text_field :email
+        .clearfix
+          = label_tag 'password'
+          .input
+            = f.password_field :password
+        .clearfix
+          = label_tag 'password_confirmation', 'Confirm Password'
+          .input
+            = f.password_field :password_confirmation
+        .clearfix
+          = label_tag 'tipo', 'Tipo Usuario'
+          .input
+            = f.select :tipo, options_for_select([["Administrador", "administrador"], ["Provincia", "provincia"], ["Municipio", "municipio"]]) 
+        %hr
+        .input
+          = submit_tag 'Guardar', :class => "btn primary"
