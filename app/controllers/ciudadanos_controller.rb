@@ -42,6 +42,8 @@ class CiudadanosController < ApplicationController
   # POST /ciudadanos.json
   def create
     @ciudadano = Ciudadano.new(params[:ciudadano])
+    @ciudadano.pais_id = current_user.pais_id
+    @ciudadano.provinvia_id = current_user.provinvia_id
 
     respond_to do |format|
       if @ciudadano.save

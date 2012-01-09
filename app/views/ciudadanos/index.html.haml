@@ -1,0 +1,30 @@
+.content
+  .page-header
+    %h1 Cuidadanos
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th DNI
+          %th Nombre
+          %th Apellido
+          %th Email
+          %th
+          
+        - @ciudadanos.each do |ciudadano|
+          %tr
+            %td= ciudadano.dni
+            %td= ciudadano.nombre
+            %td= ciudadano.apellido
+            %td= ciudadano.email
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), ciudadano, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_ciudadano_path(ciudadano), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),ciudadano , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo ciudadano', new_ciudadano_path, :class => 'btn primary'
+
+
+

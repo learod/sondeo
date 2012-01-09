@@ -49,6 +49,7 @@ GEM
     haml (3.1.4)
     hike (1.2.1)
     i18n (0.6.0)
+    johnson (1.2.0)
     jquery-rails (1.0.18)
       railties (~> 3.0)
       thor (~> 0.14)
@@ -128,6 +129,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   execjs
   haml
+  johnson
   jquery-rails
   json
   mongrel

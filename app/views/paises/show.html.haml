@@ -8,6 +8,25 @@
       = @pais.nombre
 
       %hr
+
+      %h3 Listado de provincias
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          / %th Pais
+          %th Nombre
+          %th 
+          
+        - @pais.provincias.each do |provincia|
+          %tr
+            / %td= provincia.pais_nombre
+            %td= provincia.nombre
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), provincia, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_provincia_path(provincia), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),provincia , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+
+
+
       = link_to 'Editar', edit_pais_path(@pais),:class=>'btn info'
       
       = link_to 'Volver', paises_path ,:class=>'btn default'

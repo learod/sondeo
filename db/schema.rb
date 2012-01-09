@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220145157) do
+ActiveRecord::Schema.define(:version => 20111228170622) do
 
   create_table "barrios", :force => true do |t|
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "municipio_id"
   end
 
   create_table "ciudadanos", :force => true do |t|

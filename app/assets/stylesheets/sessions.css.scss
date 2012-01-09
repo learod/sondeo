@@ -104,7 +104,58 @@ body{
       div.logo_rails { position: relative; height: 120px; }
       div.logo_rails img { position: absolute; right: 0; bottom: 0; }
 
-      
-      
+
+/* Slider
+----------------------------------------------------------------------------------------------------
+    anythingSlider v1.2
+    
+    By Chris Coyier: http://css-tricks.com
+    with major improvements by Doug Neiner: http://pixelgraphics.us/
+    based on work by Remy Sharp: http://jqueryfordesigners.com/
+*/
+
+
+#slider-ptos .anythingSlider            { width: 580px; height: 360px; }
+#slider-ptos .anythingSlider .wrapper   { width: 580px; height: 360px; } 
+
+.anythingSlider                         { position: relative; }
+.anythingSlider .wrapper                { overflow: auto; margin: 0; padding: 0; position: relative; top: 0; left: 0; }
+
+                                        /* Width below is max for Opera */
+.anythingSlider .wrapper ul             { width: 32700px; list-style: none; position: relative; top: 0; left: 0; margin: 0; }
+.anythingSlider .wrapper ul li          { display: block; float: left; margin: 0; background: #fff; }
+
+#slider-ptos .anythingSlider .wrapper ul li { width: 580px; height: 360px; }
+#slider-ptos img { border-radius: 5px; -moz-border-radius: 5px; }
+
+.anythingSlider .arrow                  { display: none; height: 200px; width: 67px; background: url(images/arrows.png) no-repeat 0 0; text-indent: -9999px; position: absolute; top: -250px; cursor: pointer; }
+.anythingSlider .forward                { background-position: 0 0; right: -20px; }
+.anythingSlider .back                   { background-position: -67px 0; left: -20px; }
+.anythingSlider .forward:hover          { background-position: 0 -200px; }
+.anythingSlider .back:hover             { background-position: -67px -200px; }
+
+.thumbNav                               { position: absolute; top: -20px; right: 0; }
+.thumbNav li                            { display: inline; }
+.thumbNav a                             {
+                                        text-indent: -9999px;
+                                        display: inline-block;
+                                        height: 10px;
+                                        width: 10px;
+                                        margin-right: 5px;
+                                        background: #ccc;
+                                        border-radius: 5px;
+                                        -moz-border-radius: 5px;
+                                        -webkit-border-radius: 5px; 
+                                        }
+.thumbNav a:hover                       { background: #ddd; text-decoration: none; }
+.thumbNav a.cur                         { background: #aaa; }
+
+.start-stop                             { display: none; }
+
+/*
+  Prevents
+*/
+.anythingSlider .wrapper ul ul          { position: static; margin: 0; background: none; overflow: visible; width: auto; border: 0; }
+.anythingSlider .wrapper ul ul li       { float: none; height: auto; width: auto; background: none; }
 
 

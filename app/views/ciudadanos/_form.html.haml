@@ -1,0 +1,48 @@
+= form_for(@ciudadano, :validate => true) do |f| 
+  - if @ciudadano.errors.any?
+    #error_explanation
+      %h2 
+        = pluralize(@ciudadano.errors.count, "error") 
+
+      %ul
+        - @ciudadano.errors.full_messages.each do |msg| 
+          %li= msg 
+     
+  .clearfix
+    = f.label :dni 
+    .input
+      = f.text_field :dni 
+  .clearfix
+    = f.label :nombre 
+    .input
+      = f.text_field :nombre
+  .clearfix
+    = f.label :apellido 
+    .input
+      = f.text_field :apellido 
+  .clearfix
+    = f.label :email
+    .input 
+      = f.text_field :email 
+  .clearfix
+    = f.label :direccion 
+    .input
+      = f.text_field :direccion 
+  .clearfix
+    = f.label :telefono 
+    .input
+      = f.text_field :telefono 
+  .clearfix    
+    = f.label :municipio_id 
+    .input
+      = select_tag :municipio_id,options_from_collection_for_select(Municipio.where("provincia_id = ? ", current_user.provincia_id ),'id','nombre')
+  .clearfix    
+    = f.label :barrio_id 
+    .input
+      = f.select :barrio_id, Barrio.all.collect{|t| [t.nombre, t.id]}, :include_blank=>"Seleccione"
+    
+
+  .input
+
+    = f.submit  :class => 'btn primary'
+  

@@ -4,28 +4,42 @@
 
   .row
     .span10
-      #gallery
-        %a.show{:href=>'#'}
-          = image_tag 'encuesta/survey.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Encuestas</h3>Consultas a la ciudadania."
-        %a{:href=>"#"}
-          = image_tag 'encuesta/ee2010.png',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Estad&iacute;sticas</h3>Posterior al proceso de Encuestas"
-        %a{:href=>'#'}
-          = image_tag 'encuesta/encuesta.gif',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Opinion</h3>Abierta a la ciudadania"
-        %a{:href=>'#'}
-          = image_tag 'encuesta/encuesta1.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
-        %a{:href=>'#'}
-          = image_tag 'encuesta/encuesta2.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
-        %a{:href=>'#'}
-          = image_tag 'encuesta/encuesta3.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
-        %a{:href=>'#'}
-          = image_tag 'encuesta/Encuesta.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
-        %a{:href=>'#'}
-          = image_tag 'encuesta/encuestas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
-        %a{:href=>'#'}
-          = image_tag 'encuesta/fraude-encuestas-remuneradas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
-        
-        .caption
-          .content
+
+      #slider-ptos
+        .anythingSlider
+          .wrapper
+            %ul
+              %li
+              
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/survey.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Encuestas</h3>Consultas a la ciudadania."
+              %li
+                %a{:href=>"#"}
+                  = image_tag 'encuesta/ee2010.png',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Estad&iacute;sticas</h3>Posterior al proceso de Encuestas"
+              %li  
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/encuesta.gif',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>"<h3>Opinion</h3>Abierta a la ciudadania"
+              %li  
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/encuesta1.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+              %li  
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/encuesta2.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+              %li  
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/encuesta3.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+              %li 
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/Encuesta.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+              %li  
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/encuestas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+              %li  
+                %a{:href=>'#'}
+                  = image_tag 'encuesta/fraude-encuestas-remuneradas.jpg',:alt=>"Flowing Rock", :width=>580, :height=>360 ,:rel=>""
+                
+        / .caption
+        /   .content
     .span4
       #logo_unne
         = image_tag "images.jpg" , :width=>180, :height => 150
@@ -43,3 +57,20 @@
 %footer 
   %p
     Rodriguez, Leandro Ariel
+
+
+
+:javascript
+
+  
+
+  $('#slider-ptos .anythingSlider').anythingSlider({
+      easing: "swing",                // Anything other than "linear" or "swing" requires the easing plugin
+      autoPlay: true,                 // This turns off the entire FUNCTIONALY, not just if it starts running or not
+      startStopped: false,            // If autoPlay is on, this can force it to start stopped
+      delay: 4000,                    // How long between slide transitions in AutoPlay mode
+      animationTime: 300,             // How long the slide transition takes
+      hashTags: false,                // Should links change the hashtag in the URL?
+      buildNavigation: true,          // If true, builds and list of anchor links to link to each slide
+      pauseOnHover: true,             // If true, and autoPlay is enabled, the show will pause on hover
+  });

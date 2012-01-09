@@ -1,17 +1,16 @@
-
 .content
   .page-header
-    %h1 Pais
+    %h1 Provincia
   .row
     .span14
-      %p
-        %b Nombre:
-        = @provincia.nombre
 
-      %p
+      %b Nombre:
+      = @provincia.nombre
 
-        %b Pais:
-        = @provincia.pais_nombre
+      %br
+
+      %b Pais:
+      = @provincia.pais_nombre
 
       %hr
       = link_to 'Editar',  edit_provincia_path(@provincia),:class=>'btn info'
