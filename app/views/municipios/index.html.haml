@@ -1,0 +1,25 @@
+.content
+  .page-header
+    %h1 Municipios
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th Nombre
+          %th Provincia
+          %th Pais
+          %th
+          
+        - @municipios.each do |municipio|
+          %tr
+            %td= municipio.nombre
+            %td= municipio.provincia_nombre
+            %td= municipio.pais_nombre
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), municipio, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_municipio_path(municipio), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),municipio , :confirm => '¿Está Seguro?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo Municipio', new_municipio_path, :class => 'btn primary'

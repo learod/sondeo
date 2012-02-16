@@ -1,0 +1,27 @@
+.content
+  .page-header
+    %h1 Barrios
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th Nombre
+          %th Municipio
+          %th Provincia
+          %th Pais
+          %th
+          
+        - @barrios.each do |barrio|
+          %tr
+            %td= barrio.nombre
+            %td= barrio.municipio_nombre
+            %td= barrio.provincia_nombre
+            %td= barrio.pais_nombre
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), barrio, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_barrio_path(barrio), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),barrio , :confirm => '¿Está Seguro?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo Barrio', new_barrio_path, :class => 'btn primary'

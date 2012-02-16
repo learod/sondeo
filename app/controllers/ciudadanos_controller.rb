@@ -42,8 +42,8 @@ class CiudadanosController < ApplicationController
   # POST /ciudadanos.json
   def create
     @ciudadano = Ciudadano.new(params[:ciudadano])
-    @ciudadano.pais_id = current_user.pais_id
-    @ciudadano.provinvia_id = current_user.provinvia_id
+    #@ciudadano.pais_id = current_user.pais_id
+    #@ciudadano.provinvia_id = current_user.provinvia_id
 
     respond_to do |format|
       if @ciudadano.save
@@ -81,6 +81,18 @@ class CiudadanosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to ciudadanos_url }
       format.json { head :ok }
+    end
+  end
+
+
+  def busca_barrios
+    unless params[:id] == 'Seleccione'
+      @barrios = Barrio.where("municipio_id = ?", params[:id])
+    else
+      @barrios = []
+    end 
+    respond_to do |format|
+      format.js
     end
   end
 end

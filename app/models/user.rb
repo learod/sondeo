@@ -12,14 +12,18 @@ class User < ActiveRecord::Base
                     :length     => { :within => 3..40 },
                     :format     => { :with => Authentication.login_regex, :message => Authentication.bad_login_message }
 
-  validates :name,  :length     => { :maximum => 100 },
-                    :allow_nil  => true
+  validates :name,  :presence   => true,
+                    :length     => { :maximum => 100 },
+                    :allow_nil  => false
 
   validates :email, :presence   => true,
                     :uniqueness => true,
                     :format     => { :with => Authentication.email_regex, :message => Authentication.bad_email_message },
                     :length     => { :within => 6..100 }
 
+  validates :tipo,  :presence      => true,
+                    :format        => {:with => /\Aadministrador\z|\Aprovincia\z|\Amunicipio\z/, 
+                                       :message    => 'Error en tipo. (Seleccione uno)'}
   
 
   # HACK HACK HACK -- how to do attr_accessible from here?
@@ -47,6 +51,10 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
+  end
+
+  def nombre
+    name
   end
 
   protected

@@ -1,0 +1,3 @@
+  page << "$('.provincia select').html('"+ escape_javascript("<option value=''>Seleccione</option>#{options_from_collection_for_select(@provincias,'id','nombre')}")+"')"
+  #page << "$('#municipio_provincia_id').html('"+ escape_javascript("<option value=''>Seleccione</option>#{options_from_collection_for_select(@provincias,'id','nombre')}")+"')"
+  # page.replace_html 'municipio_provincia_id', "<option>Seleccione</option>#{options_from_collection_for_select(@provincias,'id','nombre')}".html_safe

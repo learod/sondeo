@@ -13,7 +13,7 @@
           .input
             = f.text_field :login
         .clearfix
-          = label_tag 'Nombre y Apellido', 'Nombre y Apellido'
+          = label_tag 'name', 'Nombre y Apellido'
           .input
             = f.text_field :name
         .clearfix
@@ -31,7 +31,23 @@
         .clearfix
           = label_tag 'tipo', 'Tipo Usuario'
           .input
-            = f.select :tipo, options_for_select([["Administrador", "administrador"], ["Provincia", "provincia"], ["Municipio", "municipio"]]) 
+            = f.select :tipo, '<option>Seleccione</option>'+options_for_select([["Administrador", "administrador"], ["Provincia", "provincia"], ["Municipio", "municipio"]]) 
         %hr
         .input
           = submit_tag 'Guardar', :class => "btn primary"
+
+:javascript
+  $(document).ready(function(){
+    $.validator.addMethod("validar", function(value, element, params) {
+      return ((/^"|administrador|provincia|municipio|"]$/).test(value));
+    },'Solo se permiten caracteres alfabeticos');
+    $('form').validate({
+        //debug: true,
+        rules: {
+          "user[tipo]": {
+            required: true,
+            regexp: /^"|administrador|provincia|municipio|"]$/
+          }
+        }
+      })
+  })

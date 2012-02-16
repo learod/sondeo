@@ -18,6 +18,7 @@ gem 'johnson'
 gem 'execjs'
 gem 'haml'
 gem 'client_side_validations'
+gem 'prototype-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

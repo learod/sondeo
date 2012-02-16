@@ -9,19 +9,29 @@ class UsersController < ApplicationController
   end
  
   def create
-    logout_keeping_session!
+    #logout_keeping_session!
+    # raise ""
+    logger.info("ERROR .. ......................  ------ #{params[:user][:tipo]}")
     @user = User.new(params[:user])
+    @user.tipo = params[:user][:tipo]
     success = @user && @user.save
     if success && @user.errors.empty?
             # Protects against session fixation attacks, causes request forgery
       # protection if visitor resubmits an earlier form using back
       # button. Uncomment if you understand the tradeoffs.
       # reset session
-      self.current_user = @user # !! now logged in
-      redirect_back_or_default('/', :notice => "Thanks for signing up!  We're sending you an email with your activation code.")
+      #self.current_user = @user # !! now logged in
+      redirect_back_or_default(new_user_path, :notice => "Usuario Creado.")
     else
-      flash.now[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash.now[:error]  = "Lo sentimos, No hemos podido crear el Usuario, Por favor vuelva a intentarlo."
       render :action => 'new'
+    end
+  end
+
+  def index
+    @usuarios = User.all
+    respond_to do |format|
+      format.html
     end
   end
 

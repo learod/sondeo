@@ -81,4 +81,16 @@ class BarriosController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def busca_municipios
+    unless params[:id] == 'Seleccione' || params[:id].blank?  
+      @municipios = Municipio.where("provincia_id = ?", params[:id])
+    else
+      @municipios = []
+    end 
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

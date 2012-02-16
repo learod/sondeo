@@ -1,9 +1,13 @@
 Sondeo::Application.routes.draw do
-  resources :municipios
+  resources :municipios do
+    collection do
+      get "busca_provincias"
+    end
+  end
 
-  resources :provincias
+  resources :provincias 
 
-  resources :paises
+  resources :paises 
 
   get "main/index"
 
@@ -21,10 +25,17 @@ Sondeo::Application.routes.draw do
 
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
 
-  resources :barrios
+  resources :barrios do
+    collection do
+      get "busca_municipios"
+    end
+  end
 
-  resources :ciudadanos
-
+  resources :ciudadanos do
+    collection do
+      get 'busca_barrios'
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

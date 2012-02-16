@@ -1,0 +1,28 @@
+.content
+  .page-header
+    %h1 Barrio
+  .row
+    .span14
+
+      %b Nombre:
+      = @barrio.nombre
+
+      %br
+
+      %b Municipio:
+      = @barrio.municipio_nombre
+      
+      %br
+
+      %b Provincia:
+      = @barrio.provincia_nombre
+      
+      %br
+
+      %b Pais:
+      = @barrio.pais_nombre
+
+      %hr
+      = link_to 'Editar',  edit_barrio_path(@barrio),:class=>'btn info'
+      
+      = link_to 'Volver',barrios_path  ,:class=>'btn default'

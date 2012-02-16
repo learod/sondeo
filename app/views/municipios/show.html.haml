@@ -1,0 +1,23 @@
+.content
+  .page-header
+    %h1 Municipio
+  .row
+    .span14
+
+      %b Nombre:
+      = @municipio.nombre
+
+      %br
+
+      %b Provincia:
+      = @municipio.provincia_nombre
+      
+      %br
+
+      %b Pais:
+      = @municipio.pais_nombre
+
+      %hr
+      = link_to 'Editar',  edit_municipio_path(@municipio),:class=>'btn info'
+      
+      = link_to 'Volver',municipios_path  ,:class=>'btn default'

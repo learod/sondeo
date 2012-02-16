@@ -1,43 +1,43 @@
 = form_for(@ciudadano, :validate => true) do |f| 
-  - if @ciudadano.errors.any?
-    #error_explanation
-      %h2 
-        = pluralize(@ciudadano.errors.count, "error") 
-
-      %ul
-        - @ciudadano.errors.full_messages.each do |msg| 
-          %li= msg 
      
   .clearfix
-    = f.label :dni 
+    = label_tag :dni 
     .input
-      = f.text_field :dni 
+      = f.text_field :dni,:class => 'numerico' 
   .clearfix
-    = f.label :nombre 
+    = label_tag :nombre 
     .input
       = f.text_field :nombre
   .clearfix
-    = f.label :apellido 
+    = label_tag :apellido 
     .input
       = f.text_field :apellido 
   .clearfix
-    = f.label :email
+    = label_tag :email
     .input 
       = f.text_field :email 
   .clearfix
-    = f.label :direccion 
+    = label_tag :direccion 
     .input
       = f.text_field :direccion 
   .clearfix
-    = f.label :telefono 
+    = label_tag :telefono 
     .input
-      = f.text_field :telefono 
+      = f.text_field :telefono,:class => 'numerico'
   .clearfix    
-    = f.label :municipio_id 
+    = label_tag :pais_id 
+    .input
+      = select_tag :pais_id,options_from_collection_for_select(Pais.all,'id','nombre')
+  .clearfix.provincia    
+    = label_tag :provincia_id 
+    .input
+      = select_tag :provincia_id,options_from_collection_for_select(Provincia.where("pais_id = ? ", current_user.pais_id ),'id','nombre')
+  .clearfix.municipio
+    = label_tag :municipio_id 
     .input
       = select_tag :municipio_id,options_from_collection_for_select(Municipio.where("provincia_id = ? ", current_user.provincia_id ),'id','nombre')
-  .clearfix    
-    = f.label :barrio_id 
+  .clearfix.barrio    
+    = label_tag :barrio_id 
     .input
       = f.select :barrio_id, Barrio.all.collect{|t| [t.nombre, t.id]}, :include_blank=>"Seleccione"
     
@@ -46,3 +46,56 @@
 
     = f.submit  :class => 'btn primary'
   
+:javascript
+  $(document).ready(function(){
+    //cambio_pais();
+    $("#pais_id").change(cambio_pais);
+    $("#provincia_id").change(cambio_provincia);
+    $("#municipio_id").change(cambio_municipio);
+
+    $(".numerico").keydown(function(event) {
+        // Allow: backspace, delete, tab and escape
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || 
+             // Allow: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Allow: home, end, left, right
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        else {
+            // Ensure that it is a number and stop the keypress
+            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+
+    
+  });
+
+  function cambio_pais(){
+    jQuery.ajax({
+      complete: function(){
+                  $('.municipio select').html('<option>Seleccione</option>');
+                  $('.barrio select').html('<option>Seleccione</option>');
+                },
+      type:'get',
+      url: "#{busca_provincias_municipios_path}?id="+$('#pais_id').val()
+     });
+  }
+
+  function cambio_provincia(){
+    jQuery.ajax({
+       complete:$('.barrio select').html('<option>Seleccione</option>'),
+       type:'get',
+       url: "#{busca_municipios_barrios_path}?id="+$('#provincia_id').val()
+     });
+  }
+
+  function cambio_municipio(){
+    jQuery.ajax({
+       type:'get',
+       url: "#{busca_barrios_ciudadanos_path}?id="+$('#municipio_id').val()
+     });
+  }

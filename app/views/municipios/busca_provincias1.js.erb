@@ -1,0 +1,3 @@
+<% combo = %{<option value="">Seleccione</option>#{options_from_collection_for_select(@provincias,'id','nombre')}}.html_safe %>
+//= require jquery.tiptip.js
+$('#municipio_provincia_id').html("<%= escape_javascript(combo) %>");

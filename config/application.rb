@@ -22,6 +22,9 @@ module Sondeo
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
+    config.action_view.javascript_expansions = { :defaults => %w(jquery jquery_ujs) }
+    # config.action_view.debug_rjs = true
+
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 

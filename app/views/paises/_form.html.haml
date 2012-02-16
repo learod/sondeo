@@ -1,14 +1,7 @@
 = form_for(@pais, :validate => true) do |f|
-  - if @pais.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@pais.errors.count, "error")
-        
-      %ul
-        - @pais.errors.full_messages.each do |msg|
-          %li= msg
+
   .clearfix
-    = f.label :nombre
+    = label_tag :nombre
     .input
       = f.text_field :nombre
   %hr  

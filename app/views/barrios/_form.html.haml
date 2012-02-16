@@ -1,0 +1,54 @@
+= form_for(@barrio, :validate => true) do |f|
+
+  .clearfix
+    = label_tag :nombre
+    .input
+      = f.text_field :nombre
+  
+  .cleafix
+    = label_tag :pais_id
+    .input
+      = select_tag :pais_id, %{<option>Seleccione</option>#{options_from_collection_for_select(Pais.all,'id','nombre',@barrio.municipio_id.blank? ? 0 : @barrio.pais.id)}}.html_safe
+  %br
+  .cleafix.provincia
+    = label_tag :provincia_id
+    .input
+      = select_tag :provincia_id, %{<option>Seleccione</option>#{options_from_collection_for_select(Provincia.all,'id','nombre',@barrio.municipio_id.blank? ? 0 : @barrio.provincia.id)}}.html_safe
+  %br
+  .cleafix.municipio
+    = label_tag :municipio_id
+    .input
+      = f.select :municipio_id, @barrio.municipio_id.blank? ? [] : Municipio.where('provincia_id = ?', @barrio.provincia.id).collect{|t| [t.nombre,t.id]}, :include_blank=>'Seleccione'
+  %hr
+    .input
+      = f.submit :class=>'btn primary'
+
+
+:javascript
+  $(document).ready(function(){
+    //cambio_pais();
+    $("#pais_id").change(cambio_pais);
+    $("#provincia_id").change(cambio_provincia);
+    $('#new_barrio edit_barrio').validate({
+      rules: {"barrio[nombre]": {required: true}}
+    })
+
+  });
+
+  function cambio_pais(){
+    jQuery.ajax({
+      complete: $('.municipio select').html('<option>Seleccione</option>'),
+      type:'get',
+      url: "#{busca_provincias_municipios_path}?id="+$('#pais_id').val()
+     });
+  }
+
+  function cambio_provincia(){
+    jQuery.ajax({
+       type:'get',
+       url: "#{busca_municipios_barrios_path}?id="+$('#provincia_id').val()
+     });
+  }
+  
+
+

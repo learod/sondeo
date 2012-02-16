@@ -81,4 +81,15 @@ class MunicipiosController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def busca_provincias
+    unless params[:id] == 'Seleccione'
+      @provincias = Provincia.where("pais_id = ?", params[:id])
+    else
+      @provincias = []
+    end 
+    respond_to do |format|
+      format.js
+    end
+  end
 end

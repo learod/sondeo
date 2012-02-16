@@ -1,0 +1,1 @@
+  page << "$('.barrio select').html('"+ escape_javascript("<option value=''>Seleccione</option>#{options_from_collection_for_select(@barrios,'id','nombre')}")+"')"

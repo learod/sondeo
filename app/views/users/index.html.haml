@@ -1,0 +1,26 @@
+.content
+  .page-header
+    %h1 Usuarios
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th Nombre
+          %th e-mail
+          %th e-mail
+          %th 
+          
+        - @usuarios.each do |usuario|
+          %tr
+            %td= usuario.nombre
+            %td= usuario.email
+            %td= usuario.tipo
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), '#', :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), '#', :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),'#' , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+              
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo Usuario', new_user_path, :class => 'btn primary'

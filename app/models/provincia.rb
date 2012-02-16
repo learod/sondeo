@@ -6,7 +6,7 @@ class Provincia < ActiveRecord::Base
 	delegate :nombre, :to => :pais, :prefix=>true
 
 	validates :nombre, :presence   => true,
-                    :uniqueness => true,
+                    :uniqueness => {:scope => :pais_id},
                     :length     => { :within => 3..40 }
         
     validates :pais_id, :presence => true

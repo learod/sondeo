@@ -4,12 +4,7 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery-1.6.2.min
-//= require jquery.fancybox-1.3.1.js
-//= require rails.validations
+//= require jquery
 //= require jquery_ujs
-//= require bootstrap-dropdown
-//= require jquery.tiptip
-//= require jquery.validate
-//= require superfish
-//= require hoverIntent
+//= require_tree .
+//= require rails.validations
