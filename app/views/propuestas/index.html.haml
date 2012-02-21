@@ -1,0 +1,25 @@
+.content
+  .page-header
+    %h1 Propuestas
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th Descripcion
+          %th User
+          %th Periodo consulta propuesta
+          %th
+          
+        - @propuestas.each do |propuesta|
+          %tr
+            %td= propuesta.descripcion 
+            %td= propuesta.user_id 
+            %td= propuesta.periodo_consulta_propuesta_id 
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), propuesta, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_propuesta_path(propuesta), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),propuesta , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo Propuesta', new_propuesta_path, :class => 'btn primary'

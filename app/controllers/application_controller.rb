@@ -20,4 +20,9 @@ class ApplicationController < ActionController::Base
   def update_activity_time
     session[:expires_at] = 100.minutes.from_now
   end
+
+  def generar_clave
+    o =  [('a'..'z'),('A'..'Z'),(0..9)].map{|i| i.to_a}.flatten;  
+    string  =  (0..8).map{ o[rand(o.length)]  }.join;
+  end
 end

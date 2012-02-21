@@ -1,0 +1,39 @@
+.content
+  .page-header
+    %h1 Periodo_propuesta
+  .row
+    .span14
+    
+      %b Descripcion:
+      = @periodo_propuesta.descripcion 
+
+      %br
+    
+      %b Fecha inicio:
+      = @periodo_propuesta.fecha_inicio 
+
+      %br
+    
+      %b Fecha fin:
+      = @periodo_propuesta.fecha_fin 
+
+      %br
+    
+      %b Barrio:
+      = @periodo_propuesta.barrio_id 
+
+      %br
+    
+      %b Municipio:
+      = @periodo_propuesta.municipio_id 
+
+      %br
+      
+ 
+      %hr
+
+ 
+
+      = link_to 'Editar', edit_periodo_propuesta_path(@periodo_propuesta),:class=>'btn info'
+      
+      = link_to 'Volver', periodo_propuestas_path ,:class=>'btn default'

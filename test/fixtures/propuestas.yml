@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  descripcion: MyText
+  user_id: 1
+  periodo_consulta_propuesta_id: 1
+
+two:
+  descripcion: MyText
+  user_id: 1
+  periodo_consulta_propuesta_id: 1

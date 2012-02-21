@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   set_table_name 'users'
 
+  has_one :ciudadano
+
   validates :login, :presence   => true,
                     :uniqueness => true,
                     :length     => { :within => 3..40 },
@@ -22,14 +24,14 @@ class User < ActiveRecord::Base
                     :length     => { :within => 6..100 }
 
   validates :tipo,  :presence      => true,
-                    :format        => {:with => /\Aadministrador\z|\Aprovincia\z|\Amunicipio\z/, 
-                                       :message    => 'Error en tipo. (Seleccione uno)'}
+                    :format        => {:with => /\Aadministrador\z|\Aprovincia\z|\Amunicipio\z|\Aciudadano\z/, 
+                                       :message    => 'Error en tipo. (Seleccione uno)',:on => :create}
   
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  attr_accessible :login, :email, :name, :password, :password_confirmation,:nombre
 
 
 
@@ -51,6 +53,10 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
+  end
+
+  def nombre=(value)
+    name=value
   end
 
   def nombre

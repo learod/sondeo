@@ -1,0 +1,42 @@
+= form_for(@periodo_propuesta, :validate => true) do |f|
+  - if @periodo_propuesta.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@periodo_propuesta.errors.count, "error")
+        
+      %ul
+        - @periodo_propuesta.errors.full_messages.each do |msg|
+          %li= msg
+  .clearfix
+    = label_tag :descripcion
+    .input
+      = f.text_field :descripcion
+  .clearfix
+    = label_tag :fecha_inicio, 'Fecha de Inicio'
+    .input
+      = f.text_field :fecha_inicio
+  .clearfix
+    = label_tag :fecha_fin, 'Fecha de Fin'
+    .input
+      = f.text_field :fecha_fin
+  .clearfix
+    = label_tag :barrio_id
+    .input
+      = f.number_field :barrio_id
+  .clearfix
+    = label_tag :municipio_id
+    .input
+      = f.number_field :municipio_id
+  
+  %hr
+    .input
+      = f.submit :class => 'btn primary'
+
+:javascript
+  $(document).ready(function(){
+    //alert('hola')
+    $('#periodo_propuesta_fecha_inicio').mask('99/99/9999');
+    $('#periodo_propuesta_fecha_fin').mask('99/99/9999');
+    $('#periodo_propuesta_fecha_fin').datepicker();
+  });
+  

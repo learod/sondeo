@@ -1,0 +1,29 @@
+.content
+  .page-header
+    %h1 Propuesta
+  .row
+    .span14
+    
+      %b Descripcion:
+      = @propuesta.descripcion 
+
+      %br
+    
+      %b User:
+      = @propuesta.user_id 
+
+      %br
+    
+      %b Periodo consulta propuesta:
+      = @propuesta.periodo_consulta_propuesta_id 
+
+      %br
+      
+ 
+      %hr
+
+ 
+
+      = link_to 'Editar', edit_propuesta_path(@propuesta),:class=>'btn info'
+      
+      = link_to 'Volver', propuestas_path ,:class=>'btn default'

@@ -10,14 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120129034753) do
-
-  create_table "autos", :force => true do |t|
-    t.string   "modelo"
-    t.integer  "canal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120221004108) do
 
   create_table "barrios", :force => true do |t|
     t.string   "nombre"
@@ -37,6 +30,8 @@ ActiveRecord::Schema.define(:version => 20120129034753) do
     t.integer  "barrio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "password"
   end
 
   create_table "municipios", :force => true do |t|
@@ -48,6 +43,24 @@ ActiveRecord::Schema.define(:version => 20120129034753) do
 
   create_table "paises", :force => true do |t|
     t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "periodo_propuestas", :force => true do |t|
+    t.string   "descripcion"
+    t.date     "fecha_inicio"
+    t.date     "fecha_fin"
+    t.integer  "barrio_id"
+    t.integer  "municipio_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "propuestas", :force => true do |t|
+    t.text     "descripcion"
+    t.integer  "user_id"
+    t.integer  "periodo_consulta_propuesta_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

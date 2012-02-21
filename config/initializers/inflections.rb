@@ -11,5 +11,7 @@
    inflect.irregular 'pais', 'paises'
    inflect.irregular 'provincia', 'provincias'
    inflect.irregular 'municipio', 'municipios'
+   inflect.irregular 'periodo_propuesta', 'periodo_propuestas'
+   inflect.irregular 'propuesta', 'propuestas'
 #   inflect.uncountable %w( fish sheep )
  end

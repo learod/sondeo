@@ -1,4 +1,8 @@
 Sondeo::Application.routes.draw do
+  resources :periodo_propuestas
+
+  resources :propuestas
+
   resources :municipios do
     collection do
       get "busca_provincias"

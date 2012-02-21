@@ -41,12 +41,21 @@ class CiudadanosController < ApplicationController
   # POST /ciudadanos
   # POST /ciudadanos.json
   def create
+    password = generar_clave
     @ciudadano = Ciudadano.new(params[:ciudadano])
-    #@ciudadano.pais_id = current_user.pais_id
-    #@ciudadano.provinvia_id = current_user.provinvia_id
-
+    @ciudadano.password=password
+    @usuario = User.new(
+                      :name=>@ciudadano.nombre,
+                      :login=>@ciudadano.dni,
+                      :email=>@ciudadano.email,
+                      :password=>password,
+                      :password_confirmation=>password
+                      )
+    @usuario.tipo="ciudadano"
+    @usuario.save
+    @ciudadano.user_id = @usuario.id
     respond_to do |format|
-      if @ciudadano.save
+      if @ciudadano.save 
         format.html { redirect_to @ciudadano, :notice => 'Ciudadano was successfully created.' }
         format.json { render :json => @ciudadano, :status => :created, :location => @ciudadano }
       else

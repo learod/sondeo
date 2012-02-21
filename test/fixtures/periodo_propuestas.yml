@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  descripcion: MyString
+  fecha_inicio: 2012-02-20
+  fecha_fin: 2012-02-20
+  barrio_id: 1
+  municipio_id: 1
+
+two:
+  descripcion: MyString
+  fecha_inicio: 2012-02-20
+  fecha_fin: 2012-02-20
+  barrio_id: 1
+  municipio_id: 1

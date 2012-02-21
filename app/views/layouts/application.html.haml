@@ -8,65 +8,10 @@
   %body
     .topbar
       .fill
-        .container
-          %a.brand{:href=>'/main'} S. E. C.
-
-          %ul.nav
-            %li.dropdown
-              %a.dropdown-toggle{:href=> "#" } Usuarios
-              %ul.dropdown-menu
-                %li 
-                  = link_to 'Nuevo Usuario', new_user_path
-            %li.dropdown
-              %a.dropdown-toggle{:href=> "#" } Ciudadanos
-              %ul.dropdown-menu
-                %li 
-                  = link_to 'Nuevo Ciudadano', new_ciudadano_path
-            
-            %li.dropdown
-              %a.dropdown-toggle{:href=> "#" } Administraci&oacuten
-              %ul.dropdown-menu
-                %li
-                  %a Paises
-                  %ul 
-                    %li 
-                      = link_to 'Listado', paises_path
-                    %li 
-                      = link_to 'Nuevo', new_pais_path
-                %li.divider
-                %li
-                  %a Provincias
-                  %ul 
-                    %li 
-                      = link_to 'Listado', provincias_path
-                    %li 
-                      = link_to 'Nueva', new_provincia_path
-                %li.divider
-                %li
-                  %a Municipios
-                  %ul 
-                    %li 
-                      = link_to 'Listado', municipios_path
-                    %li 
-                      = link_to 'Nuevo', new_municipio_path
-                %li.divider
-                %li
-                  %a Barrios
-                  %ul 
-                    %li 
-                      = link_to 'Listado', barrios_path
-                    %li 
-                      = link_to 'Nuevo', new_barrio_path
-                    
-                   
-          .pull-right
-            .usuario-leyenda
-              Usuario: 
-              %span.usuario
-                = current_user.name
-            .cerrar-session
-              %a{:href => '/logout'} Cerrar Sesion
-
+        - if current_user.tipo == 'ciudadano'
+          = render :partial => 'layouts/menu_cuidadanos'
+        - if current_user.tipo == 'administrador'
+          = render :partial => 'layouts/menu_admin'
     .container
       - unless flash[:error].blank?
         %br

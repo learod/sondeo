@@ -13,3 +13,5 @@
 //= require jquery.validate
 //= require superfish
 //= require hoverIntent
+//= require jquery.maskedinput-1.3.min
+//= require bootstrap-datepicker

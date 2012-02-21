@@ -1,0 +1,12 @@
+.container
+  %a.brand{:href=>'/main'} S. E. C.
+
+  
+           
+  .pull-right
+    .usuario-leyenda
+      Usuario: 
+      %span.usuario
+        = current_user.name
+    .cerrar-session
+      %a{:href => '/logout'} Cerrar Sesion

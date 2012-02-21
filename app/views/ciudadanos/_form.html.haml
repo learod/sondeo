@@ -40,8 +40,8 @@
     = label_tag :barrio_id 
     .input
       = f.select :barrio_id, Barrio.all.collect{|t| [t.nombre, t.id]}, :include_blank=>"Seleccione"
-    
-
+  
+  
   .input
 
     = f.submit  :class => 'btn primary'

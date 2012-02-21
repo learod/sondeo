@@ -1,0 +1,26 @@
+= form_for(@propuesta, :validate => true) do |f|
+  - if @propuesta.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@propuesta.errors.count, "error")
+        
+      %ul
+        - @propuesta.errors.full_messages.each do |msg|
+          %li= msg
+  .clearfix
+    = label_tag :descripcion
+    .input
+      = f.text_area :descripcion
+  .clearfix
+    = label_tag :user_id
+    .input
+      = f.number_field :user_id
+  .clearfix
+    = label_tag :periodo_consulta_propuesta_id
+    .input
+      = f.number_field :periodo_consulta_propuesta_id
+  
+  %hr
+    .input
+      = f.submit :class => 'btn primary'
+  

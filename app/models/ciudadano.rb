@@ -1,8 +1,10 @@
 class Ciudadano < ActiveRecord::Base
   belongs_to :barrio
+  belongs_to :user	
 
-  validates :nombre, :apellido, :email, :dni, :direccion, :telefono, :barrio_id, :presence => true
+  validates :nombre, :apellido, :email, :dni, :direccion, :telefono, :barrio_id,:user_id, :presence => true
   validates :dni, :telefono, :numericality => true
+  validates_uniqueness_of :dni
   
   delegate :nombre, :to => :barrio, :prefix => true
   

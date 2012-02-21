@@ -1,0 +1,29 @@
+.content
+  .page-header
+    %h1 Periodo_propuestas
+  .row
+    .span14
+      %table.zebra-striped{:width=>'100%'}
+        %tr
+          %th Descripcion
+          %th Fecha inicio
+          %th Fecha fin
+          %th Barrio
+          %th Municipio
+          %th
+          
+        - @periodo_propuestas.each do |periodo_propuesta|
+          %tr
+            %td= periodo_propuesta.descripcion 
+            %td= periodo_propuesta.fecha_inicio 
+            %td= periodo_propuesta.fecha_fin 
+            %td= periodo_propuesta.barrio_id 
+            %td= periodo_propuesta.municipio_id 
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), periodo_propuesta, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_propuesta_path(periodo_propuesta), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),periodo_propuesta , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nuevo Periodo propuesta', new_periodo_propuesta_path, :class => 'btn primary'
