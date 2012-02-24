@@ -8,10 +8,11 @@
   %body
     .topbar
       .fill
-        - if current_user.tipo == 'ciudadano'
-          = render :partial => 'layouts/menu_cuidadanos'
-        - if current_user.tipo == 'administrador'
-          = render :partial => 'layouts/menu_admin'
+        - if current_user
+          - if current_user.tipo == 'ciudadano'
+            = render :partial => 'layouts/menu_cuidadanos'
+          - if current_user.tipo == 'administrador'
+            = render :partial => 'layouts/menu_admin'
     .container
       - unless flash[:error].blank?
         %br
