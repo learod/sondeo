@@ -6,13 +6,13 @@
     = javascript_include_tag "jquery-1.6.2.min","jquery.anythingslider"
     = csrf_meta_tags
   %body
-    .topbar
-      .fill
+    .navbar.navbar-fixed-top
+      .navbar-inner
         .container
           %a.brand Bienvenido
                    
           .pull-right
-            = form_tag session_path do 
+            = form_tag session_path, :class=>'form-horizontal' do 
               
                  
               = text_field_tag 'login', @login, :placeholder => "usuario", :class=>"input-small" 
@@ -26,14 +26,15 @@
     .container
       - unless flash[:error].blank?
         %br
-        .alert-message.error
+        .alert.alert-error
           %a.close{:href=>"javascript:cerrar_alert()"} ×
           
           = flash[:error]
 
       - unless flash[:notice].blank?
         %br
-        .alert-message.success
+        .alert.alert-success
+          %a.close{:href=>"javascript:cerrar_alert()"} ×
           
           = flash[:error]
               
@@ -44,5 +45,5 @@
     $('.alert-message').delay(2000).fadeOut(400);
   });
   function cerrar_alert(){
-    $('.alert-message').hide();
+    $('.alert').hide();
   }

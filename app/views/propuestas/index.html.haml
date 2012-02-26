@@ -3,7 +3,7 @@
     %h1 Propuestas
   .row
     .span14
-      %table.zebra-striped{:width=>'100%'}
+      %table.table.table-striped{:width=>'100%'}
         %tr
           %th Descripcion
           %th User
@@ -22,4 +22,4 @@
       %hr
       .clearfix
         .input
-          = link_to 'Nuevo Propuesta', new_propuesta_path, :class => 'btn primary'
+          = link_to 'Nuevo Propuesta', new_propuesta_path, :class => 'btn btn-primary'

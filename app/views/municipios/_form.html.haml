@@ -16,7 +16,7 @@
       = f.select :provincia_id, @municipio.provincia_id.blank? ? [] : Provincia.where('pais_id = ?', @municipio.pais.id).collect{|t| [t.nombre,t.id]}, :include_blank=>'Seleccione'
   %hr
     .input
-      = f.submit :class=>'btn primary'
+      = f.submit :class=>'btn btn-primary'
 
 
 :javascript

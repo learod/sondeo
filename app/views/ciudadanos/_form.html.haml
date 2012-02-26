@@ -1,8 +1,8 @@
-= form_for(@ciudadano, :validate => true) do |f| 
+= form_for(@ciudadano, :validate => true,:class => 'form-horizontal') do |f| 
      
-  .clearfix
+  .control-group
     = label_tag :dni 
-    .input
+    .controls
       = f.text_field :dni,:class => 'numerico' 
   .clearfix
     = label_tag :nombre 
@@ -44,7 +44,7 @@
   
   .input
 
-    = f.submit  :class => 'btn primary'
+    = f.submit  :class => 'btn btn-primary'
   
 :javascript
   $(document).ready(function(){

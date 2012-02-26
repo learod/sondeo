@@ -6,24 +6,25 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .topbar
-      .fill
-        - if current_user
-          - if current_user.tipo == 'ciudadano'
-            = render :partial => 'layouts/menu_cuidadanos'
-          - if current_user.tipo == 'administrador'
-            = render :partial => 'layouts/menu_admin'
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          - if current_user
+            - if current_user.tipo == 'ciudadano'
+              = render :partial => 'layouts/menu_cuidadanos'
+            - if current_user.tipo == 'administrador'
+              = render :partial => 'layouts/menu_admin'
     .container
       - unless flash[:error].blank?
         %br
-        .alert-message.error
+        .alert.alert-error
           %a.close{:href=>"javascript:cierra_mensaje();"} ×
           %p
             = flash[:error]
 
       - unless flash[:notice].blank?
         %br
-        .alert-message.success
+        .alert.alert-success
           %a.close{:href=>"javascript:cierra_mensaje();"} ×
           %p
             = flash[:notice]
@@ -39,5 +40,5 @@
     $('.qtip').tipTip();
   });
   function cierra_mensaje(){
-    $('.alert-message').hide();
+    $('.alert').hide();
   }

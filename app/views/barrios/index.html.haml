@@ -3,7 +3,7 @@
     %h1 Barrios
   .row
     .span14
-      %table.zebra-striped{:width=>'100%'}
+      %table.table.table-striped{:width=>'100%'}
         %tr
           %th Nombre
           %th Municipio
@@ -24,4 +24,4 @@
       %hr
       .clearfix
         .input
-          = link_to 'Nuevo Barrio', new_barrio_path, :class => 'btn primary'
+          = link_to 'Nuevo Barrio', new_barrio_path, :class => 'btn btn-primary'

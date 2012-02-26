@@ -10,7 +10,7 @@
       %hr
 
       %h3 Listado de provincias
-      %table.zebra-striped{:width=>'100%'}
+      %table.table.table-striped{:width=>'100%'}
         %tr
           / %th Pais
           %th Nombre
@@ -27,6 +27,6 @@
 
 
 
-      = link_to 'Editar', edit_pais_path(@pais),:class=>'btn info'
+      = link_to 'Editar', edit_pais_path(@pais),:class=>'btn btn-info'
       
       = link_to 'Volver', paises_path ,:class=>'btn default'

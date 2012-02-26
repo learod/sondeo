@@ -11,4 +11,4 @@
       = f.select :pais_id, Pais.all.collect{|p| [p.nombre,p.id]}, :include_blank=>'Seleccione'
   %hr
     .input
-      = f.submit :class=>'btn primary'
+      = f.submit :class=>'btn btn-primary'

@@ -40,6 +40,8 @@ class PeriodoPropuestasController < ApplicationController
   # POST /periodo_propuestas
   # POST /periodo_propuestas.json
   def create
+    params[:periodo_propuesta][:fecha_fin]=Date.strptime(params[:periodo_propuesta][:fecha_fin],'%d/%m/%Y')
+    params[:periodo_propuesta][:fecha_inicio]=Date.strptime(params[:periodo_propuesta][:fecha_inicio],'%d/%m/%Y')
     @periodo_propuesta = PeriodoPropuesta.new(params[:periodo_propuesta])
 
     respond_to do |format|
@@ -57,7 +59,8 @@ class PeriodoPropuestasController < ApplicationController
   # PUT /periodo_propuestas/1.json
   def update
     @periodo_propuesta = PeriodoPropuesta.find(params[:id])
-
+    params[:periodo_propuesta][:fecha_inicio]=Date.strptime(params[:periodo_propuesta][:fecha_inicio],'%d/%m/%Y') unless params[:periodo_propuesta][:fecha_inicio].blank?
+    params[:periodo_propuesta][:fecha_fin]=Date.strptime(params[:periodo_propuesta][:fecha_fin],'%d/%m/%Y') unless params[:periodo_propuesta][:fecha_fin].blank?
     respond_to do |format|
       if @periodo_propuesta.update_attributes(params[:periodo_propuesta])
         format.html { redirect_to @periodo_propuesta, :notice => 'Periodo propuesta fue actualizado correctamente.' }

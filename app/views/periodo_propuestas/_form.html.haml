@@ -7,36 +7,129 @@
       %ul
         - @periodo_propuesta.errors.full_messages.each do |msg|
           %li= msg
+  #alert.alert.alert-error{:style=>'display:none;'}
+    %strong
   .clearfix
     = label_tag :descripcion
     .input
       = f.text_field :descripcion
   .clearfix
     = label_tag :fecha_inicio, 'Fecha de Inicio'
-    .input
-      = f.text_field :fecha_inicio
+    .input-append.date
+      = f.text_field :fecha_inicio, :readonly => "readonly"
+      #fecha_ini.span.add-on
+        %i.icon-th
   .clearfix
     = label_tag :fecha_fin, 'Fecha de Fin'
-    .input
-      = f.text_field :fecha_fin
+    .input-append.date
+      = f.text_field :fecha_fin, :readonly => "readonly"
+      #fecha_fin.span.add-on
+        %i.icon-th
   .clearfix
-    = label_tag :barrio_id
+    = label_tag :pais_id
     .input
-      = f.number_field :barrio_id
-  .clearfix
+      = select_tag :pais_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Pais.all,'id','nombre')).html_safe
+  .clearfix.provincia
+    = label_tag :provincia_id
+    .input
+      = select_tag :provincia_id
+  .clearfix.municipio
     = label_tag :municipio_id
     .input
-      = f.number_field :municipio_id
+      = f.select :municipio_id,[['Seleccione']]    
+  .clearfix.barrio
+    = label_tag :barrio_id
+    .input
+      = f.select :barrio_id,[['Seleccione']]
   
   %hr
     .input
-      = f.submit :class => 'btn primary'
+      = f.submit :class => 'btn btn-primary'
 
 :javascript
   $(document).ready(function(){
-    //alert('hola')
-    $('#periodo_propuesta_fecha_inicio').mask('99/99/9999');
-    $('#periodo_propuesta_fecha_fin').mask('99/99/9999');
-    $('#periodo_propuesta_fecha_fin').datepicker();
+
+    $('#pais_id').change(cambio_pais);
+    $('#provincia_id').change(cambio_provincia);
+    $('#periodo_propuesta_municipio_id').change(cambio_municipio);
+
+    var fecha_ini = '#{@periodo_propuesta.fecha_inicio.blank? ? '01/01/2012' : format_fecha(@periodo_propuesta.fecha_inicio)}'
+    var fecha_fin = '#{@periodo_propuesta.fecha_fin.blank? ? '01/01/2012' : format_fecha(@periodo_propuesta.fecha_fin)}'
+    $('#periodo_propuesta_fecha_inicio').val(fecha_ini);
+    $('#periodo_propuesta_fecha_fin').val(fecha_fin);
+    $('#periodo_propuesta_fecha_inicio').datepicker({format: 'dd/mm/yyyy'})
+        .on('changeDate', function(ev){
+          fin = $('#periodo_propuesta_fecha_fin').val();
+          var endDate = new Date(fin.split('/')[2],fin.split('/')[1],fin.split('/')[0]);
+          if (ev.date.valueOf() > endDate.valueOf()){
+            $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
+          } else {
+            $('#alert').hide();
+            
+          }
+          $('#periodo_propuesta_fecha_inicio').datepicker('hide');
+        
+        });
+    $('#periodo_propuesta_fecha_fin').datepicker({format: 'dd/mm/yyyy'})
+        .on('changeDate', function(ev){
+          incio = $('#periodo_propuesta_fecha_inicio').val();
+          var startDate = new Date(incio.split('/')[2],incio.split('/')[1],incio.split('/')[0]);
+          if (startDate.valueOf() > ev.date.valueOf()){
+            $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
+          } else {
+            $('#alert').hide();
+            
+          }
+          $('#periodo_propuesta_fecha_fin').datepicker('hide');
+        
+        });
+    $('#fecha_fin').click(function(){
+      $('#periodo_propuesta_fecha_fin').datepicker('show');
+    })
+    $('#fecha_ini').click(function(){
+      $('#periodo_propuesta_fecha_inicio').datepicker('show');
+    })
+    $('form').submit(function(){
+      return form_valid();
+    })
   });
+  function form_valid(){
+    incio = $('#periodo_propuesta_fecha_inicio').val();
+    var startDate = new Date(incio.split('/')[2],incio.split('/')[1],incio.split('/')[0]);
+    fin = $('#periodo_propuesta_fecha_fin').val();
+    var endDate = new Date(fin.split('/')[2],fin.split('/')[1],fin.split('/')[0]);
+    if (startDate.valueOf() > endDate.valueOf()){
+      $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
+      return false;
+    } else {
+      $('#alert').hide();
+      return true;
+    }
+  }
+
+  function cambio_pais(){
+    jQuery.ajax({
+      complete: function(){
+                  $('.municipio select').html('<option>Seleccione</option>');
+                  $('.barrio select').html('<option>Seleccione</option>');
+                },
+      type:'get',
+      url: "#{busca_provincias_municipios_path}?id="+$('#pais_id').val()
+     });
+  }
+
+  function cambio_provincia(){
+    jQuery.ajax({
+       complete:$('.barrio select').html('<option>Seleccione</option>'),
+       type:'get',
+       url: "#{busca_municipios_barrios_path}?id="+$('#provincia_id').val()
+     });
+  }
+
+  function cambio_municipio(){
+    jQuery.ajax({
+       type:'get',
+       url: "#{busca_barrios_ciudadanos_path}?id="+$('#periodo_propuesta_municipio_id').val()
+     });
+  }
   

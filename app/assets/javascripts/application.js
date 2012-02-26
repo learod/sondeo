@@ -4,7 +4,7 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require jquery-1.6.2.min
+//= require jquery-1.7.1
 //= require jquery.fancybox-1.3.1.js
 //= require rails.validations
 //= require jquery_ujs
