@@ -27,7 +27,7 @@
   .clearfix    
     = label_tag :pais_id 
     .input
-      = select_tag :pais_id,options_from_collection_for_select(Pais.all,'id','nombre')
+      = select_tag :pais_id, ("<option>Seleccione</option>"+options_from_collection_for_select(Pais.all,'id','nombre')).html_safe
   .clearfix.provincia    
     = label_tag :provincia_id 
     .input

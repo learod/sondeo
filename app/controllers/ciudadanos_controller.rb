@@ -45,7 +45,7 @@ class CiudadanosController < ApplicationController
     @ciudadano = Ciudadano.new(params[:ciudadano])
     @ciudadano.password=password
     @usuario = User.new(
-                      :name=>@ciudadano.nombre,
+                      :name=>@ciudadano.apellido+" "+@ciudadano.nombre,
                       :login=>@ciudadano.dni,
                       :email=>@ciudadano.email,
                       :password=>password,

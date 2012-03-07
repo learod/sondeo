@@ -35,4 +35,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def cambiar_pass
+    user = User.authenticate(params[:login], params[:password])
+    valido=false
+    if user && user.id == params[:id].to_i
+      user.password = params[:n_pass] 
+      user.password_confirmation = params[:cn_pass] 
+      valido = true
+    end
+    respond_to do |format|
+      if valido && user.save 
+        format.json{render :json=>{:status => 'ok',:message =>'Hecho!!!'}.to_json}
+      else
+        format.json{render :json=>{:status => 'ERROR',:message =>'error'}.to_json}        
+      end
+    end
+  end
+
 end

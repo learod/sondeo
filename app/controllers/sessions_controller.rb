@@ -11,16 +11,17 @@ class SessionsController < ApplicationController
 
   def iniciar
     user = User.authenticate(params[:login], params[:password])
+    # @user = User.all
     #logger.info("#{user.login}")
+
     respond_to do |format|
       if user
         self.current_user = user
-        #format.json{ render :json => user.to_json }
-        format.json{ render :json => { :status => "SUCCESS",  :message=> "Login Successful", :user => "#{user.id}", :usuario => user ,:ciudadano=>user.ciudadano  }.to_json}
-        format.xml{ render :xml => {:login => [ :status => "SUCCESS",  :message=> "Bienvenido", :user => "#{user.id}", :usuario => user  ] }.to_xml}
+        
+        # format.json {render :json => @user }
+        format.json{ render :json => { :status => "SUCCESS",  :message=> "Bienvenido", :user => "#{user.id}", :usuario => user ,:ciudadano=>user.ciudadano  }.to_json}
       else
-        format.json{ render :json => {:status => "ERROR",  :message=> "Error de usuario o contraseña"}.to_json}
-        format.xml{ render :xml => {:login => [ :status => "ERROR",  :message=> "Error de usuario o contraseña" ] }.to_xml}
+        format.json{ render :json => {:status => "ERROR",  :message=> "Error de usuario o contraseña"}.to_json.html_safe}
       end
     end
 
@@ -29,6 +30,7 @@ class SessionsController < ApplicationController
   def create
     logout_keeping_session!
     user = User.authenticate(params[:login], params[:password])
+    logger.info "PASO"
     respond_to do |format|
       if user
         # Protects against session fixation attacks, causes request forgery
@@ -48,7 +50,7 @@ class SessionsController < ApplicationController
         @login       = params[:login]
         @remember_me = params[:remember_me]
         format.html{ render :action => 'new'}
-        format.json{ render :json => user.errors.to_json , :status => 400}
+        format.json{ render :json =>  {:status => 400}.to_json }
         format.xml{ render :xml => user.errors.to_xml , :status => 400}
       end
     end

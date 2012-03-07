@@ -15,13 +15,19 @@ Sondeo::Application.routes.draw do
 
   get "main/index"
 
-  resources :users
+  resources :users do
+    collection do
+      post 'cambiar_pass'
+    end
+  end
 
   resource :session, :only => [:new, :create, :destroy]
 
   match 'signup' => 'users#new', :as => :signup
 
   match 'register' => 'users#create', :as => :register
+
+  # match 'register' => 'users#cambiar_pass', :as => :cambiar_pass
 
   match 'login' => 'sessions#new', :as => :login
 
