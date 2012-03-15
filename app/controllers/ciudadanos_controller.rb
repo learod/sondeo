@@ -104,4 +104,12 @@ class CiudadanosController < ApplicationController
       format.js
     end
   end
+
+
+  def periodos
+    ciudadano=Ciudadano.find(params[:id])
+    respond_to do |format|
+      format.json{render :json => ciudadano.periodos_abiertos.to_json }
+    end
+  end
 end

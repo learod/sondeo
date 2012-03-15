@@ -46,6 +46,7 @@ Sondeo::Application.routes.draw do
   resources :ciudadanos do
     collection do
       get 'busca_barrios'
+      get 'periodos'
     end
   end
   # The priority is based upon order of creation:

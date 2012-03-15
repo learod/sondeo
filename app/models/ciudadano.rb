@@ -7,5 +7,9 @@ class Ciudadano < ActiveRecord::Base
   validates_uniqueness_of :dni
   
   delegate :nombre, :to => :barrio, :prefix => true
+
+  def periodos_abiertos
+  	barrio.periodo_propuestas.where("fecha_fin <= ?",Date.today)
+  end
   
 end

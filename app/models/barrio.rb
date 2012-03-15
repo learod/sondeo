@@ -1,6 +1,9 @@
 class Barrio < ActiveRecord::Base
   has_many :ciudadanos
+  has_many :periodo_propuestas
   belongs_to :municipio
+
+
   
   validates :nombre, :presence => true, :uniqueness => {:scope => :municipio_id}
   validates :municipio_id, :presence => true
