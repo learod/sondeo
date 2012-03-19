@@ -1,0 +1,27 @@
+.content
+  .page-header
+    %h1 Nuevo Propuesta
+  .row
+    .span14
+
+      = form_for(@propuesta, :validate => true) do |f|
+        - if @propuesta.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@propuesta.errors.count, "error")
+              
+            %ul
+              - @propuesta.errors.full_messages.each do |msg|
+                %li= msg
+        .clearfix
+          = label_tag :descripcion
+          .input
+            = f.text_field :descripcion
+            = f.hidden_field :user_id, :value => current_user.id
+            = f.hidden_field :periodo_propuesta_id, :value => @periodo_propuesta.id
+        
+        %hr
+          .input
+            = f.submit :class => 'btn btn-primary'
+  
+      = link_to 'Volver', propuestas_path, :class => 'btn default'

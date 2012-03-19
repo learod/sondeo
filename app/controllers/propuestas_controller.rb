@@ -44,7 +44,7 @@ class PropuestasController < ApplicationController
 
     respond_to do |format|
       if @propuesta.save
-        format.html { redirect_to @propuesta, :notice => 'Propuesta fue creado correctamente.' }
+        format.html { redirect_to propuestas_periodo_propuestas_path(:id=>@propuesta.periodo_propuesta.id), :notice => 'Propuesta fue creado correctamente.' }
         format.json { render :json => @propuesta, :status => :created, :location => @propuesta }
       else
         format.html { render :action => "new" }
@@ -76,7 +76,7 @@ class PropuestasController < ApplicationController
     @propuesta.destroy
 
     respond_to do |format|
-      format.html { redirect_to propuestas_url }
+      format.html { redirect_to  propuestas_periodo_propuestas_path(:id=>@propuesta.periodo_propuesta.id) }
       format.json { head :ok }
     end
   end

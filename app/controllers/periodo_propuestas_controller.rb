@@ -83,4 +83,23 @@ class PeriodoPropuestasController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def propuestas
+    @periodo_propuesta = PeriodoPropuesta.find(params[:id])
+    @propuestas = @periodo_propuesta.propuestas
+    respond_to do |format|
+      format.html
+      format.json{render :json => @propuestas.to_json}
+    end
+  end
+  def nueva_propuesta
+    @propuesta=Propuesta.new
+    @periodo_propuesta = PeriodoPropuesta.find(params[:id])
+    #@propuestas = @periodo_propuesta.propuestas
+    respond_to do |format|
+      format.html
+      #format.json{render :json => @propuestas.to_json}
+    end
+  end
+
 end

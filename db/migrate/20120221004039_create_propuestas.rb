@@ -3,7 +3,7 @@ class CreatePropuestas < ActiveRecord::Migration
     create_table :propuestas do |t|
       t.text :descripcion
       t.integer :user_id
-      t.integer :periodo_consulta_propuesta_id
+      t.integer :periodo_propuesta_id
 
       t.timestamps
     end

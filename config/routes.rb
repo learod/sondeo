@@ -1,5 +1,12 @@
 Sondeo::Application.routes.draw do
-  resources :periodo_propuestas
+  resources :periodo_propuestas do
+    collection do
+      get :nueva_propuesta
+      get :propuestas 
+    end
+  end
+  #   resources :propuestas
+  # end
 
   resources :propuestas
 

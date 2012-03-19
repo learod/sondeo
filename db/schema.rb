@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20120221004108) do
   create_table "propuestas", :force => true do |t|
     t.text     "descripcion"
     t.integer  "user_id"
-    t.integer  "periodo_consulta_propuesta_id"
+    t.integer  "periodo_propuesta_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -27,6 +27,7 @@
               = link_to image_tag('iconos/32x32/zoom_in.png'), periodo_propuesta, :title => 'Ver', :class => 'qtip'
               = link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_propuesta_path(periodo_propuesta), :title => 'Editar', :class => 'qtip'
               = link_to image_tag('iconos/32x32/remove_from_database.png'),periodo_propuesta , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/folder_modified.png'), propuestas_periodo_propuestas_path(:id=>periodo_propuesta.id), :title => 'Propuestas', :class => 'qtip'
       %hr
       .clearfix
         .input

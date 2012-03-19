@@ -1,0 +1,24 @@
+.content
+  .page-header
+    %h1 Propuestas del Periodo "#{@periodo_propuesta.descripcion}"
+  .row
+    .span14
+      %table.table.table-striped{:width=>'100%'}
+        %tr
+          %th Descripcion
+          %th Usuario
+         
+          %th
+          
+        - @propuestas.each do |propuesta|
+          %tr
+            %td= propuesta.descripcion 
+            %td= propuesta.user_id 
+            %td
+              = link_to image_tag('iconos/32x32/zoom_in.png'), propuesta, :title => 'Ver', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/edit_page.png'), edit_propuesta_path(propuesta), :title => 'Editar', :class => 'qtip'
+              = link_to image_tag('iconos/32x32/remove_from_database.png'),propuesta , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+      %hr
+      .clearfix
+        .input
+          = link_to 'Nueva propuesta', nueva_propuesta_periodo_propuestas_path(:id=>@periodo_propuesta.id), :class => 'btn btn-primary'
