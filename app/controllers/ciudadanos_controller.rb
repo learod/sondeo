@@ -1,5 +1,5 @@
 class CiudadanosController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except=>[:periodos]
   # GET /ciudadanos
   # GET /ciudadanos.json
   def index

@@ -40,15 +40,16 @@ class PropuestasController < ApplicationController
   # POST /propuestas
   # POST /propuestas.json
   def create
+    # raise "error"
     @propuesta = Propuesta.new(params[:propuesta])
 
     respond_to do |format|
       if @propuesta.save
         format.html { redirect_to propuestas_periodo_propuestas_path(:id=>@propuesta.periodo_propuesta.id), :notice => 'Propuesta fue creado correctamente.' }
-        format.json { render :json => @propuesta, :status => :created, :location => @propuesta }
+        format.json { render :json => {:status=>'OK',:message=>'Propuesta registrada'}.to_json}
       else
         format.html { render :action => "new" }
-        format.json { render :json => @propuesta.errors, :status => :unprocessable_entity }
+        format.json { render :json => {:status=>'ERROR'}.to_json}
       end
     end
   end
@@ -60,7 +61,7 @@ class PropuestasController < ApplicationController
 
     respond_to do |format|
       if @propuesta.update_attributes(params[:propuesta])
-        format.html { redirect_to @propuesta, :notice => 'Propuesta fue actualizado correctamente.' }
+        format.html { redirect_to propuestas_periodo_propuestas_path(:id=>@propuesta.periodo_propuesta.id), :notice => 'Propuesta fue actualizado correctamente.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
