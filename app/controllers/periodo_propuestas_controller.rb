@@ -1,4 +1,5 @@
 class PeriodoPropuestasController < ApplicationController
+  before_filter :login_required, :except=>[:propuestas]
   # GET /periodo_propuestas
   # GET /periodo_propuestas.json
   def index

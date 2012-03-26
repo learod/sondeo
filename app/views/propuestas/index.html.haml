@@ -3,23 +3,64 @@
     %h1 Propuestas
   .row
     .span14
-      %table.table.table-striped{:width=>'100%'}
-        %tr
-          %th Descripcion
-          %th User
-          %th Periodo consulta propuesta
-          %th
-          
-        - @propuestas.each do |propuesta|
+      = form_tag '/' do
+        %table
           %tr
-            %td= propuesta.descripcion 
-            %td= propuesta.user_id 
-            %td= propuesta.periodo_consulta_propuesta_id 
+            %td Pais
             %td
-              = link_to image_tag('iconos/32x32/zoom_in.png'), propuesta, :title => 'Ver', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/edit_page.png'), edit_propuesta_path(propuesta), :title => 'Editar', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/remove_from_database.png'),propuesta , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
-      %hr
-      .clearfix
-        .input
-          = link_to 'Nuevo Propuesta', new_propuesta_path, :class => 'btn btn-primary'
+              = select_tag :pais_id, ("<option>Seleccione</option>"+options_from_collection_for_select(Pais.all,'id','nombre')).html_safe
+          %tr.provincia
+            %td Provincia
+            %td
+              = select_tag :provincia_id
+          %tr.municipio
+            %td Muncipio
+            %td
+              = select_tag :municipio_id
+          %tr.barrio
+            %td Barrio
+            %td
+              = select_tag :barrio_id
+          %tr
+            %td{:colspan=>"2",:style=>"text-align:right;"}
+              = image_submit_tag('search_blue.png',:style=>"width=32px;") + 'Buscar'
+        %table.table.table-striped{:width=>'100%'}
+          %tr
+            %th Descripcion
+            %th User
+            %th Periodo consulta propuesta
+            %th
+
+        
+            
+:javascript
+  $(document).ready(function(){
+    $('#pais_id').change(cambio_pais);
+    $("#provincia_id").change(cambio_provincia);
+    $("#municipio_id").change(cambio_municipio);
+  })
+  function cambio_pais(){
+    jQuery.ajax({
+      complete: function(){
+                  $('.municipio select').html('<option>Seleccione</option>');
+                  $('.barrio select').html('<option>Seleccione</option>');
+                },
+      type:'get',
+      url: "#{busca_provincias_municipios_path}?id="+$('#pais_id').val()
+     });
+  }
+
+  function cambio_provincia(){
+    jQuery.ajax({
+       complete:$('.barrio select').html('<option>Seleccione</option>'),
+       type:'get',
+       url: "#{busca_municipios_barrios_path}?id="+$('#provincia_id').val()
+     });
+  }
+
+  function cambio_municipio(){
+    jQuery.ajax({
+       type:'get',
+       url: "#{busca_barrios_ciudadanos_path}?id="+$('#municipio_id').val()
+     });
+  }
