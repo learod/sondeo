@@ -9,7 +9,7 @@ class Ciudadano < ActiveRecord::Base
   delegate :nombre, :to => :barrio, :prefix => true
 
   def periodos_abiertos
-  	barrio.periodo_propuestas.where("fecha_fin <= ?",Date.today)
+  	barrio.periodo_propuestas.where("? <= fecha_fin",Date.today)
   end
   
 end
