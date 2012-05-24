@@ -6,9 +6,19 @@ class PeriodoPropuesta < ActiveRecord::Base
 
   #delegate :nombre, :to => :barrio, :prefix => 'barrio'
   delegate :nombre, :to => :municipio, :prefix => 'municipio'
+  delegate :pais, :to => :municipio
+  delegate :provincia, :to => :municipio 
 
   def barrio_nombre
     barrio.nombre unless barrio.blank? 
+  end
+
+  def provincia_id
+    provincia.id
+  end
+
+  def pais_id
+    pais.id    
   end
 
   def pais_nombre

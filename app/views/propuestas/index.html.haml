@@ -3,7 +3,7 @@
     %h1 Propuestas
   .row
     .span14
-      = form_tag '/' do
+      = form_tag (buscar_propuestas_path, :remote => true) do
         %table
           %tr
             %td Pais
@@ -23,13 +23,9 @@
               = select_tag :barrio_id
           %tr
             %td{:colspan=>"2",:style=>"text-align:right;"}
-              = image_submit_tag('search_blue.png',:style=>"width=32px;") + 'Buscar'
-        %table.table.table-striped{:width=>'100%'}
-          %tr
-            %th Descripcion
-            %th User
-            %th Periodo consulta propuesta
-            %th
+              = image_submit_tag('search_blue.png',:style=>"width:32px;") + 'Buscar'
+      #busqueda_periodos        
+          
 
         
             

@@ -11,7 +11,7 @@
  * require_tree . 
 */
 
-.cerrar-session a:hover   {text-decoration:none; color:orange; }
+/*.cerrar-session a:hover   {text-decoration:none; color:orange; }*/
 .usuario {
 	color:#D1F191;
 }
@@ -69,5 +69,62 @@
 }
 
 
+.par2 {
+     background-color: #FFF;
+}
 
+.impar2 {
+     background-color: #DDD;
+}
+
+.grid-droga, .par2, .impar2{
+    display: inline;
+    float: left;    
+}
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.accordion {
+  /*width: 480px;*/
+  border-bottom: solid 1px #c4c4c4;
+  border-left: solid 1px #c4c4c4;
+  border-right: solid 1px #c4c4c4;
+  /*font: bold 120%/100% Arial, Helvetica, sans-serif;*/
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.accordion-content {
+  /*width: 480px;*/
+  border-bottom: solid 1px #c4c4c4;
+}
+.accordion h3 {
+  background: #e9e7e7 url(arrow-square.gif) no-repeat left -51px;
+  padding: 7px 25px;
+  margin: 0;
+  font: bold 120%/100% Arial, Helvetica, sans-serif;
+  border: solid 1px #c4c4c4;
+  border-bottom: none;
+  cursor: pointer;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.accordion h3:hover {
+  background-color: #e3e2e2;
+}
+
+.accordion p {
+  background: #f7f7f7;
+  margin: 0;
+  padding: 10px 15px 20px;
+  border-left: solid 1px #c4c4c4;
+  border-right: solid 1px #c4c4c4;
+}
 

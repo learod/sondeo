@@ -28,19 +28,19 @@
   .clearfix
     = label_tag :pais_id
     .input
-      = select_tag :pais_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Pais.all,'id','nombre')).html_safe
+      = select_tag :pais_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Pais.all,'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.pais_id : 0)).html_safe
   .clearfix.provincia
     = label_tag :provincia_id
     .input
-      = select_tag :provincia_id
+      = select_tag :provincia_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Provincia.where('pais_id = ?',@periodo_propuesta.pais_id),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.provincia_id : 0)).html_safe
   .clearfix.municipio
     = label_tag :municipio_id
     .input
-      = f.select :municipio_id,[['Seleccione']]    
+      = f.select :municipio_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Municipio.where('provincia_id = ?',@periodo_propuesta.provincia_id),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.municipio_id : 0)).html_safe
   .clearfix.barrio
     = label_tag :barrio_id
     .input
-      = f.select :barrio_id,[['Seleccione']]
+      = f.select :barrio_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Barrio.where('municipio_id = ?',@periodo_propuesta.municipio_id),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.barrio_id : 0)).html_safe
   
   %hr
     .input
@@ -53,8 +53,8 @@
     $('#provincia_id').change(cambio_provincia);
     $('#periodo_propuesta_municipio_id').change(cambio_municipio);
 
-    var fecha_ini = '#{@periodo_propuesta.fecha_inicio.blank? ? '01/01/2012' : format_fecha(@periodo_propuesta.fecha_inicio)}'
-    var fecha_fin = '#{@periodo_propuesta.fecha_fin.blank? ? '01/01/2012' : format_fecha(@periodo_propuesta.fecha_fin)}'
+    var fecha_ini = '#{@periodo_propuesta.fecha_inicio.blank? ? format_fecha(Date.today) : format_fecha(@periodo_propuesta.fecha_inicio)}'
+    var fecha_fin = '#{@periodo_propuesta.fecha_fin.blank? ? format_fecha(Date.today) : format_fecha(@periodo_propuesta.fecha_fin)}'
     $('#periodo_propuesta_fecha_inicio').val(fecha_ini);
     $('#periodo_propuesta_fecha_fin').val(fecha_fin);
     $('#periodo_propuesta_fecha_inicio').datepicker({format: 'dd/mm/yyyy'})

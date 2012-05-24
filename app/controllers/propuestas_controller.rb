@@ -82,4 +82,11 @@ class PropuestasController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def buscar
+    @periodo_propuestas=PeriodoPropuesta.where('barrio_id = ? and ? <= fecha_fin', params[:barrio_id],Date.today)
+    respond_to do |format|
+      format.js
+    end
+  end
 end

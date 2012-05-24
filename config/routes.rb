@@ -8,7 +8,11 @@ Sondeo::Application.routes.draw do
   #   resources :propuestas
   # end
 
-  resources :propuestas
+  resources :propuestas do 
+    collection do
+      get :buscar
+    end
+  end
 
   resources :municipios do
     collection do
