@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nombre: MyString
+  descripcion: MyText
+  periodo_consenso_id: 1
+
+two:
+  nombre: MyString
+  descripcion: MyText
+  periodo_consenso_id: 1

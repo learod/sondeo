@@ -1,0 +1,155 @@
+<%= form_for(@periodo_consenso, :validate => true) do |f| %>
+
+  <div class='alert alert-error' id='alert' style='display:none;'>
+    <strong></strong>
+  </div>
+
+  <div class="clearfix">
+    <%= label_tag :descripcion %>
+    <div class="input">
+      <%= f.text_field :descripcion %>
+    </div>
+  </div>
+  <div class="clearfix">
+    <%= label_tag :fecha_inicio %>
+    <div class="input-append date">
+      <%= f.text_field :fecha_inicio,:readonly=>'readonly' %>
+      <div class='span add-on' id='fecha_ini'>
+        <i class='icon-th'></i>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix">
+    <%= label_tag :fecha_fin %>
+    <div class="input-append date">
+      <%= f.text_field :fecha_fin,:readonly=>'readonly' %>
+      <div class='span add-on' id='fecha_fin'>
+        <i class='icon-th'></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <%= label_tag :pais_id %>
+    <div class="input">
+      <%= select_tag :pais_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Pais.all,'id','nombre',@periodo_consenso.barrio ? @periodo_consenso.pais_id : 0)).html_safe %>
+    </div>
+  </div>
+
+  <div class="clearfix provincia">
+    <%= label_tag :provincia_id %>
+    <div class="input">
+      <%= select_tag :provincia_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Provincia.where('pais_id = ?',@periodo_consenso.barrio ? @periodo_consenso.pais_id : 0),'id','nombre',@periodo_consenso.barrio ? @periodo_consenso.provincia_id : 0)).html_safe %>
+    </div>
+  </div>
+
+
+  <div class="clearfix municipio">
+    <%= label_tag :municipio_id %>
+    <div class="input">
+      <%= select_tag :municipio_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Municipio.where('provincia_id = ?',@periodo_consenso.barrio ? @periodo_consenso.provincia_id : 0),'id','nombre',@periodo_consenso.barrio ? @periodo_consenso.municipio_id : 0)).html_safe %>
+    </div>
+  </div>
+
+  <div class="clearfix barrio">
+    <%= label_tag :barrio_id %>
+    <div class="input">
+      <%= f.select :barrio_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Barrio.where('municipio_id = ?', @periodo_consenso.barrio ? @periodo_consenso.municipio_id : 0),'id','nombre',@periodo_consenso.barrio ? @periodo_consenso.barrio_id : 0)).html_safe %>
+    </div>
+  </div>
+ 
+ <hr>
+  <div class="input">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('#pais_id').change(cambio_pais);
+    $('#provincia_id').change(cambio_provincia);
+    $('#municipio_id').change(cambio_municipio);
+
+    var fecha_ini = '<%= "#{@periodo_consenso.fecha_inicio.blank? ? format_fecha(Date.today) : format_fecha(@periodo_consenso.fecha_inicio)}"%>'
+    var fecha_fin = '<%= "#{@periodo_consenso.fecha_fin.blank? ? format_fecha(Date.today) : format_fecha(@periodo_consenso.fecha_fin)}"%>'
+    $('#periodo_consenso_fecha_inicio').val(fecha_ini);
+    $('#periodo_consenso_fecha_fin').val(fecha_fin);
+    $('#periodo_consenso_fecha_inicio').datepicker({format: 'dd/mm/yyyy'})
+        .on('changeDate', function(ev){
+          fin = $('#periodo_consenso_fecha_fin').val();
+          var endDate = new Date(fin.split('/')[2],fin.split('/')[1] - 1 ,fin.split('/')[0]);
+          if (ev.date.valueOf() > endDate.valueOf()){
+            $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
+          } else {
+            $('#alert').hide();
+            
+          }
+          $('#periodo_consenso_fecha_inicio').datepicker('hide');
+        
+        });
+    $('#periodo_consenso_fecha_fin').datepicker({format: 'dd/mm/yyyy'})
+        .on('changeDate', function(ev){
+          incio = $('#periodo_consenso_fecha_inicio').val();
+          var startDate = new Date(incio.split('/')[2],incio.split('/')[1] - 1,incio.split('/')[0]);
+          if (startDate.valueOf() > ev.date.valueOf()){
+            $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
+          } else {
+            $('#alert').hide();
+            
+          }
+          $('#periodo_consenso_fecha_fin').datepicker('hide');
+        
+        });
+    $('#fecha_fin').click(function(){
+      $('#periodo_consenso_fecha_fin').datepicker('show');
+    })
+    $('#fecha_ini').click(function(){
+      $('#periodo_consenso_fecha_inicio').datepicker('show');
+    })
+    $('form').submit(function(){
+      return form_valid();
+    })
+  });
+  function form_valid(){
+    incio = $('#periodo_consenso_fecha_inicio').val();
+    var startDate = new Date(incio.split('/')[2],incio.split('/')[1] - 1,incio.split('/')[0]);
+    fin = $('#periodo_consenso_fecha_fin').val();
+    var endDate = new Date(fin.split('/')[2],fin.split('/')[1] - 1,fin.split('/')[0]);
+    if (startDate.valueOf() > endDate.valueOf()){
+      $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
+      return false;
+    } else {
+      $('#alert').hide();
+      return true;
+    }
+  }
+
+  function cambio_pais(){
+    jQuery.ajax({
+      complete: function(){
+                  $('.municipio select').html('<option>Seleccione</option>');
+                  $('.barrio select').html('<option>Seleccione</option>');
+                },
+      type:'get',
+      url: "<%= "#{busca_provincias_municipios_path}"%>?id="+$('#pais_id').val()
+     });
+  }
+
+  function cambio_provincia(){
+    jQuery.ajax({
+       complete:$('.barrio select').html('<option>Seleccione</option>'),
+       type:'get',
+       url: "<%= "#{busca_municipios_barrios_path}" %>?id="+$('#provincia_id').val()
+     });
+  }
+
+  function cambio_municipio(){
+    jQuery.ajax({
+       type:'get',
+       url: "<%= "#{busca_barrios_ciudadanos_path}" %>?id="+$('#municipio_id').val()
+     });
+  }
+  
+
+</script>

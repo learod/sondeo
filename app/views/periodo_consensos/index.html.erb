@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="page-header">
+    <h1>Periodos de consenso</h1>
+  </div>
+  <div class="row">
+    <div class="span14">
+      <table class="table table-striped" width="100%">
+        <tr>
+                <th>Descripcion</th>
+                <th>Fecha inicio</th>
+                <th>Fecha fin</th>
+                <th>Pa&iacute;s</th>
+                <th>Provincia</th>
+                <th>Municipio</th>
+                <th>Barrio</th>
+                <th></th>
+        </tr>
+
+      <% @periodo_consensos.each do |periodo_consenso| %>
+        <tr>
+                <td><%= periodo_consenso.descripcion %></td>
+                <td><%= format_fecha periodo_consenso.fecha_inicio %></td>
+                <td><%= format_fecha periodo_consenso.fecha_fin %></td>
+                <td><%= periodo_consenso.pais_nombre %></td>
+                <td><%= periodo_consenso.provincia_nombre %></td>
+                <td><%= periodo_consenso.municipio_nombre %></td>
+                <td><%= periodo_consenso.barrio_nombre %></td>
+                <td>
+            <%= link_to image_tag('iconos/32x32/zoom_in.png'), periodo_consenso, :title => 'Ver', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_consenso_path(periodo_consenso), :title => 'Editar', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/remove_from_database.png'), periodo_consenso, :confirm => '¿Esta seguro?', :method => :delete,:title => 'Eliminar', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/folder_modified.png'), show_proyecto_periodo_consenso_path(periodo_consenso), :title => 'Proyectos', :class => 'qtip' %>
+          </td>
+        </tr>
+      <% end %>
+      </table>
+      <hr>
+      <div class="clearfix">
+        <div class="input">
+          <%= link_to 'Nuevo Periodo consenso', new_periodo_consenso_path,:class => 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+
+
+       
+

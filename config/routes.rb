@@ -1,4 +1,14 @@
 Sondeo::Application.routes.draw do
+  resources :periodo_consensos do
+    member do
+      get :show_proyecto
+      post :nuevo_proyecto
+    end
+    collection do
+      get :eliminar_proyecto
+    end
+  end
+
   resources :periodo_propuestas do
     collection do
       get :nueva_propuesta

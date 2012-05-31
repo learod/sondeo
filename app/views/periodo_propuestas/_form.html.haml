@@ -32,11 +32,11 @@
   .clearfix.provincia
     = label_tag :provincia_id
     .input
-      = select_tag :provincia_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Provincia.where('pais_id = ?',@periodo_propuesta.pais_id),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.provincia_id : 0)).html_safe
+      = select_tag :provincia_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Provincia.where('pais_id = ?',@periodo_propuesta.barrio_id ? @periodo_propuesta.pais_id : 0),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.provincia_id : 0)).html_safe
   .clearfix.municipio
     = label_tag :municipio_id
     .input
-      = f.select :municipio_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Municipio.where('provincia_id = ?',@periodo_propuesta.provincia_id),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.municipio_id : 0)).html_safe
+      = f.select :municipio_id, ("<option>Seleccione</option>" + options_from_collection_for_select(Municipio.where('provincia_id = ?',@periodo_propuesta.barrio_id ? @periodo_propuesta.provincia_id : 0),'id','nombre',@periodo_propuesta.barrio_id ? @periodo_propuesta.municipio_id : 0)).html_safe
   .clearfix.barrio
     = label_tag :barrio_id
     .input
@@ -60,7 +60,7 @@
     $('#periodo_propuesta_fecha_inicio').datepicker({format: 'dd/mm/yyyy'})
         .on('changeDate', function(ev){
           fin = $('#periodo_propuesta_fecha_fin').val();
-          var endDate = new Date(fin.split('/')[2],fin.split('/')[1],fin.split('/')[0]);
+          var endDate = new Date(fin.split('/')[2],fin.split('/')[1] - 1,fin.split('/')[0]);
           if (ev.date.valueOf() > endDate.valueOf()){
             $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
           } else {
@@ -73,7 +73,7 @@
     $('#periodo_propuesta_fecha_fin').datepicker({format: 'dd/mm/yyyy'})
         .on('changeDate', function(ev){
           incio = $('#periodo_propuesta_fecha_inicio').val();
-          var startDate = new Date(incio.split('/')[2],incio.split('/')[1],incio.split('/')[0]);
+          var startDate = new Date(incio.split('/')[2],incio.split('/')[1] - 1,incio.split('/')[0]);
           if (startDate.valueOf() > ev.date.valueOf()){
             $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
           } else {
@@ -95,9 +95,9 @@
   });
   function form_valid(){
     incio = $('#periodo_propuesta_fecha_inicio').val();
-    var startDate = new Date(incio.split('/')[2],incio.split('/')[1],incio.split('/')[0]);
+    var startDate = new Date(incio.split('/')[2],incio.split('/')[1] - 1,incio.split('/')[0]);
     fin = $('#periodo_propuesta_fecha_fin').val();
-    var endDate = new Date(fin.split('/')[2],fin.split('/')[1],fin.split('/')[0]);
+    var endDate = new Date(fin.split('/')[2],fin.split('/')[1] - 1,fin.split('/')[0]);
     if (startDate.valueOf() > endDate.valueOf()){
       $('#alert').show().find('strong').text('Fecha de Inicio no puede ser mayor a la Fecha de Fin');
       return false;
