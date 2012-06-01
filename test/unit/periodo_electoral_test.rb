@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PeriodoConsensoTest < ActiveSupport::TestCase
+class PeriodoElectoralTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

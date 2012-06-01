@@ -1,6 +1,6 @@
-class CreatePeriodoConsensos < ActiveRecord::Migration
+class CreatePeriodoElectorales < ActiveRecord::Migration
   def change
-    create_table :periodo_consensos do |t|
+    create_table :periodo_electorales do |t|
       t.string :descripcion
       t.date :fecha_inicio
       t.date :fecha_fin

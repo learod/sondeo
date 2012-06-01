@@ -1,0 +1,51 @@
+<div class="content">
+  <div class="page-header">
+    <h1>Periodos Electorales</h1>
+  </div>
+  <div class="row">
+    <div class="span14">
+      <table class="table table-striped" width="100%">
+        <tr>
+                <th>Descripcion</th>
+                <th>Fecha inicio</th>
+                <th>Fecha fin</th>
+                <th>Pa&iacute;s</th>
+                <th>Provincia</th>
+                <th>Municipio</th>
+                <th>Barrio</th>
+                <th></th>
+        </tr>
+
+      <% @periodo_electorales.each do |periodo_electoral| %>
+        <tr>
+                <td><%= periodo_electoral.descripcion %></td>
+                <td><%= format_fecha periodo_electoral.fecha_inicio %></td>
+                <td><%= format_fecha periodo_electoral.fecha_fin %></td>
+                <td><%= periodo_electoral.pais_nombre %></td>
+                <td><%= periodo_electoral.provincia_nombre %></td>
+                <td><%= periodo_electoral.municipio_nombre %></td>
+                <td><%= periodo_electoral.barrio_nombre %></td>
+                <td>
+            <%= link_to image_tag('iconos/32x32/zoom_in.png'), periodo_electoral, :title => 'Ver', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_electoral_path(periodo_electoral), :title => 'Editar', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/remove_from_database.png'), periodo_electoral, :confirm => '¿Esta seguro?', :method => :delete,:title => 'Eliminar', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/folder_modified.png'), show_proyecto_periodo_electoral_path(periodo_electoral), :title => 'Proyectos', :class => 'qtip' %>
+          </td>
+        </tr>
+      <% end %>
+      </table>
+      <hr>
+      <div class="clearfix">
+        <div class="input">
+          <%= link_to 'Nuevo Periodo consenso', new_periodo_electoral_path,:class => 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+
+
+       
+

@@ -14,6 +14,8 @@
    inflect.irregular 'periodo_propuesta', 'periodo_propuestas'
    inflect.irregular 'propuesta', 'propuestas'
    inflect.irregular 'proyecto', 'proyectos'
+   inflect.irregular 'anteproyecto', 'anteproyectos'
    inflect.irregular 'periodo_consenso', 'periodo_consensos'
+   inflect.irregular 'periodo_electoral', 'periodo_electorales'
 #   inflect.uncountable %w( fish sheep )
  end

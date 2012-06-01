@@ -1,0 +1,5 @@
+<tr id="proyecto_<%= "#{@anteproyecto.id}" %>">
+  <td><%= @anteproyecto.nombre %></td>
+  <td><%= @anteproyecto.descripcion[0..20] %></td>
+  <td><%= link_to image_tag('iconos/32x32/remove_from_database.png'), eliminar_proyecto_periodo_electorales_path(:id=>@anteproyecto.id), :confirm => '¿Esta seguro?',:title => 'Eliminar', :class => 'qtip',:remote=>true %></td>
+</tr>

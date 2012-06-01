@@ -2,12 +2,12 @@
 
 one:
   descripcion: MyString
-  fecha_inicio: 2012-05-31
-  fecha_fin: 2012-05-31
+  fecha_inicio: 2012-06-01
+  fecha_fin: 2012-06-01
   barrio_id: 1
 
 two:
   descripcion: MyString
-  fecha_inicio: 2012-05-31
-  fecha_fin: 2012-05-31
+  fecha_inicio: 2012-06-01
+  fecha_fin: 2012-06-01
   barrio_id: 1

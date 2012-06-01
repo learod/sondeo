@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="page-header">
+        <h1>Anteproyecto</h1> 
+    </div>
+    <div class="row">
+        <div class="span14">
+                            <p>
+                  <b>Nombre:</b>
+                  <%= @anteproyecto.nombre %>
+                </p>
+                            <p>
+                  <b>Descripcion:</b>
+                  <%= @anteproyecto.descripcion %>
+                </p>
+                            <p>
+                  <b>Periodo electoral:</b>
+                  <%= @anteproyecto.periodo_electoral_id %>
+                </p>
+                    </div>
+    </div>
+    <hr>
+    <%= link_to 'Editar', edit_anteproyecto_path(@anteproyecto),:class=>'btn btn-info' %> 
+    <%= link_to 'Volver', anteproyectos_path,:class=>'btn default' %>
+</div>
+
+
+
+
+
+

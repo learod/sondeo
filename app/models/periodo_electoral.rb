@@ -1,7 +1,7 @@
-class PeriodoConsenso < ActiveRecord::Base
+class PeriodoElectoral < ActiveRecord::Base
   belongs_to :barrio
 
-  has_many :proyectos
+  has_many :anteproyectos
 
   delegate :nombre, :to => :municipio, :prefix => 'municipio'
   delegate :pais, :to => :municipio

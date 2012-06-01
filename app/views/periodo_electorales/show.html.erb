@@ -1,0 +1,46 @@
+<div class="content">
+    <div class="page-header">
+        <h1>Periodo electoral</h1> 
+    </div>
+    <div class="row">
+       <div class="span14">
+          <p>
+            <b>Descripci&oacute;n:</b>
+            <%= @periodo_electoral.descripcion %>
+          </p>
+          <p>
+            <b>Fecha inicio:</b>
+            <%= format_fecha @periodo_electoral.fecha_inicio %>
+          </p>
+          <p>
+            <b>Fecha fin:</b>
+            <%= format_fecha @periodo_electoral.fecha_fin %>
+          </p>
+          <p>
+            <b>Pa&iacute;s:</b>
+            <%= @periodo_electoral.pais_nombre %>
+          </p>
+          <p>
+            <b>Provincia:</b>
+            <%= @periodo_electoral.provincia_nombre %>
+          </p>
+          <p>
+            <b>Municipio:</b>
+            <%= @periodo_electoral.municipio_nombre %>
+          </p>
+          <p>
+            <b>Barrio:</b>
+            <%= @periodo_electoral.barrio_nombre %>
+          </p>
+        </div>
+    </div>
+    <hr>
+    <%= link_to 'Editar', edit_periodo_electoral_path(@periodo_electoral),:class=>'btn btn-info' %> 
+    <%= link_to 'Volver', periodo_electorales_path,:class=>'btn default' %>
+</div>
+
+
+
+
+
+
