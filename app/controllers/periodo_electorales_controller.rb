@@ -1,4 +1,5 @@
 class PeriodoElectoralesController < ApplicationController
+  before_filter :login_required
   # GET /periodo_electorales
   # GET /periodo_electorales.json
   def index
@@ -97,9 +98,18 @@ class PeriodoElectoralesController < ApplicationController
   def nuevo_proyecto
     @periodo_electoral = PeriodoElectoral.find(params[:id])
     params[:anteproyecto][:periodo_electoral_id]=@periodo_electoral.id
-    @anteproyecto=Anteproyecto.create(params[:anteproyecto])
+    @anteproyecto=Anteproyecto.new(params[:anteproyecto])
+    @anteproyecto.save
     respond_to do |format|
       format.js # show.html.erb
+      #format.json { render :json => @periodo_electoral }
+    end
+  end
+  
+  def nuevo_anteproyecto
+    @periodo_electoral = PeriodoElectoral.find(params[:id])
+    respond_to do |format|
+      format.html {render :layout => false}
       #format.json { render :json => @periodo_electoral }
     end
   end

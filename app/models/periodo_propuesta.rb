@@ -4,6 +4,8 @@ class PeriodoPropuesta < ActiveRecord::Base
 
   has_many :propuestas
 
+  validates :descripcion, :barrio_id, :municipio_id,:fecha_fin,:fecha_inicio, :presence => true
+
   #delegate :nombre, :to => :barrio, :prefix => 'barrio'
   delegate :nombre, :to => :municipio, :prefix => 'municipio'
   delegate :pais, :to => :municipio

@@ -1,20 +1,13 @@
 .content
   .page-header
-    %h1 Nuevo Propuesta
+    %h1 Nueva Propuesta
   .row
     .span14
 
       = form_for(@propuesta, :validate => true) do |f|
-        - if @propuesta.errors.any?
-          #error_explanation
-            %h2
-              = pluralize(@propuesta.errors.count, "error")
-              
-            %ul
-              - @propuesta.errors.full_messages.each do |msg|
-                %li= msg
+        
         .clearfix
-          = label_tag :descripcion
+          = label_tag :descripcion,"Descripción"
           .input
             = f.text_field :descripcion
             = f.hidden_field :user_id, :value => current_user.id

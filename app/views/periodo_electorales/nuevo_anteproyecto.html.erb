@@ -1,0 +1,20 @@
+<fieldset>
+  <legend>Agregar Anteproyecto</legend>
+  <%= form_tag(nuevo_proyecto_periodo_electoral_path(@periodo_electoral),:remote=>true) do  %>
+    <table>
+      <tr>
+        <th>Nombre:</th>
+        <td><%= text_field_tag "anteproyecto[nombre]" %></td>
+      </tr>
+      <tr>
+        <th>Descripci&oacute;n: </th>
+        <td><%= text_area_tag "anteproyecto[descripcion]" %></td>
+      </tr>
+    </table>
+    <%= submit_tag 'Agregar' %>
+
+  <% end %>
+</fieldset>
+<script type="text/javascript">
+  
+</script>

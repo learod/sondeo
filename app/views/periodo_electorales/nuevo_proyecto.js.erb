@@ -1,3 +1,12 @@
-$('#tabla_proyectos').append('<%= escape_javascript(render 'linea_proyecto') %>');
-$('#anteproyecto_nombre').val('');
-$('#anteproyecto_descripcion').val('');
+<% if @anteproyecto.errors.blank? %>
+  $.fancybox.close();
+  $('#tabla_proyectos').append('<%= escape_javascript(render 'linea_proyecto') %>');
+  $('#anteproyecto_nombre').val('');
+  $('#anteproyecto_descripcion').val('');
+<% else %>
+  $('.error').remove();
+   <% @anteproyecto.errors.each do |k,d| %>
+      $('#anteproyecto_<%= k %>').before('<span class="error"><%= d %></span>');
+   <% end %>
+   $.fancybox.resize();
+<% end %>

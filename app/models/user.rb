@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   set_table_name 'users'
 
   has_one :ciudadano
+  has_many :permisos, :finder_sql => proc { "SELECT * FROM permisos WHERE tipo_usuario like '#{self.tipo}'" }
+
 
   validates :login, :presence   => true,
                     :uniqueness => true,

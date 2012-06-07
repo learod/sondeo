@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120601140807) do
+ActiveRecord::Schema.define(:version => 20120606172555) do
 
   create_table "anteproyectos", :force => true do |t|
     t.string   "nombre"
@@ -55,15 +55,6 @@ ActiveRecord::Schema.define(:version => 20120601140807) do
     t.datetime "updated_at"
   end
 
-  create_table "periodo_consensos", :force => true do |t|
-    t.string   "descripcion"
-    t.date     "fecha_inicio"
-    t.date     "fecha_fin"
-    t.integer  "barrio_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "periodo_electorales", :force => true do |t|
     t.string   "descripcion"
     t.date     "fecha_inicio"
@@ -83,6 +74,13 @@ ActiveRecord::Schema.define(:version => 20120601140807) do
     t.datetime "updated_at"
   end
 
+  create_table "permisos", :force => true do |t|
+    t.string   "tipo_usuario"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "propuestas", :force => true do |t|
     t.text     "descripcion"
     t.integer  "user_id"
@@ -94,14 +92,6 @@ ActiveRecord::Schema.define(:version => 20120601140807) do
   create_table "provincias", :force => true do |t|
     t.string   "nombre"
     t.integer  "pais_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "proyectos", :force => true do |t|
-    t.string   "nombre"
-    t.text     "descripcion"
-    t.integer  "periodo_consenso_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

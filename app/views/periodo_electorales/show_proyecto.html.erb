@@ -1,6 +1,6 @@
 <div class="content">
     <div class="page-header">
-        <h1>Periodo electoral</h1> 
+        <h1>Per&iacute;odo electoral</h1> 
     </div>
     <div class="row">
         <div class="span14">
@@ -42,23 +42,7 @@
 
     <div class="row">
         <div class="span14">
-          <fieldset>
-            <legend>Agregar Anteproyecto</legend>
-            <%= form_tag(nuevo_proyecto_periodo_electoral_path(@periodo_electoral),:remote=>true) do  %>
-              <table>
-                <tr>
-                  <th>Nombre:</th>
-                  <td><%= text_field_tag "anteproyecto[nombre]" %></td>
-                </tr>
-                <tr>
-                  <th>Descripci&oacute;n: </th>
-                  <td><%= text_area_tag "anteproyecto[descripcion]" %></td>
-                </tr>
-              </table>
-              <%= submit_tag 'Agregar' %>
-    
-            <% end %>
-          </fieldset>
+          <%= link_to image_tag('iconos/folder_add_256.png',:width=>32,:alt=>'')+'Nuevo Anteproyecto', nuevo_anteproyecto_periodo_electoral_path(@periodo_electoral),:class=>'fancybox btn btn-success' %>
           <fieldset>
             <legend>Listado de Anteproyectos</legend>
             <div id="listado_proyectos">

@@ -1,9 +1,8 @@
 Sondeo::Application.routes.draw do
-  resources :anteproyectos
-
   resources :periodo_electorales do
     member do
       get :show_proyecto
+      get :nuevo_anteproyecto
       post :nuevo_proyecto
     end
     collection do

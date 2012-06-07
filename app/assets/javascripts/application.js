@@ -5,7 +5,7 @@
 // the compiled file.
 //
 //= require jquery-1.7.1
-//= require jquery.fancybox-1.3.1.js
+//= require jquery.fancybox-1.3.1
 //= require rails.validations
 //= require jquery_ujs
 //= require bootstrap-dropdown
@@ -15,3 +15,4 @@
 //= require hoverIntent
 //= require jquery.maskedinput-1.3.min
 //= require bootstrap-datepicker
+//= require jquery.raty
