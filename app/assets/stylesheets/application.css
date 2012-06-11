@@ -8,6 +8,7 @@
  *= require sessions
  *= require tipTip
  *= require fancybox
+ *= require submenu
  *= require_self
  * require_tree . 
 */

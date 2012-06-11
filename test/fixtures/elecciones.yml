@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ciudadano_id: 1
+  anteproyecto_id: 1
+  etiqueta: 1
+
+two:
+  ciudadano_id: 1
+  anteproyecto_id: 1
+  etiqueta: 1

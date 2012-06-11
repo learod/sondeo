@@ -1,5 +1,6 @@
 class BarriosController < ApplicationController
   before_filter :login_required
+  skip_before_filter :check_authorization, :only => [:busca_municipios]
   # GET /barrios
   # GET /barrios.json
   def index

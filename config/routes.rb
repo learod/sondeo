@@ -66,6 +66,11 @@ Sondeo::Application.routes.draw do
   end
 
   resources :ciudadanos do
+    member do
+      get "anteproyectos"
+      post "registrar_voto"
+    end
+
     collection do
       get 'busca_barrios'
       get 'periodos'

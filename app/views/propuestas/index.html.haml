@@ -26,30 +26,18 @@
             %td{:colspan=>"2",:style=>"text-align:right;"}
               = image_submit_tag('search_blue.png',:style=>"width:32px;") + 'Buscar'
       #busqueda_periodos        
-          
-      #star
-      #target{:style=>" background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 90px; float: left; "}
       
 
         
             
 :javascript
-  var hints= ['#{ETIQUETAS[1]["denominacion"].capitalize}','#{ETIQUETAS[2]["denominacion"].capitalize}','#{ETIQUETAS[3]["denominacion"].capitalize}','#{ETIQUETAS[4]["denominacion"].capitalize}','#{ETIQUETAS[5]["denominacion"].capitalize}'];
+  
   $(document).ready(function(){
     $('#pais_id').change(cambio_pais);
     $("#provincia_id").change(cambio_provincia);
     $("#municipio_id").change(cambio_municipio);
 
-    $('#star').raty({
-      cancel     : true,
-      cancelHint : 'Ninguno',
-      target     : '#target',
-      hints : hints,
-      click   : function(score, evt) {
-            alert('score: ' + score + hints[score - 1]);
-          }
-    });
-    $('#star').raty('score', 3);
+    
   })
   function cambio_pais(){
     jQuery.ajax({

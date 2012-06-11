@@ -1,5 +1,6 @@
 class CiudadanosController < ApplicationController
   before_filter :login_required, :except=>[:periodos]
+  skip_before_filter :check_authorization, :only => [:busca_barrios]
   # GET /ciudadanos
   # GET /ciudadanos.json
   def index
@@ -110,6 +111,30 @@ class CiudadanosController < ApplicationController
     ciudadano=Ciudadano.find(params[:id])
     respond_to do |format|
       format.json{render :json => ciudadano.periodos_abiertos.to_json }
+    end
+  end
+
+  def anteproyectos
+    @ciudadano=Ciudadano.find(params[:id])
+    @periodo_electoral=@ciudadano.eleccion_abierta
+    respond_to do |format|
+      format.html
+      format.json{render :json => @ciudadano.eleccion_abierta.anteproyectos.to_json }
+    end
+  end
+
+  def registrar_voto
+    @ciudadano=Ciudadano.find(params[:id])
+    @eleccion=Eleccion.where("anteproyecto_id = ? and ciudadano_id = ? ",params[:proyecto_id],@ciudadano.id).first
+    @eleccion=Eleccion.new(:anteproyecto_id=>params[:proyecto_id],:ciudadano_id=>@ciudadano.id) if @eleccion.blank?
+    unless params[:etiqueta] == "null"
+      @eleccion.etiqueta = params[:etiqueta]
+      @eleccion.save
+    else
+      @eleccion.delete
+    end
+    respond_to do |format|
+      format.js
     end
   end
 end

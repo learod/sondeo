@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   before_filter :session_expiry, :except => [:login, :logout]
   before_filter :update_activity_time, :except => [:login, :logout]
-  # before_filter :check_authorization
+  #before_filter :check_authorization
 
   def session_expiry
     unless session[:expires_at].nil?

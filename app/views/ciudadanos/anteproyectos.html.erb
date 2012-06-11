@@ -1,0 +1,63 @@
+<div class="content">
+  <div class="page-header">
+      <h1>Anteproyectos</h1> 
+  </div>
+
+  <div class="row">
+      <div class="span14">
+        <%#= link_to image_tag('iconos/folder_add_256.png',:width=>32,:alt=>'')+'Nuevo Anteproyecto', nuevo_anteproyecto_periodo_electoral_path(@periodo_electoral),:class=>'fancybox btn btn-success' %>
+        <fieldset>
+          <legend>Listado de Anteproyectos</legend>
+          <div id="listado_proyectos">
+            <table id="tabla_proyectos" class="table table-striped">
+              <tr>
+                <th>Nombre</th>
+                <th>Descripci&oacute;n</th>
+                <th></th>
+              </tr>
+              <% @periodo_electoral.anteproyectos.each do |proyecto| %>
+              <tr id="proyecto_<%= "#{proyecto.id}" %>">
+                <td><%= proyecto.nombre %></td>
+                <td><%= proyecto.descripcion[0..40] %></td>
+                <td>
+                  <% eleccion = Eleccion.where("anteproyecto_id = ? and ciudadano_id = ? ",proyecto.id,@ciudadano.id).first %>
+                  <%= hidden_field_tag "eleccion_#{proyecto.id}", eleccion ? eleccion.etiqueta : nil %>
+                  <div class="star" id="<%=proyecto.id%>"></div>
+                  <div class="target" id="target_<%=proyecto.id%>" style=" background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 90px; float: left; "></div>
+                  <%#= link_to image_tag('iconos/32x32/remove_from_database.png'), eliminar_proyecto_periodo_electorales_path(:id=>proyecto.id), :confirm => '¿Esta seguro?',:title => 'Eliminar', :class => 'qtip',:remote=>true %>
+                </td>
+              </tr>
+              <% end %>
+            </table>
+          </div>
+        </fieldset>
+      </div>
+  </div>
+</div>  
+<script type="text/javascript">
+  
+  <%= "var hints= ['#{ETIQUETAS[1]["denominacion"].capitalize}','#{ETIQUETAS[2]["denominacion"].capitalize}','#{ETIQUETAS[3]["denominacion"].capitalize}','#{ETIQUETAS[4]["denominacion"].capitalize}','#{ETIQUETAS[5]["denominacion"].capitalize}'];" %>
+  $(document).ready(function  () {
+    $('.star').each(function  () {
+      $(this).raty({  
+        cancel     : true,
+        cancelHint : 'Ninguno',
+        target     : '#target_'+$(this).attr('id'),
+        score      : $('#eleccion_' + $(this).attr('id') ).val(),  
+        hints : hints,
+        click   : function(score, evt) {
+              registrar_voto(score, $(this).attr('id'));
+            }
+      })
+      
+    })
+  })
+  function registrar_voto (score,proyecto_id) {
+    jQuery.ajax({
+       type:'post',
+       data: {proyecto_id: proyecto_id, etiqueta: score},
+       url:'<%= registrar_voto_ciudadano_path(current_user.ciudadano) %>'
+     });
+    //alert('score: ' + score + ' proyecto: ' + proyecto_id)
+  }
+</script>

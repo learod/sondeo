@@ -437,7 +437,7 @@
 		mouseover		: undefined,
 		noRatedMsg		: 'not rated yet',
 		number			: 5,
-		path			: 'assets/raty',
+		path			: '/assets/raty',
 		precision		: false,
 		round			: { down: .25, full: .6, up: .76 },
 		readOnly		: false,

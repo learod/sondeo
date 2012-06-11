@@ -15,31 +15,33 @@
             - if current_user.tipo == 'administrador'
               = render :partial => 'layouts/menu_admin'
     .container
-      - unless flash[:error].blank?
-        %br
-        .alert.alert-error
-          %a.close{:href=>"javascript:cierra_mensaje();"} ×
-          %p
-            = flash[:error]
+      
+      .alert.alert-error{:style=>"#{ 'display:none' if flash[:error].blank?}"}
+        %a.close{:href=>"javascript:cierra_mensaje();"} ×
+        %p
+          = flash[:error] unless flash[:error].blank?
 
-      - unless flash[:notice].blank?
-        %br
-        .alert.alert-success
-          %a.close{:href=>"javascript:cierra_mensaje();"} ×
-          %p
-            = flash[:notice]
+      .alert.alert-success{:style=>"#{ 'display:none' if flash[:notice].blank?}"}
+        %a.close{:href=>"javascript:cierra_mensaje();"} ×
+        %p
+          = flash[:notice] unless flash[:notice].blank?
               
       = yield
 
 
 :javascript
   $(document).ready(function(){
-    //$('.alert-message').delay(2000).fadeOut(400);
-    //$(".topbar").dropdown();
-    $('ul.nav').superfish();
     $('.qtip').tipTip();
     $('.fancybox').fancybox();
+    setTimeout(function() {$('.alert').hide(500);} , 5000);
   });
+
+   jQuery('.submenu').hover(function () {
+        jQuery(this).children('ul').removeClass('submenu-hide').addClass('submenu-show');
+    }, function () {
+        jQuery(this).children('ul').removeClass('.submenu-show').addClass('submenu-hide');
+    }).find("a:first").append(" &raquo; ");
+
   function cierra_mensaje(){
     $('.alert').hide();
   }

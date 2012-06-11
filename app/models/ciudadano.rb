@@ -11,5 +11,9 @@ class Ciudadano < ActiveRecord::Base
   def periodos_abiertos
   	barrio.periodo_propuestas.where("? <= fecha_fin",Date.today)
   end
+
+  def eleccion_abierta
+  	barrio.periodo_electorales.where("? <= fecha_fin",Date.today).first
+  end
   
 end

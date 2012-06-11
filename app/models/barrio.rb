@@ -1,6 +1,8 @@
 class Barrio < ActiveRecord::Base
   has_many :ciudadanos
   has_many :periodo_propuestas
+  has_many :periodo_electorales,:class_name=>'PeriodoElectoral'
+
   belongs_to :municipio
 
 

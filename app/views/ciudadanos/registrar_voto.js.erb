@@ -1,0 +1,10 @@
+$('.alert').hide();
+<% unless params[:etiqueta] == "null" %>
+  $('.alert p').html('Voto cargado');
+  $('.alert-success').show();
+  setTimeout(function() {$('.alert').hide(500);} , 5000);
+<% else %>
+  $('.alert p').html('Voto Eliminado');
+  $('.alert-error').show();
+  setTimeout(function() {$('.alert').hide(500);} , 5000);
+<% end %>

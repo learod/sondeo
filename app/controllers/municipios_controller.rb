@@ -1,5 +1,6 @@
 class MunicipiosController < ApplicationController
   before_filter :login_required
+  skip_before_filter :check_authorization, :only => [:busca_provincias]
   # GET /municipios
   # GET /municipios.json
   def index
