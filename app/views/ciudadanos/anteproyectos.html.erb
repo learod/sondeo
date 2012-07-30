@@ -56,7 +56,8 @@
     jQuery.ajax({
        type:'post',
        data: {proyecto_id: proyecto_id, etiqueta: score},
-       url:'<%= registrar_voto_ciudadano_path(current_user.ciudadano) %>'
+       //url:'<%= registrar_voto_ciudadano_path(current_user.ciudadano) %>'
+       url:'<%= registrar_voto_ciudadano_path(@ciudadano.id) %>'
      });
     //alert('score: ' + score + ' proyecto: ' + proyecto_id)
   }

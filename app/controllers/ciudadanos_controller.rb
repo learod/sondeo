@@ -4,8 +4,7 @@ class CiudadanosController < ApplicationController
   # GET /ciudadanos
   # GET /ciudadanos.json
   def index
-    @ciudadanos = Ciudadano.all
-
+    @ciudadanos = Ciudadano.paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @ciudadanos }
@@ -16,7 +15,6 @@ class CiudadanosController < ApplicationController
   # GET /ciudadanos/1.json
   def show
     @ciudadano = Ciudadano.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @ciudadano }
@@ -27,7 +25,6 @@ class CiudadanosController < ApplicationController
   # GET /ciudadanos/new.json
   def new
     @ciudadano = Ciudadano.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @ciudadano }
@@ -116,6 +113,9 @@ class CiudadanosController < ApplicationController
 
   def anteproyectos
     @ciudadano=Ciudadano.find(params[:id])
+    # if current_user.tipo == 'ciudadano' && current_user.ciudadano != @ciudadano
+    #   render :template => "#{RAILS_ROOT}/public/404.html", :status => 404
+    # end
     @periodo_electoral=@ciudadano.eleccion_abierta
     respond_to do |format|
       format.html

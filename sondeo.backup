@@ -1,0 +1,1137 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = off;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET escape_string_warning = off;
+
+--
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: postgres
+--
+
+CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
+
+
+ALTER PROCEDURAL LANGUAGE plpgsql OWNER TO postgres;
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: tablefunc_crosstab_2; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE tablefunc_crosstab_2 AS (
+	row_name text,
+	category_1 text,
+	category_2 text
+);
+
+
+ALTER TYPE public.tablefunc_crosstab_2 OWNER TO postgres;
+
+--
+-- Name: tablefunc_crosstab_3; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE tablefunc_crosstab_3 AS (
+	row_name text,
+	category_1 text,
+	category_2 text,
+	category_3 text
+);
+
+
+ALTER TYPE public.tablefunc_crosstab_3 OWNER TO postgres;
+
+--
+-- Name: tablefunc_crosstab_4; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE tablefunc_crosstab_4 AS (
+	row_name text,
+	category_1 text,
+	category_2 text,
+	category_3 text,
+	category_4 text
+);
+
+
+ALTER TYPE public.tablefunc_crosstab_4 OWNER TO postgres;
+
+--
+-- Name: connectby(text, text, text, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION connectby(text, text, text, text, integer) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'connectby_text';
+
+
+ALTER FUNCTION public.connectby(text, text, text, text, integer) OWNER TO postgres;
+
+--
+-- Name: connectby(text, text, text, text, integer, text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION connectby(text, text, text, text, integer, text) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'connectby_text';
+
+
+ALTER FUNCTION public.connectby(text, text, text, text, integer, text) OWNER TO postgres;
+
+--
+-- Name: connectby(text, text, text, text, text, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION connectby(text, text, text, text, text, integer) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'connectby_text_serial';
+
+
+ALTER FUNCTION public.connectby(text, text, text, text, text, integer) OWNER TO postgres;
+
+--
+-- Name: connectby(text, text, text, text, text, integer, text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION connectby(text, text, text, text, text, integer, text) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'connectby_text_serial';
+
+
+ALTER FUNCTION public.connectby(text, text, text, text, text, integer, text) OWNER TO postgres;
+
+--
+-- Name: crosstab(text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION crosstab(text) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'crosstab';
+
+
+ALTER FUNCTION public.crosstab(text) OWNER TO postgres;
+
+--
+-- Name: crosstab(text, integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION crosstab(text, integer) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'crosstab';
+
+
+ALTER FUNCTION public.crosstab(text, integer) OWNER TO postgres;
+
+--
+-- Name: crosstab(text, text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION crosstab(text, text) RETURNS SETOF record
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'crosstab_hash';
+
+
+ALTER FUNCTION public.crosstab(text, text) OWNER TO postgres;
+
+--
+-- Name: crosstab2(text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION crosstab2(text) RETURNS SETOF tablefunc_crosstab_2
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'crosstab';
+
+
+ALTER FUNCTION public.crosstab2(text) OWNER TO postgres;
+
+--
+-- Name: crosstab3(text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION crosstab3(text) RETURNS SETOF tablefunc_crosstab_3
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'crosstab';
+
+
+ALTER FUNCTION public.crosstab3(text) OWNER TO postgres;
+
+--
+-- Name: crosstab4(text); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION crosstab4(text) RETURNS SETOF tablefunc_crosstab_4
+    LANGUAGE c STABLE STRICT
+    AS '$libdir/tablefunc', 'crosstab';
+
+
+ALTER FUNCTION public.crosstab4(text) OWNER TO postgres;
+
+--
+-- Name: normal_rand(integer, double precision, double precision); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION normal_rand(integer, double precision, double precision) RETURNS SETOF double precision
+    LANGUAGE c STRICT
+    AS '$libdir/tablefunc', 'normal_rand';
+
+
+ALTER FUNCTION public.normal_rand(integer, double precision, double precision) OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: anteproyectos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE anteproyectos (
+    id integer NOT NULL,
+    nombre character varying(255),
+    descripcion text,
+    periodo_electoral_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.anteproyectos OWNER TO postgres;
+
+--
+-- Name: anteproyectos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE anteproyectos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.anteproyectos_id_seq OWNER TO postgres;
+
+--
+-- Name: anteproyectos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE anteproyectos_id_seq OWNED BY anteproyectos.id;
+
+
+--
+-- Name: anteproyectos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('anteproyectos_id_seq', 4, true);
+
+
+--
+-- Name: barrios; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE barrios (
+    id integer NOT NULL,
+    nombre character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    municipio_id integer
+);
+
+
+ALTER TABLE public.barrios OWNER TO postgres;
+
+--
+-- Name: barrios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE barrios_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.barrios_id_seq OWNER TO postgres;
+
+--
+-- Name: barrios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE barrios_id_seq OWNED BY barrios.id;
+
+
+--
+-- Name: barrios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('barrios_id_seq', 1, true);
+
+
+--
+-- Name: ciudadanos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE ciudadanos (
+    id integer NOT NULL,
+    dni character varying(255),
+    nombre character varying(255),
+    apellido character varying(255),
+    clave character varying(255),
+    email character varying(255),
+    telefono character varying(255),
+    direccion character varying(255),
+    barrio_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    user_id integer,
+    password character varying(255)
+);
+
+
+ALTER TABLE public.ciudadanos OWNER TO postgres;
+
+--
+-- Name: ciudadanos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE ciudadanos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ciudadanos_id_seq OWNER TO postgres;
+
+--
+-- Name: ciudadanos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE ciudadanos_id_seq OWNED BY ciudadanos.id;
+
+
+--
+-- Name: ciudadanos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('ciudadanos_id_seq', 11, true);
+
+
+--
+-- Name: elecciones; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE elecciones (
+    id integer NOT NULL,
+    ciudadano_id integer,
+    anteproyecto_id integer,
+    etiqueta integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.elecciones OWNER TO postgres;
+
+--
+-- Name: elecciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE elecciones_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.elecciones_id_seq OWNER TO postgres;
+
+--
+-- Name: elecciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE elecciones_id_seq OWNED BY elecciones.id;
+
+
+--
+-- Name: elecciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('elecciones_id_seq', 27, true);
+
+
+--
+-- Name: municipios; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE municipios (
+    id integer NOT NULL,
+    nombre character varying(255),
+    provincia_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.municipios OWNER TO postgres;
+
+--
+-- Name: municipios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE municipios_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.municipios_id_seq OWNER TO postgres;
+
+--
+-- Name: municipios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE municipios_id_seq OWNED BY municipios.id;
+
+
+--
+-- Name: municipios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('municipios_id_seq', 1, true);
+
+
+--
+-- Name: paises; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE paises (
+    id integer NOT NULL,
+    nombre character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.paises OWNER TO postgres;
+
+--
+-- Name: paises_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE paises_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.paises_id_seq OWNER TO postgres;
+
+--
+-- Name: paises_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE paises_id_seq OWNED BY paises.id;
+
+
+--
+-- Name: paises_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('paises_id_seq', 1, true);
+
+
+--
+-- Name: periodo_electorales; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE periodo_electorales (
+    id integer NOT NULL,
+    descripcion character varying(255),
+    fecha_inicio date,
+    fecha_fin date,
+    barrio_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.periodo_electorales OWNER TO postgres;
+
+--
+-- Name: periodo_electorales_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE periodo_electorales_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.periodo_electorales_id_seq OWNER TO postgres;
+
+--
+-- Name: periodo_electorales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE periodo_electorales_id_seq OWNED BY periodo_electorales.id;
+
+
+--
+-- Name: periodo_electorales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('periodo_electorales_id_seq', 2, true);
+
+
+--
+-- Name: periodo_propuestas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE periodo_propuestas (
+    id integer NOT NULL,
+    descripcion character varying(255),
+    fecha_inicio date,
+    fecha_fin date,
+    barrio_id integer,
+    municipio_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.periodo_propuestas OWNER TO postgres;
+
+--
+-- Name: periodo_propuestas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE periodo_propuestas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.periodo_propuestas_id_seq OWNER TO postgres;
+
+--
+-- Name: periodo_propuestas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE periodo_propuestas_id_seq OWNED BY periodo_propuestas.id;
+
+
+--
+-- Name: periodo_propuestas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('periodo_propuestas_id_seq', 4, true);
+
+
+--
+-- Name: permisos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE permisos (
+    id integer NOT NULL,
+    tipo_usuario character varying(255),
+    url character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.permisos OWNER TO postgres;
+
+--
+-- Name: permisos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE permisos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.permisos_id_seq OWNER TO postgres;
+
+--
+-- Name: permisos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE permisos_id_seq OWNED BY permisos.id;
+
+
+--
+-- Name: permisos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('permisos_id_seq', 2, true);
+
+
+--
+-- Name: propuestas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE propuestas (
+    id integer NOT NULL,
+    descripcion text,
+    user_id integer,
+    periodo_propuesta_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.propuestas OWNER TO postgres;
+
+--
+-- Name: propuestas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE propuestas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.propuestas_id_seq OWNER TO postgres;
+
+--
+-- Name: propuestas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE propuestas_id_seq OWNED BY propuestas.id;
+
+
+--
+-- Name: propuestas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('propuestas_id_seq', 29, true);
+
+
+--
+-- Name: provincias; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE provincias (
+    id integer NOT NULL,
+    nombre character varying(255),
+    pais_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.provincias OWNER TO postgres;
+
+--
+-- Name: provincias_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE provincias_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.provincias_id_seq OWNER TO postgres;
+
+--
+-- Name: provincias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE provincias_id_seq OWNED BY provincias.id;
+
+
+--
+-- Name: provincias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('provincias_id_seq', 1, true);
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    login character varying(40),
+    name character varying(100) DEFAULT ''::character varying,
+    email character varying(100),
+    crypted_password character varying(40),
+    salt character varying(40),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    remember_token character varying(40),
+    remember_token_expires_at timestamp without time zone,
+    pais_id integer,
+    provincia_id integer,
+    municipio_id integer,
+    tipo character varying(255)
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 13, true);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE anteproyectos ALTER COLUMN id SET DEFAULT nextval('anteproyectos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE barrios ALTER COLUMN id SET DEFAULT nextval('barrios_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ciudadanos ALTER COLUMN id SET DEFAULT nextval('ciudadanos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE elecciones ALTER COLUMN id SET DEFAULT nextval('elecciones_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE municipios ALTER COLUMN id SET DEFAULT nextval('municipios_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE paises ALTER COLUMN id SET DEFAULT nextval('paises_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE periodo_electorales ALTER COLUMN id SET DEFAULT nextval('periodo_electorales_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE periodo_propuestas ALTER COLUMN id SET DEFAULT nextval('periodo_propuestas_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE permisos ALTER COLUMN id SET DEFAULT nextval('permisos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE propuestas ALTER COLUMN id SET DEFAULT nextval('propuestas_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE provincias ALTER COLUMN id SET DEFAULT nextval('provincias_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: anteproyectos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY anteproyectos (id, nombre, descripcion, periodo_electoral_id, created_at, updated_at) FROM stdin;
+3	Seguridad Para todos	Consiste en ubicar mas oficiales de la policia en el barrio para patrullaje	2	2012-06-08 23:07:06.842175	2012-06-08 23:07:06.842175
+1	Espacios Verdes	El proyecto cosiste en el arreglo de los espacios verdes del barrios, ya que sirven para la dispecion de los ciudadanos.	2	2012-06-04 13:53:56.137682	2012-06-04 13:53:56.137682
+2	Salon de Usos Multiples	La creacion de un edificio, de manera que los ciudadanos puedan realizar distitas actividades en él.	2	2012-06-04 13:53:56.137682	2012-06-04 13:53:56.137682
+4	Pruebaaa	kicoadsjc	2	2012-07-30 14:00:36.778713	2012-07-30 14:00:36.778713
+\.
+
+
+--
+-- Data for Name: barrios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY barrios (id, nombre, created_at, updated_at, municipio_id) FROM stdin;
+1	Centro	2012-02-26 16:33:48.257201	2012-02-26 16:33:48.257201	1
+\.
+
+
+--
+-- Data for Name: ciudadanos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY ciudadanos (id, dni, nombre, apellido, clave, email, telefono, direccion, barrio_id, created_at, updated_at, user_id, password) FROM stdin;
+1	33241577	Juan	De la Cruz	\N	juan@mail.com	3794378787	Tucuman 0001	1	2012-03-05 14:22:10.720353	2012-05-24 15:32:20.304533	3	leandro
+3	32165498	Pablo Javier	Mozna	\N	mozna@mail.com	2544444	San luan 789	1	2012-06-11 14:38:17.275322	2012-06-11 15:40:26.8168	5	leandro
+4	12741060	Nelson Jose	Rodriguez	\N	nelson@hotmail.com	3794353566	san luis 253	1	2012-06-19 19:28:06.172222	2012-06-19 19:28:06.172222	6	VbS9fAX7E
+5	14264201	Hidalgo	Isabel	\N	isabel@hotmail.com	3794665866	Corrientes s/n	1	2012-06-19 19:29:58.557899	2012-06-19 19:29:58.557899	7	AVyFv6yB6
+6	29374595	Ojeda	Marcelo	\N	marcelo@hotmail.com	3794585698	Islas Maivinas 698	1	2012-06-19 19:35:47.581924	2012-06-19 19:35:47.581924	8	L1huWNWWC
+7	32568914	Aguirre	Gerardo Fabian	\N	gerardo@hotmail.com	3782655396	Neuquen 856	1	2012-06-19 19:39:05.604582	2012-06-19 19:39:05.604582	9	hlWWcIg6p
+8	13932040	Clavero	Sebastian Rolando	\N	rolando@yahoo.com.ar	3794236363	Las Heras 132	1	2012-06-19 19:41:44.26646	2012-06-19 19:41:44.26646	10	swEB7UcUM
+9	5356861	Ramirez	Miguel Angel	\N	sn@sn.sn	00	Rivadavia 869	1	2012-06-19 19:44:51.504197	2012-06-19 19:44:51.504197	11	KuYc2QLeK
+10	23248151	Ramirez	Evangelina 	\N	sn1@sn.sn	00	Corrientes s/n	1	2012-06-19 19:48:00.001157	2012-06-19 19:48:00.001157	12	mUXgt5jZx
+11	17538152	Colman	Claudio Miguel	\N	mikguel@gmail.com	00	Corrientes s/n	1	2012-06-19 19:50:09.739284	2012-06-19 19:50:09.739284	13	p9KkZ7DFJ
+\.
+
+
+--
+-- Data for Name: elecciones; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY elecciones (id, ciudadano_id, anteproyecto_id, etiqueta, created_at, updated_at) FROM stdin;
+18	5	3	4	2012-06-20 01:47:27.677342	2012-06-20 01:47:27.677342
+19	5	1	3	2012-06-20 01:47:29.426371	2012-06-20 01:47:29.426371
+20	5	2	5	2012-06-20 01:47:30.959596	2012-06-20 01:47:30.959596
+17	3	2	5	2012-06-20 01:39:31.259576	2012-06-20 01:48:01.34362
+16	3	3	4	2012-06-20 01:39:29.447635	2012-06-20 01:48:13.618322
+15	3	1	3	2012-06-19 20:53:58.079808	2012-06-20 01:48:15.331144
+21	7	3	4	2012-06-20 01:48:34.331465	2012-06-20 01:48:34.331465
+22	7	1	3	2012-06-20 01:48:35.768107	2012-06-20 01:48:35.768107
+23	7	2	5	2012-06-20 01:48:37.061258	2012-06-20 01:48:37.061258
+27	1	3	5	2012-06-25 02:06:58.393543	2012-06-25 02:06:58.393543
+13	1	1	5	2012-06-19 19:12:09.286465	2012-06-25 02:07:00.136722
+14	1	2	5	2012-06-19 19:19:56.707093	2012-06-25 02:07:01.600707
+24	8	3	5	2012-06-20 01:49:02.218522	2012-07-23 23:20:51.4227
+26	8	1	5	2012-06-20 01:49:11.819114	2012-07-23 23:20:54.700576
+25	8	2	5	2012-06-20 01:49:06.145117	2012-07-23 23:20:56.134834
+\.
+
+
+--
+-- Data for Name: municipios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY municipios (id, nombre, provincia_id, created_at, updated_at) FROM stdin;
+1	Capital	1	2012-02-26 15:25:27.289514	2012-02-26 15:25:27.289514
+\.
+
+
+--
+-- Data for Name: paises; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY paises (id, nombre, created_at, updated_at) FROM stdin;
+1	Argentina	2012-02-26 15:24:45.277834	2012-02-26 15:24:45.277834
+\.
+
+
+--
+-- Data for Name: periodo_electorales; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY periodo_electorales (id, descripcion, fecha_inicio, fecha_fin, barrio_id, created_at, updated_at) FROM stdin;
+2	prueba	2012-06-01	2012-07-31	1	2012-06-01 14:20:10.472363	2012-07-23 23:20:19.803382
+\.
+
+
+--
+-- Data for Name: periodo_propuestas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY periodo_propuestas (id, descripcion, fecha_inicio, fecha_fin, barrio_id, municipio_id, created_at, updated_at) FROM stdin;
+3	Periodo mes mayo	2012-05-01	2012-05-31	1	1	2012-05-31 20:31:27.973564	2012-05-31 20:31:27.973564
+1	Periodo esto es un a prueba	2012-01-01	2012-05-01	1	1	2012-03-17 22:46:27.421353	2012-05-31 20:35:03.589815
+2	Periodo 2012	2012-01-01	2012-12-31	1	1	2012-04-09 14:12:55.6947	2012-06-07 14:16:02.78841
+\.
+
+
+--
+-- Data for Name: permisos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY permisos (id, tipo_usuario, url, created_at, updated_at) FROM stdin;
+1	administrador	/periodo_propuestas	2012-06-06 17:27:40.400234	2012-06-06 17:30:20.693435
+2	ciudadano	propuestas	2012-06-06 18:05:59.665306	2012-06-06 18:05:59.665306
+\.
+
+
+--
+-- Data for Name: propuestas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY propuestas (id, descripcion, user_id, periodo_propuesta_id, created_at, updated_at) FROM stdin;
+4	Juannnn	1	1	2012-03-19 01:47:38.528329	2012-03-19 01:47:38.528329
+1	Preuba de propuesta 5	1	1	2012-03-18 22:17:17.214503	2012-03-20 17:33:04.992429
+16	propeuesta mobile	3	1	2012-03-24 18:52:34.219754	2012-03-24 18:52:34.219754
+17	Android es lo +	3	1	2012-03-24 18:53:59.878367	2012-03-24 18:53:59.878367
+18	Android nuevamente	3	1	2012-03-24 18:54:35.787907	2012-03-24 18:54:35.787907
+19	prueba	3	1	2012-03-24 18:54:54.075523	2012-03-24 18:54:54.075523
+20	otra prueba	3	1	2012-03-24 18:55:13.912776	2012-03-24 18:55:13.912776
+23	pruebs	3	1	2012-04-09 13:58:56.453259	2012-04-09 13:58:56.453259
+24	sigo probsndi	3	1	2012-04-09 13:59:19.170319	2012-04-09 13:59:19.170319
+25	propuuesta 1	3	2	2012-04-09 14:13:37.865748	2012-04-09 14:13:37.865748
+26	Mejora en la plaza Cabral	3	2	2012-05-28 19:40:27.74466	2012-05-28 19:40:27.74466
+27	Iluminacion del barrio	3	3	2012-05-31 20:34:07.451098	2012-05-31 20:34:07.451098
+29	Preuba de propuesta 5	1	3	2012-06-06 13:50:45.359393	2012-06-06 13:50:45.359393
+\.
+
+
+--
+-- Data for Name: provincias; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY provincias (id, nombre, pais_id, created_at, updated_at) FROM stdin;
+1	Corrientes	1	2012-02-26 15:25:11.755385	2012-02-26 15:25:11.755385
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY schema_migrations (version) FROM stdin;
+20111124155427
+20111129133736
+20111209203416
+20111220144022
+20111220144918
+20111220145016
+20111220145157
+20111228170622
+20120220220451
+20120221004039
+20120221004108
+20120530014115
+20120531011351
+20120530013801
+20120531114726
+20120531134342
+20120601121958
+20120604131709
+20120606172555
+20120610193532
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (id, login, name, email, crypted_password, salt, created_at, updated_at, remember_token, remember_token_expires_at, pais_id, provincia_id, municipio_id, tipo) FROM stdin;
+2	carlitos	Carlos Romero	charles@gavilan.com	ad16d2697001b79ee8309ba5150b4f0275151e52	3066a28e0f48596c5d9d9daa2af0cb118c00914f	2012-02-28 18:22:13.599423	2012-02-28 18:22:13.599423	\N	\N	\N	\N	\N	administrador
+1	leandro	Leandro Rodriguez	learod@ipcorp.com	a302d6c1b2f5bbf1f04157a70e04049028c97c1e	b44b39cb04c00ad832d892ca5c9055ac45fa01cc	2012-02-24 13:29:14.558111	2012-03-07 12:19:40.125617	\N	\N	\N	\N	\N	administrador
+3	33241577	Juan	juan@mail.com	da7afc1732750245a0d4e071dc6043979f51818c	544facb9f1c9d54cec432ff21794bfd6529e12b0	2012-03-05 14:22:10.542781	2012-05-24 15:32:20.178422	\N	\N	\N	\N	\N	ciudadano
+4	11111111111	Perez Juan 	juanito@corrientes.com	9c58bdf1071bde9a012af20822c723df6007d8e8	6079afce9a1cc4750516238c9fc5e0fd5027eba0	2012-05-28 19:32:16.459269	2012-05-28 19:32:16.459269	\N	\N	\N	\N	\N	ciudadano
+5	32165498	Mozna Pablo Javier	mozna@mail.com	e92945645e1fc1390cf667ae8b2d610e56f79c1f	f83e0481ff1f62882545f4473b18cc17ac9d5686	2012-06-11 14:38:17.210358	2012-06-11 15:40:26.796145	\N	\N	\N	\N	\N	ciudadano
+6	12741060	Rodriguez Nelson Jose	nelson@hotmail.com	3e32302bd1fd3053030c3e0e9012a730d3743838	fe87c1807ba3be3101830b54ea96889e14a3ce24	2012-06-19 19:28:06.107066	2012-06-19 19:28:06.107066	\N	\N	\N	\N	\N	ciudadano
+7	14264201	Isabel Hidalgo	isabel@hotmail.com	b39d7670c21458cb2ac0912e2db9231f98b2aa8f	10e82cf34aceb712182f868a63d563a28c84442a	2012-06-19 19:29:58.529855	2012-06-19 19:29:58.529855	\N	\N	\N	\N	\N	ciudadano
+8	29374595	Marcelo Ojeda	marcelo@hotmail.com	3ceae53b773a89dbc976372f31c08c4b18dcc7d9	e58f96bbb0fbbd64de1b15e1bf2a1817624c4fc7	2012-06-19 19:35:47.556882	2012-06-19 19:35:47.556882	\N	\N	\N	\N	\N	ciudadano
+9	32568914	Gerardo Fabian Aguirre	gerardo@hotmail.com	eb8e9096e50d3333430622ce59a05419ee419f00	1bb40116eabe7cdb9253e70800dd67c4a6658f6c	2012-06-19 19:39:05.5797	2012-06-19 19:39:05.5797	\N	\N	\N	\N	\N	ciudadano
+10	13932040	Sebastian Rolando Clavero	rolando@yahoo.com.ar	41df3b9e0659a7d68f3b299dead85f05b172b54b	f772d9a84424f210612872e7f43dae3d09136515	2012-06-19 19:41:44.241689	2012-06-19 19:41:44.241689	\N	\N	\N	\N	\N	ciudadano
+11	5356861	Miguel Angel Ramirez	sn@sn.sn	f1f01a57b838cdc0c552ae741a481bf872482d07	89552057ecd3aeb6c9ff4e5b12e8d27871840648	2012-06-19 19:44:51.483244	2012-06-19 19:44:51.483244	\N	\N	\N	\N	\N	ciudadano
+12	23248151	Evangelina  Ramirez	sn1@sn.sn	23d4beb87eaaa7130660dcd15a1a35cc8d7b709c	930605af9678e5e3944d7aca905cf33911e5aa43	2012-06-19 19:47:59.976254	2012-06-19 19:47:59.976254	\N	\N	\N	\N	\N	ciudadano
+13	17538152	Claudio Miguel Colman	mikguel@gmail.com	91884a90bab48708f5ae8f56a8bedd876a0e57d5	3e472cf394ef66f1902a30a3dea7534dd58b3274	2012-06-19 19:50:09.716778	2012-06-19 19:50:09.716778	\N	\N	\N	\N	\N	ciudadano
+\.
+
+
+--
+-- Name: anteproyectos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY anteproyectos
+    ADD CONSTRAINT anteproyectos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: barrios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY barrios
+    ADD CONSTRAINT barrios_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ciudadanos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY ciudadanos
+    ADD CONSTRAINT ciudadanos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: elecciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY elecciones
+    ADD CONSTRAINT elecciones_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: municipios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY municipios
+    ADD CONSTRAINT municipios_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: paises_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY paises
+    ADD CONSTRAINT paises_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: periodo_electorales_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY periodo_electorales
+    ADD CONSTRAINT periodo_electorales_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: periodo_propuestas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY periodo_propuestas
+    ADD CONSTRAINT periodo_propuestas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: permisos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY permisos
+    ADD CONSTRAINT permisos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: propuestas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY propuestas
+    ADD CONSTRAINT propuestas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: provincias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY provincias
+    ADD CONSTRAINT provincias_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_users_on_login; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_login ON users USING btree (login);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -172,3 +172,7 @@ es-AR:
 
       full_messages:
         format: "%{attribute}%{message}"
+  will_paginate:
+    previous_label: "<< Anterior"
+    next_label: "Siguiente >>"
+    page_gap: "&hellip;"
