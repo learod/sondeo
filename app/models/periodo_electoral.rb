@@ -2,13 +2,19 @@ class PeriodoElectoral < ActiveRecord::Base
   belongs_to :barrio
 
   has_many :anteproyectos
+  # has_many :ciudadanos, :through => :anteproyectos
 
   delegate :nombre, :to => :municipio, :prefix => 'municipio'
   delegate :pais, :to => :municipio
   delegate :provincia, :to => :municipio 
   delegate :municipio, :to => :barrio
+  delegate :ciudadanos, :to => :barrio , :prefix=>true
 
   validates :descripcion, :barrio_id,:fecha_fin,:fecha_inicio, :presence => true
+
+  def ciudadanos
+    anteproyectos.map{|a| a.ciudadanos}.flatten.uniq
+  end
 
   def barrio_nombre
     barrio.nombre unless barrio.blank? 
