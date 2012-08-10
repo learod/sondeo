@@ -123,4 +123,13 @@ class PeriodoElectoralesController < ApplicationController
       #format.json { render :json => @periodo_electoral }
     end
   end
+
+  def resultado
+    @periodo_electoral = PeriodoElectoral.find(params[:id])
+    @periodo_electoral.ciudadanos
+
+    respond_to do |format|
+      format.html
+    end
+  end
 end

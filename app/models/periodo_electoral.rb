@@ -16,6 +16,10 @@ class PeriodoElectoral < ActiveRecord::Base
     anteproyectos.map{|a| a.ciudadanos}.flatten.uniq
   end
 
+  def agrupacion
+    Hash[ciudadanos.group_by{|c| c.alternativas}.map{|kv| [kv[0],kv[1].size]}]
+  end
+
   def barrio_nombre
     barrio.nombre unless barrio.blank? 
   end
