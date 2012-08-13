@@ -126,7 +126,7 @@ class PeriodoElectoralesController < ApplicationController
 
   def resultado
     @periodo_electoral = PeriodoElectoral.find(params[:id])
-    @periodo_electoral.ciudadanos
+    agrupacion = @periodo_electoral.agrupacion
 
     respond_to do |format|
       format.html

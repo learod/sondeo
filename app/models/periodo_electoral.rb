@@ -17,7 +17,7 @@ class PeriodoElectoral < ActiveRecord::Base
   end
 
   def agrupacion
-    Hash[ciudadanos.group_by{|c| c.alternativas}.map{|kv| [kv[0],kv[1].size]}]
+    Hash[ciudadanos.group_by{|c| c.alternativas(self)}.map{|kv| [kv[0],kv[1].size]}]
   end
 
   def barrio_nombre
