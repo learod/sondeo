@@ -1,0 +1,431 @@
+    <div data-role="page" id="login">
+            <div data-theme="d" data-role="header" data-position="fixed">
+                <h3>
+                    Sondeo
+                </h3>
+            </div>
+            <div data-role="content">
+                <form url="" action="POST">
+                    <%= image_tag('mobile/logout.png') %>
+                    <span>LOGIN</span>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <label for="username">
+                            </label>
+                            <input id="username" placeholder="Nombre de Usuario" value="" type="text" />
+                        
+                            <label for="password">
+                            </label>
+                            <input id="password" placeholder="Password" value="" type="password" />
+                            <label for="password">
+                            </label>
+                            <input id="host" placeholder="Host" value="" type="text" />
+                        </fieldset>
+                    </div>
+                    <input type="submit" data-inline="true" data-icon="plus" data-iconpos="left" value="Login" id="sub" />
+                </form>
+                <div id="resultBlock"></div>
+            </div>
+        </div>
+
+        <!-- ACA COMIENZA LA PAGINA DE BIENVENIDA -->
+        <div data-role="page" id="bienvenido">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Sondeo
+                </h3>
+                <a data-role="button" data-transition="fade" data-theme="a" data-icon="delete" data-iconpos="left" id="salir">
+                    Salir
+                </a>
+            </div>
+            <div data-role="content">
+            <!--
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#periodos" data-transition="slide" id="periodo_button">
+                            Propuestas Habilitadas
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                </ul>
+            -->
+                <div class="ui-grid-a codiqa-control moveable codiqa-container" data-cid="grid2" style="">
+                  <div data-cid="gridblock3" class="codiqa-control codiqa-container ui-block-a">
+                      <div style="width: 100%; height: 100%; position: relative;" data-cid="image3" class="codiqa-control">
+                        <a href="#periodos" data-transition="slide" id="periodo_button">
+                            <%= image_tag('mobile/nombre.png') %>
+                        </a>
+                      </div>
+                  </div>
+                  <div data-cid="gridblock4" class="codiqa-control codiqa-container ui-block-b">
+                     <div style="width: 100%; height: 100%; position: relative;" data-cid="image3" class="codiqa-control">
+                        <a href="#proyecto" data-transition="slide" id="anteproyectos_button">
+                            <%= image_tag('mobile/nombre.png') %>
+                        </a>
+                      </div>
+                  </div>
+                  <div data-cid="gridblock5" class="codiqa-control codiqa-container ui-block-a">
+                     <div style="width: 100%; height: 100%; position: relative;" data-cid="image3" class="codiqa-control">
+                            <!-- <img src="images/add.png" alt="image"> -->
+                      </div>
+                  </div>
+                  <div data-cid="gridblock6" class="codiqa-control codiqa-container ui-block-b">
+                     <div style="width: 100%; height: 100%; position: relative;" data-cid="image3" class="codiqa-control">
+                            <!-- <img src="images/add.png" alt="image"> -->
+                      </div>
+                  </div>
+                </div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#bienvenido" data-theme="" data-icon="myhome" class="ui-btn-active">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="grid" data-transition="pop">
+                                Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cambiar_pass" data-theme="" data-icon="padlock" data-transition="pop">
+                                Contrase&ntilde;a
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="tools" class="config" data-transition="pop">
+                                Config.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <span class="nombre"></span>
+                </h3>
+            </div>
+        </div>
+
+        <!-- ACA LA PAGINA DE PERIODOS -->
+        <div data-role="page" id="periodos">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Sondeo
+                </h3>
+                 <a data-role="button" data-rel="back" data-transition="fade" data-theme="a" data-icon="back" data-iconpos="left">
+                    Atr&aacute;s
+                </a>
+            </div>
+            <div data-role="content">
+                
+                <ul data-role="listview" data-divider-theme="b" data-inset="true" id="lista_periodos">
+                    <!--li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li-->
+                </ul>
+
+                <!-- esto espara los graficos
+                    <div id="default" class="graph"></div>
+                -->
+            </div>
+            <div data-role="footer" data-id="foo1" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#bienvenido" data-theme="" data-icon="myhome" class="ui-btn-active">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="grid" data-transition="pop">
+                                Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cambiar_pass" data-theme="" data-icon="padlock" data-transition="pop">
+                                Contrase&ntilde;a
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="tools" class="config" data-transition="pop">
+                                Config.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <span class="nombre"></span>
+                </h3>
+            </div>
+        </div>
+
+
+        <!-- ACA LA PAGINA DE ANTEPROYECTOS -->
+        <div data-role="page" id="anteproyectos">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Sondeo
+                </h3>
+                 <a data-role="button" data-rel="back" data-transition="fade" data-theme="a" data-icon="back" data-iconpos="left">
+                    Atr&aacute;s
+                </a>
+            </div>
+            <div data-role="content">
+
+                <!-- div data-role="collapsible-set" id="col_set">
+                   
+                </div -->
+                
+                <!--ul data-role="listview" data-divider-theme="b" data-inset="true" id="lista_anteproyectos">
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#page1" data-transition="slide">
+                            Button
+                        </a>
+                    </li>
+                </ul-->
+
+                <!-- esto espara los graficos
+                    <div id="default" class="graph"></div>
+                -->
+            </div>
+            <div data-role="footer" data-id="foo1" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#bienvenido" data-theme="" data-icon="myhome" class="ui-btn-active">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="grid" data-transition="pop">
+                                Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cambiar_pass" data-theme="" data-icon="padlock" data-transition="pop">
+                                Contrase&ntilde;a
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="tools" class="config" data-transition="pop">
+                                Config.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <span class="nombre"></span>
+                </h3>
+            </div>
+        </div>
+
+
+        <!-- ACA LA PAGINA DE PRESENTACION DE ANTEPROYECTO -->
+        <div data-role="page" id="proyecto">
+            <div data-theme="a" data-role="header">
+                <h3>
+                    Sondeo
+                </h3>
+                 <a data-role="button" data-rel="back" data-transition="fade" data-theme="a" data-icon="back" data-iconpos="left">
+                    Atr&aacute;s
+                </a>
+            </div>
+            <div data-role="content" id="coll">
+                <div data-role="collapsible-set" id="col_set">
+                    <!--div data-role="collapsible">
+                        <h3><div id="nombre_proyecto"></div></h3>
+                       <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
+                    </div-->
+                </div>
+
+               
+            </div>
+            <div data-role="footer" data-id="foo1" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#bienvenido" data-theme="" data-icon="myhome" class="ui-btn-active">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="grid" data-transition="pop">
+                                Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#cambiar_pass" data-theme="" data-icon="padlock" data-transition="pop">
+                                Contrase&ntilde;a
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="tools" class="config" data-transition="pop">
+                                Config.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <span class="nombre"></span>
+                </h3>
+            </div>
+        </div>
+
+
+
+
+        <!-- Pagina de cambio de contraseña -->
+        <div data-role="page" id="cambiar_pass">
+            <div data-theme="a" data-role="header" data-position="fixed">
+                <h3>
+                    Sondeo
+                </h3>
+                <a data-role="button" data-rel="back" data-transition="fade" data-theme="a" data-icon="back" data-iconpos="left">
+                    Atr&aacute;s
+                </a>
+            </div>
+            <div data-role="content">
+                <form url="" action="POST">
+                    
+                    <span>Cambio de Contrase&ntilde;a</span>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <input id="old_password" placeholder="Contrase&ntilde;a" value="" type="password" />
+                            <br />                        
+                            <input id="nb_password" placeholder="Nueva Contrase&ntilde;a" value="" type="password" />
+                            <br />                        
+                            <input id="con_nb_password" placeholder="Repetir Nueva Contrase&ntilde;a" value="" type="password" />
+                        </fieldset>
+                    </div>
+                    <input type="submit" data-inline="true" data-icon="check" data-iconpos="left" value="Guardar" id="g_pass" />
+                </form>
+                <div id="resultBlock"></div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#bienvenido" data-theme="" data-icon="myhome" data-transition="pop">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="grid" data-transition="pop">
+                                Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="padlock" class="ui-btn-active">
+                                Contrase&ntilde;a
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="tools" class="config" data-transition="pop">
+                                Config.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <span class="nombre"></span>
+                </h3>
+            </div>
+        </div>
+        
+
+
+        <div data-role="page" id="nueva_propuesta">
+            <div data-theme="a" data-role="header" data-position="fixed">
+                <h3>
+                    Sondeo
+                </h3>
+                <a data-role="button" data-rel="back" data-transition="fade" data-theme="a" data-icon="back" data-iconpos="left">
+                    Atr&aacute;s
+                </a>
+            </div>
+            <div data-role="content">
+                <form url="" action="POST">
+                    
+                    <span>Nueva Propuesta</span>
+                    <div data-role="fieldcontain">
+                        <fieldset data-role="controlgroup">
+                            <input id="propuesta" value="" type="text" />
+                        </fieldset>
+                    </div>
+                    <input type="submit" data-inline="true" data-icon="check" data-iconpos="left" value="Guardar" id="g_prop" />
+                </form>
+                <div id="resultBlock"></div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li>
+                            <a href="#bienvenido" data-theme="" data-icon="myhome" data-transition="pop">
+                                Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="grid" data-transition="pop">
+                                Menu
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="padlock" class="ui-btn-active">
+                                Contrase&ntilde;a
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-theme="" data-icon="tools" class="config" data-transition="pop">
+                                Config.
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <span class="nombre"></span>
+                </h3>
+            </div>
+        </div>
+
+      

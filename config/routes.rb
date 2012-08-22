@@ -56,6 +56,8 @@ Sondeo::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'iniciar' => 'sessions#iniciar', :as => :iniciar
+  
+  match 'mobile' => 'mobile#index', :as => :mobile
 
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
 
