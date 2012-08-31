@@ -43,4 +43,17 @@ class PeriodoElectoral < ActiveRecord::Base
   def provincia_nombre
     municipio.provincia_nombre
   end
+
+  def anteproyectos_ciudadano(ciudadano_id)
+    salida = []
+    anteproyectos.each do |anteproyecto|
+      eleccion = anteproyecto.elecciones.where("ciudadano_id = ? ",ciudadano_id).first
+      unless eleccion.blank?
+        salida << anteproyecto.as_json.merge({'etiqueta' => eleccion.etiqueta})
+      else
+        salida << anteproyecto.as_json.merge({'etiqueta' => nil})
+      end
+    end
+    salida
+  end
 end

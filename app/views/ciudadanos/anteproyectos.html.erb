@@ -15,19 +15,19 @@
                 <th>Descripci&oacute;n</th>
                 <th></th>
               </tr>
-              <% @periodo_electoral.anteproyectos.each do |proyecto| %>
-              <tr id="proyecto_<%= "#{proyecto.id}" %>">
-                <td><%= proyecto.nombre %></td>
-                <td><%= proyecto.descripcion[0..40] %></td>
+              <% @periodo_electoral.anteproyectos_ciudadano(@ciudadano.id).each do |proyecto| %>
+              <tr id="proyecto_<%= "#{proyecto["id"]}" %>">
+                <td><%= proyecto["nombre"] %></td>
+                <td><%= proyecto["descripcion"][0..40] %></td>
                 <td>
-                  <% eleccion = Eleccion.where("anteproyecto_id = ? and ciudadano_id = ? ",proyecto.id,@ciudadano.id).first %>
-                  <%= hidden_field_tag "eleccion_#{proyecto.id}", eleccion ? eleccion.etiqueta : nil %>
-                  <div class="star" id="<%=proyecto.id%>"></div>
-                  <div class="target" id="target_<%=proyecto.id%>" style=" background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 90px; float: left; "></div>
+                  <%# eleccion = Eleccion.where("anteproyecto_id = ? and ciudadano_id = ? ",proyecto.id,@ciudadano.id).first %>
+                  <%= hidden_field_tag "eleccion_#{proyecto["id"]}", proyecto["etiqueta"]  %>
+                  <div class="star" id="<%=proyecto["id"]%>"></div>
+                  <div class="target" id="target_<%=proyecto["id"]%>" style=" background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 90px; float: left; "></div>
                   <%#= link_to image_tag('iconos/32x32/remove_from_database.png'), eliminar_proyecto_periodo_electorales_path(:id=>proyecto.id), :confirm => '¿Esta seguro?',:title => 'Eliminar', :class => 'qtip',:remote=>true %>
                 </td>
               </tr>
-              <% end %>
+              <% end unless @periodo_electoral.blank? %>
             </table>
           </div>
         </fieldset>

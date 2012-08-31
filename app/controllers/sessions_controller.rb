@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def iniciar
-    params[:password]=Ciudadano.find(3).password
+    #params[:password]=Ciudadano.find(3).password
     logger.info "#{params[:password]}"
     user = User.authenticate(params[:login], params[:password])
     # @user = User.all
