@@ -95,6 +95,16 @@ class PeriodoElectoralesController < ApplicationController
     end
   end
 
+  def show_resultados
+    @periodo_electoral = PeriodoElectoral.find(params[:id])
+    @wckowa=Wckowa.new(@periodo_electoral)
+    @media=Media.new(@periodo_electoral)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => {'wckowa' => @wckowa, 'media'=>@media}.to_json}
+    end
+  end
+
   def nuevo_proyecto
     @periodo_electoral = PeriodoElectoral.find(params[:id])
     params[:anteproyecto][:periodo_electoral_id]=@periodo_electoral.id

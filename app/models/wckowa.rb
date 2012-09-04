@@ -32,10 +32,10 @@ private
       valor = 0
       @comites.each do |comite|
         #puts "1 paso -- cont = #{comite.count}"
-        ponderacion = 1.0 / (comite.count * @cant_comites)
+        peso_comite = 1.0 / (comite.count * @cant_comites)
         comite.each do |ciudadano|
-         # puts "2 -- paso ciu = #{ciudadano[a.id]} -- pon = #{ponderacion} -- cant = #{@cant_comites} "
-          valor = valor + ponderacion * ciudadano[a.id].to_i
+         # puts "2 -- paso ciu = #{ciudadano[a.id]} -- pon = #{peso_comite} -- cant = #{@cant_comites} "
+          valor = valor + peso_comite * ciudadano[a.id].to_i
         end
       end
       @resultados[a.id]=valor
