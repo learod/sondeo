@@ -1,0 +1,30 @@
+<div class="page-header">
+        <h1>Anteproyectos</h1> 
+    </div>
+
+    <div class="row">
+        <div class="span14">
+          
+          <fieldset>
+            <legend>Listado de Anteproyectos</legend>
+            <div id="listado_proyectos">
+              <table id="tabla_proyectos" class="table table-striped">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripci&oacute;n</th>
+                  <th>WCK-OWA</th>
+                  <th>Media</th>
+                </tr>
+                <% @periodo_electoral.anteproyectos.each do |proyecto| %>
+                <tr id="proyecto_<%= "#{proyecto.id}" %>">
+                  <td><%= proyecto.nombre %></td>
+                  <td><%= proyecto.descripcion[0..20] %></td>
+                  <td><%= @wckowa.resultados[proyecto.id] %></td>
+                  <td><%= @media.resultados[proyecto.id] %></td>
+                </tr>
+                <% end %>
+              </table>
+            </div>
+          </fieldset>
+        </div>
+    </div>

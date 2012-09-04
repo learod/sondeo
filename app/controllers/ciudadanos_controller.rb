@@ -1,6 +1,7 @@
 class CiudadanosController < ApplicationController
-  before_filter :login_required, :except=>[:periodos]
+  before_filter :login_required, :except=>[:periodos,:registrar_voto]
   skip_before_filter :check_authorization, :only => [:busca_barrios]
+  #skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   # GET /ciudadanos
   # GET /ciudadanos.json
   def index
@@ -117,9 +118,11 @@ class CiudadanosController < ApplicationController
     #   render :template => "#{RAILS_ROOT}/public/404.html", :status => 404
     # end
     @periodo_electoral=@ciudadano.eleccion_abierta
+    @anteproyectos = @periodo_electoral ? @periodo_electoral.anteproyectos_ciudadano(@ciudadano.id) : nil
+
     respond_to do |format|
       format.html
-      format.json{render :json => @ciudadano.eleccion_abierta.anteproyectos.to_json }
+      format.json{render :json => @anteproyectos.to_json }
     end
   end
 
@@ -135,6 +138,7 @@ class CiudadanosController < ApplicationController
     end
     respond_to do |format|
       format.js
+      format.json{render :json=> @eleccion.to_json,:status=>'ok'}
     end
   end
 end

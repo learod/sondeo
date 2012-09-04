@@ -7,10 +7,14 @@ class SessionsController < ApplicationController
 
   # render new.rhtml
   def new
+    logger.info(" AGENTE  =  #{request.user_agent}")
+    if request.user_agent =~ /Mobile|webOS/
+      redirect_to "/mobile"
+    end
   end
 
   def iniciar
-    params[:password]=Ciudadano.find(3).password
+    #params[:password]=Ciudadano.find(3).password
     logger.info "#{params[:password]}"
     user = User.authenticate(params[:login], params[:password])
     # @user = User.all

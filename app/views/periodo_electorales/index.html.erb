@@ -30,6 +30,7 @@
             <%= link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_electoral_path(periodo_electoral), :title => 'Editar', :class => 'qtip' %>
             <%= link_to image_tag('iconos/32x32/remove_from_database.png'), periodo_electoral, :confirm => '¿Esta seguro?', :method => :delete,:title => 'Eliminar', :class => 'qtip' %>
             <%= link_to image_tag('iconos/32x32/folder_modified.png'), show_proyecto_periodo_electoral_path(periodo_electoral), :title => 'Proyectos', :class => 'qtip' %>
+            <%= link_to image_tag('iconos/32x32/folder_modified.png'), show_resultados_periodo_electoral_path(periodo_electoral), :title => 'Proyectos', :class => 'qtip' %>
           </td>
         </tr>
       <% end %>

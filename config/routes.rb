@@ -1,6 +1,7 @@
 Sondeo::Application.routes.draw do
   resources :periodo_electorales do
     member do
+      get :show_resultados
       get :show_proyecto
       get :nuevo_anteproyecto
       post :nuevo_proyecto
@@ -56,6 +57,8 @@ Sondeo::Application.routes.draw do
   match 'logout' => 'sessions#destroy', :as => :logout
 
   match 'iniciar' => 'sessions#iniciar', :as => :iniciar
+  
+  match 'mobile' => 'mobile#index', :as => :mobile
 
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
 
