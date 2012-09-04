@@ -1,3 +1,4 @@
+#coding: utf-8
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
@@ -27,7 +28,7 @@ class SessionsController < ApplicationController
         # format.json {render :json => @user }
         format.json{ render :json => { :status => "SUCCESS",  :message=> "Bienvenido", :user => "#{user.id}", :usuario => user ,:ciudadano=>user.ciudadano  }.to_json}
       else
-        format.json{ render :json => {:status => "ERROR",  :message=> "Error de usuario o contraseña"}.to_json.html_safe}
+        format.json{ render :json => {:status => "ERROR",  :message=> "Error de usuario o password"}.to_json.html_safe}
       end
     end
 
