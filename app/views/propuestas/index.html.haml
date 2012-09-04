@@ -6,7 +6,7 @@
       = form_tag buscar_propuestas_path, :remote => true do
         %table
           %tr
-            %td Pais
+            %td Pa&iacute;s
             %td
               = select_tag :pais_id, ("<option>Seleccione</option>"+options_from_collection_for_select(Pais.all,'id','nombre')).html_safe
           %tr.provincia
