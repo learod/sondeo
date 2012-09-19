@@ -112,6 +112,13 @@ class CiudadanosController < ApplicationController
     end
   end
 
+  def elecciones_cerradas
+    ciudadano=Ciudadano.find(params[:id])
+    respond_to do |format|
+      format.json{render :json => ciudadano.elecciones_cerradas.to_json }
+    end
+  end
+
   def anteproyectos
     @ciudadano=Ciudadano.find(params[:id])
     # if current_user.tipo == 'ciudadano' && current_user.ciudadano != @ciudadano

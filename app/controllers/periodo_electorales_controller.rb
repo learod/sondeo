@@ -1,5 +1,5 @@
 class PeriodoElectoralesController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except=>[:show_resultados]
   # GET /periodo_electorales
   # GET /periodo_electorales.json
   def index

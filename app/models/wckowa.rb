@@ -1,6 +1,6 @@
 class Wckowa
 
-  attr_reader :comites, :cant_comites,:resultados
+  attr_reader :comites, :cant_comites,:resultados, :nombre_proyectos
   def initialize(periodo_electoral)
     agrupacion = periodo_electoral.agrupacion
     @cant_comites = agrupacion.max_by{|x,v| v}[1]
@@ -28,6 +28,7 @@ private
 
   def genera_resultados(periodo_electoral)
     @resultados={}
+    @nombre_proyectos={}
     periodo_electoral.anteproyectos.each do |a|
       valor = 0
       @comites.each do |comite|
@@ -39,6 +40,7 @@ private
         end
       end
       @resultados[a.id]=valor
+      @nombre_proyectos[a.id]=a.nombre
     end
   end
 

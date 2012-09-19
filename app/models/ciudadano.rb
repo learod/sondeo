@@ -18,6 +18,10 @@ class Ciudadano < ActiveRecord::Base
   	barrio.periodo_electorales.where("? <= fecha_fin",Date.today).first
   end
 
+  def elecciones_cerradas
+    barrio.periodo_electorales.where("? > fecha_fin",Date.today)
+  end
+
   def alternativas(periodo_electoral)
     Hash[elecciones.includes(:anteproyecto).where('anteproyectos.periodo_electoral_id = ?',periodo_electoral.id).collect{|v| [v.anteproyecto_id,v.etiqueta]}]
   end

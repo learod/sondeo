@@ -35,7 +35,9 @@ gem 'jquery-rails'
 
 
 #gem 'mongrel'
-gem 'thin'
+#gem 'mongrel'
+gem 'mongrel'
+#gem 'thin'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

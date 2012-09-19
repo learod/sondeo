@@ -72,6 +72,7 @@ Sondeo::Application.routes.draw do
     member do
       get "anteproyectos"
       post "registrar_voto"
+      get 'elecciones_cerradas'
     end
 
     collection do
