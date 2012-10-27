@@ -56,4 +56,12 @@ class PeriodoElectoral < ActiveRecord::Base
     end
     salida
   end
+
+  def vigente?
+    fecha_inicio <= Date.today && Date.today <= fecha_fin 
+  end
+
+  def finalizado?
+    fecha_fin < Date.today
+  end
 end
