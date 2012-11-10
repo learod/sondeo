@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   # render new.rhtml
   def new
     logger.info(" AGENTE  =  #{request.user_agent}")
-    if request.user_agent =~ /Mobile|webOS/
+    if request.user_agent =~ /Mobile|webOS|SymbianOS/
       redirect_to "/mobile"
     end
   end
