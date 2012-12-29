@@ -1,7 +1,7 @@
 .content
   .page-header
     %h1 Provincias
-  .row
+  .row-fluid
     .span14
       %table.table.table-striped{:width=>'100%'}
         %tr
@@ -11,12 +11,13 @@
           
         - @provincias.each do |provincia|
           %tr
-            %td= provincia.pais_nombre
+            %td
+              =link_to provincia.nombre, provincia
+              = link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_provincia_path(provincia)
+              = link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),provincia , :confirm => '¿Está Seguro?', :method => :delete
             %td= provincia.nombre
             %td
-              = link_to image_tag('iconos/32x32/zoom_in.png'), provincia, :title => 'Ver', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/edit_page.png'), edit_provincia_path(provincia), :title => 'Editar', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/remove_from_database.png'),provincia , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+              
       %hr
       .clearfix
         .input

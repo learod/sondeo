@@ -1,0 +1,79 @@
+%ul.nav.nav-list
+  %li.nav-header Administrador
+  %li= link_to 'Paises', paises_path
+  %li= link_to 'Provincias', provincias_path
+  %li= link_to 'Municipios', municipios_path
+  %li= link_to 'Barrios', barrios_path
+  %li.divider
+  %li.nav-header Propuesta
+  %li= link_to 'Periodos de Propuestas', periodo_propuestas_path
+  %li= link_to 'Periodos Electorales', periodo_electorales_path
+
+
+  / %li.dropdown
+  /   %a.dropdown-toggle{:href=> "#","data-toggle".to_sym => 'dropdown' } Usuarios
+  /   %ul.dropdown-menu
+  /     %li 
+  /       = link_to 'Nuevo Usuario', new_user_path
+  / %li.dropdown
+  /   %a.dropdown-toggle{:href=> "#","data-toggle".to_sym => 'dropdown' } Ciudadanos
+  /   %ul.dropdown-menu
+  /     %li 
+  /       = link_to 'Nuevo Ciudadano', new_ciudadano_path
+  
+
+  / %li.dropdown
+  /   %a.dropdown-toggle{:href=> "#","data-toggle".to_sym => 'dropdown' } Propuestas
+  /   %ul.dropdown-menu
+  /     %li 
+  /       = link_to 'Periodos de Propuestas', periodo_propuestas_path
+  /     %li 
+  /       = link_to 'Periodos Electorales', periodo_electorales_path
+  
+
+
+  / %li.dropdown
+  /   %a.dropdown-toggle{:href=> "#","data-toggle".to_sym => 'dropdown' } Administraci&oacute;n
+  /   %ul.dropdown-menu
+  /     %li.dropdown.submenu
+  /       %a.dropdown-toggle{"data-toggle".to_sym => 'dropdown'} Paises
+  /       %ul.dropdown-menu.submenu-show.submenu-hide
+  /         %li 
+  /           = link_to 'Listado', paises_path
+  /         %li 
+  /           = link_to 'Nuevo', new_pais_path
+  /     / %li.divider
+  /     %li.dropdown.submenu
+  /       %a.dropdown-toggle{"data-toggle".to_sym => 'dropdown'} Provincias
+  /       %ul.dropdown-menu.submenu-show.submenu-hide
+  /         %li 
+  /           = link_to 'Listado', provincias_path
+  /         %li 
+  /           = link_to 'Nueva', new_provincia_path
+  /     / %li.divider
+  /     %li.dropdown.submenu
+  /       %a.dropdown-toggle{"data-toggle".to_sym => 'dropdown'} Municipios
+  /       %ul.dropdown-menu.submenu-show.submenu-hide
+  /         %li 
+  /           = link_to 'Listado', municipios_path
+  /         %li 
+  /           = link_to 'Nuevo', new_municipio_path
+  /     / %li.divider
+  /     %li.dropdown.submenu
+  /       %a.dropdown-toggle{"data-toggle".to_sym => 'dropdown'} Barrios
+  /       %ul.dropdown-menu.submenu-show.submenu-hide
+  /         %li 
+  /           = link_to 'Barrios', barrios_path
+  /         %li 
+  /           = link_to 'Nuevo', new_barrio_path
+          
+           
+  / .pull-right
+  /   .cerrar-session
+  /     .btn-group.pull-right
+  /       %a.btn.dropdown-toggle{:href=>'#', "data-toggle".to_sym=>"dropdown"}
+  /         %i.icon-user
+  /         = current_user.name
+  /       %ul.dropdown-menu
+  /         %li
+  /           %a{:href => '/logout'} Cerrar Sesion

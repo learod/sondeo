@@ -5,29 +5,46 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
+    %meta{:name=>"description", :content=>""}
+    %meta{:name=>"author", :content=>""}
   %body
-    .navbar.navbar-fixed-top
+    .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
-        .container
+        .container-fluid
           - if current_user
             - if current_user.tipo == 'ciudadano'
               = render :partial => 'layouts/menu_cuidadanos'
             - if current_user.tipo == 'administrador'
               = render :partial => 'layouts/menu_admin'
-    .container
-      
-      .alert.alert-error{:style=>"#{ 'display:none' if flash[:error].blank?}"}
-        %a.close{:href=>"javascript:cierra_mensaje();"} ×
-        %p
-          = flash[:error] unless flash[:error].blank?
+    
 
-      .alert.alert-success{:style=>"#{ 'display:none' if flash[:notice].blank?}"}
-        %a.close{:href=>"javascript:cierra_mensaje();"} ×
-        %p
-          = flash[:notice] unless flash[:notice].blank?
+    .container-fluid
+      .row-fluid
+        .span3
+          .well.sidebar-nav
+            
+            -if current_user.tipo == 'administrador'
+              = render :partial => 'layouts/menu_administrador'
+          .alert.alert-error{:style=>"#{ 'display:none' if flash[:error].blank?}"}
+            %a.close{:href=>"javascript:cierra_mensaje();"} ×
+            %p
+              = flash[:error] unless flash[:error].blank?
+
+          .alert.alert-success{:style=>"#{ 'display:none' if flash[:notice].blank?}"}
+            %a.close{:href=>"javascript:cierra_mensaje();"} ×
+            %p
+              = flash[:notice] unless flash[:notice].blank?
+
+        .span9
+          .row-fluid
+            .span9
+              .container
               
-      = yield
+                = yield
 
+      %footer
+        %p &copy; Company 2012
 
 :javascript
   $(document).ready(function(){

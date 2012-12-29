@@ -1,26 +1,25 @@
 .content
   .page-header
     %h1 Cuidadanos
-  .row
+  .row-fluid
     .span14
       %table.table.table-striped{:width=>'100%'}
         %tr
+          %th Apellido y Nombre
           %th DNI
-          %th Nombre
-          %th Apellido
           %th Email
           %th
           
         - @ciudadanos.each do |ciudadano|
           %tr
+            %td
+              = link_to "#{ciudadano.apellido}, #{ciudadano.nombre}", ciudadano
+              = link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_ciudadano_path(ciudadano)
+              = link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),ciudadano , :confirm => '¿Está Seguro?', :method => :delete
             %td= ciudadano.dni
-            %td= ciudadano.nombre
-            %td= ciudadano.apellido
             %td= ciudadano.email
             %td
-              = link_to image_tag('iconos/32x32/zoom_in.png'), ciudadano, :title => 'Ver', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/edit_page.png'), edit_ciudadano_path(ciudadano), :title => 'Editar', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/remove_from_database.png'),ciudadano , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
+             
       %hr
       %center
         = will_paginate @ciudadanos, :renderer => BootstrapPagination::Rails 
