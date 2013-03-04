@@ -10,14 +10,14 @@
     = label_tag :fecha_inicio, 'Fecha de Inicio'
     .input-append.date
       = f.text_field :fecha_inicio, :readonly => "readonly"
-      #fecha_ini.span.add-on
-        %i.icon-th
+      %span#fecha_ini.add-on
+        %i.icon-calendar
   .clearfix
     = label_tag :fecha_fin, 'Fecha de Fin'
     .input-append.date
       = f.text_field :fecha_fin, :readonly => "readonly",:class=>'small'
-      #fecha_fin.span.add-on
-        %i.icon-th
+      %span#fecha_fin.add-on
+        %i.icon-calendar
   .clearfix
     = label_tag :pais_id
     .input

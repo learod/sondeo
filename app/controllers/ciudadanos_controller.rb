@@ -55,7 +55,7 @@ class CiudadanosController < ApplicationController
     @ciudadano.user_id = @usuario.id
     respond_to do |format|
       if @ciudadano.save 
-        format.html { redirect_to @ciudadano, :notice => 'Ciudadano was successfully created.' }
+        format.html { redirect_to @ciudadano, :notice => 'Ciudadano ha sido creado.' }
         format.json { render :json => @ciudadano, :status => :created, :location => @ciudadano }
       else
         format.html { render :action => "new" }
@@ -71,7 +71,7 @@ class CiudadanosController < ApplicationController
 
     respond_to do |format|
       if @ciudadano.update_attributes(params[:ciudadano])
-        format.html { redirect_to @ciudadano, :notice => 'Ciudadano was successfully updated.' }
+        format.html { redirect_to @ciudadano, :notice => 'Ciudadano ha sido actualizado.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

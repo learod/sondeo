@@ -65,6 +65,15 @@ class User < ActiveRecord::Base
     name
   end
 
+  def administrador?  
+    tipo == 'administrador'
+  end
+
+  def ciudadano?  
+    tipo == 'ciudadano'
+  end
+
+
   protected
     
 

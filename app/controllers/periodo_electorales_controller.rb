@@ -47,7 +47,7 @@ class PeriodoElectoralesController < ApplicationController
 
     respond_to do |format|
       if @periodo_electoral.save
-        format.html { redirect_to @periodo_electoral, :notice => 'Periodo electoral was successfully created.' }
+        format.html { redirect_to @periodo_electoral, :notice => 'Periodo electoral ha sido creado.' }
         format.json { render :json => @periodo_electoral, :status => :created, :location => @periodo_electoral }
       else
         format.html { render :action => "new" }
@@ -65,7 +65,7 @@ class PeriodoElectoralesController < ApplicationController
 
     respond_to do |format|
       if @periodo_electoral.update_attributes(params[:periodo_electoral])
-        format.html { redirect_to @periodo_electoral, :notice => 'Periodo electoral was successfully updated.' }
+        format.html { redirect_to @periodo_electoral, :notice => 'Periodo electoral ha sido actualizado.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

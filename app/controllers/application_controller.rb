@@ -5,15 +5,16 @@ class ApplicationController < ActionController::Base
   
   before_filter :session_expiry, :except => [:login, :logout]
   before_filter :update_activity_time, :except => [:login, :logout]
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   #before_filter :check_authorization
 
   def session_expiry
     unless session[:expires_at].nil?
       @time_left = (session[:expires_at] - Time.now).to_i
       unless @time_left > 0 
-        logout_killing_session!
+        #logout_killing_session!
         #flash[:error] = 'La session ha expirado.'
-        redirect_to login_url
+        #redirect_to login_url
       end 
     end 
   end 

@@ -44,6 +44,6 @@
 
  
 
-      = link_to 'Editar', edit_periodo_propuesta_path(@periodo_propuesta),:class=>'btn btn-info'
+      = link_to 'Editar', edit_periodo_propuesta_path(@periodo_propuesta),:class=>'btn btn-info' if current_user.administrador?
       
       = link_to 'Volver', periodo_propuestas_path ,:class=>'btn default'

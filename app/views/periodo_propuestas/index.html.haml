@@ -12,22 +12,23 @@
           %th Provincia
           %th Municipio
           %th Barrio
-          %th
+
           
         - @periodo_propuestas.each do |periodo_propuesta|
           %tr
-            %td= periodo_propuesta.descripcion 
+            %td
+              =link_to periodo_propuesta.descripcion, periodo_propuesta
+              - if current_user.administrador?
+                = link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_periodo_propuesta_path(periodo_propuesta)
+                = link_to content_tag(:i, nil, {:class => "icon-plus", :title => "Propuestas"}),propuestas_periodo_propuestas_path(:id=>periodo_propuesta.id)
+                = link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),periodo_propuesta , :confirm => '¿Está Seguro?', :method => :delete
             %td= format_fecha periodo_propuesta.fecha_inicio 
             %td= format_fecha periodo_propuesta.fecha_fin 
             %td= periodo_propuesta.pais_nombre 
             %td= periodo_propuesta.provincia_nombre
             %td= periodo_propuesta.municipio_nombre
             %td= periodo_propuesta.barrio_nombre 
-            %td
-              = link_to image_tag('iconos/32x32/zoom_in.png'), periodo_propuesta, :title => 'Ver', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_propuesta_path(periodo_propuesta), :title => 'Editar', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/remove_from_database.png'),periodo_propuesta , :confirm => 'Are you sure?', :method => :delete, :title => 'Eliminar', :class => 'qtip'
-              = link_to image_tag('iconos/32x32/folder_modified.png'), propuestas_periodo_propuestas_path(:id=>periodo_propuesta.id), :title => 'Propuestas', :class => 'qtip'
+            
       %hr
       .clearfix
         .input

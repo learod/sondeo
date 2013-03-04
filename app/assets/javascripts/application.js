@@ -8,7 +8,8 @@
 //= require jquery.fancybox-1.3.1
 //= require rails.validations
 //= require jquery_ujs
-//= require bootstrap-dropdown
+// require bootstrap-dropdown
+//= require bootstrap.min
 //= require jquery.tiptip
 //= require jquery.validate
 //= require superfish

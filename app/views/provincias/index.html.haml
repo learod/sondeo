@@ -5,8 +5,8 @@
     .span14
       %table.table.table-striped{:width=>'100%'}
         %tr
-          %th Pais
           %th Nombre
+          %th País
           %th 
           
         - @provincias.each do |provincia|
@@ -15,7 +15,7 @@
               =link_to provincia.nombre, provincia
               = link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_provincia_path(provincia)
               = link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),provincia , :confirm => '¿Está Seguro?', :method => :delete
-            %td= provincia.nombre
+            %td= provincia.pais_nombre
             %td
               
       %hr

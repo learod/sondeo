@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if user
         self.current_user = user
-        
+        logger.info("#{user.ciudadano.to_json}")
         # format.json {render :json => @user }
         format.json{ render :json => { :status => "SUCCESS",  :message=> "Bienvenido", :user => "#{user.id}", :usuario => user ,:ciudadano=>user.ciudadano  }.to_json}
       else

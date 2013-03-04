@@ -46,7 +46,7 @@ class BarriosController < ApplicationController
 
     respond_to do |format|
       if @barrio.save
-        format.html { redirect_to @barrio, :notice => 'Barrio was successfully created.' }
+        format.html { redirect_to @barrio, :notice => 'Barrio ha sido creado.' }
         format.json { render :json => @barrio, :status => :created, :location => @barrio }
       else
         format.html { render :action => "new" }
@@ -62,7 +62,7 @@ class BarriosController < ApplicationController
 
     respond_to do |format|
       if @barrio.update_attributes(params[:barrio])
-        format.html { redirect_to @barrio, :notice => 'Barrio was successfully updated.' }
+        format.html { redirect_to @barrio, :notice => 'Barrio ha sido actualizado.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

@@ -13,25 +13,24 @@
                 <th>Provincia</th>
                 <th>Municipio</th>
                 <th>Barrio</th>
-                <th></th>
         </tr>
 
       <% @periodo_electorales.each do |periodo_electoral| %>
         <tr>
-                <td><%= periodo_electoral.descripcion %></td>
+                <td>
+                  <%= link_to periodo_electoral.descripcion, periodo_electoral %>
+                  <%= link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_periodo_electoral_path(periodo_electoral) %>
+                  <%= link_to content_tag(:i, nil, {:class => "icon-file", :title => "Proyectos"}),show_proyecto_periodo_electoral_path(periodo_electoral) if periodo_electoral.vigente?  %>
+                  <%= link_to content_tag(:i, nil, {:class => "icon-signal", :title => "Resultados"}), show_resultados_periodo_electoral_path(periodo_electoral), :title => 'Resultados' if periodo_electoral.finalizado? %>
+                  <%= link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),periodo_electoral , :confirm => '¿Está Seguro?', :method => :delete %>
+                </td>
                 <td><%= format_fecha periodo_electoral.fecha_inicio %></td>
                 <td><%= format_fecha periodo_electoral.fecha_fin %></td>
                 <td><%= periodo_electoral.pais_nombre %></td>
                 <td><%= periodo_electoral.provincia_nombre %></td>
                 <td><%= periodo_electoral.municipio_nombre %></td>
                 <td><%= periodo_electoral.barrio_nombre %></td>
-                <td>
-            <%= link_to image_tag('iconos/32x32/zoom_in.png'), periodo_electoral, :title => 'Ver', :class => 'qtip' %>
-            <%= link_to image_tag('iconos/32x32/edit_page.png'), edit_periodo_electoral_path(periodo_electoral), :title => 'Editar', :class => 'qtip' %>
-            <%= link_to image_tag('iconos/32x32/remove_from_database.png'), periodo_electoral, :confirm => '¿Esta seguro?', :method => :delete,:title => 'Eliminar', :class => 'qtip' %>
-            <%= link_to image_tag('iconos/32x32/folder_modified.png'), show_proyecto_periodo_electoral_path(periodo_electoral), :title => 'Proyectos', :class => 'qtip' if periodo_electoral.vigente? %>
-            <%= link_to image_tag('iconos/resultados.png',:width=>32), show_resultados_periodo_electoral_path(periodo_electoral), :title => 'Resultados', :class => 'qtip' if periodo_electoral.finalizado? %>
-          </td>
+
         </tr>
       <% end %>
       </table>

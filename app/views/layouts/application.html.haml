@@ -13,19 +13,19 @@
       .navbar-inner
         .container-fluid
           - if current_user
-            - if current_user.tipo == 'ciudadano'
+            - if current_user.ciudadano?
               = render :partial => 'layouts/menu_cuidadanos'
-            - if current_user.tipo == 'administrador'
+            - if current_user.administrador?
               = render :partial => 'layouts/menu_admin'
     
 
     .container-fluid
       .row-fluid
         .span3
-          .well.sidebar-nav
+          
             
-            -if current_user.tipo == 'administrador'
-              = render :partial => 'layouts/menu_administrador'
+          -if current_user.tipo == 'administrador'
+            = render :partial => 'layouts/menu_administrador'
           .alert.alert-error{:style=>"#{ 'display:none' if flash[:error].blank?}"}
             %a.close{:href=>"javascript:cierra_mensaje();"} ×
             %p
@@ -44,7 +44,6 @@
                 = yield
 
       %footer
-        %p &copy; Company 2012
 
 :javascript
   $(document).ready(function(){

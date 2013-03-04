@@ -46,7 +46,7 @@ class MunicipiosController < ApplicationController
 
     respond_to do |format|
       if @municipio.save
-        format.html { redirect_to @municipio, :notice => 'Municipio was successfully created.' }
+        format.html { redirect_to @municipio, :notice => 'Municipio ha sido creado.' }
         format.json { render :json => @municipio, :status => :created, :location => @municipio }
       else
         format.html { render :action => "new" }
@@ -62,7 +62,7 @@ class MunicipiosController < ApplicationController
 
     respond_to do |format|
       if @municipio.update_attributes(params[:municipio])
-        format.html { redirect_to @municipio, :notice => 'Municipio was successfully updated.' }
+        format.html { redirect_to @municipio, :notice => 'Municipio ha sido actualizado.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
