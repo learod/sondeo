@@ -35,13 +35,14 @@
         </div>
     </div>
     <hr>
-
     <div class="page-header">
         <h1>Anteproyectos</h1> 
     </div>
 
+    <% if current_user.adm_gob? %>
     
           <%= link_to image_tag('iconos/folder_add_256.png',:width=>32,:alt=>'')+'Nuevo Anteproyecto', nuevo_anteproyecto_periodo_electoral_path(@periodo_electoral),:class=>'fancybox btn btn-success' %>
+    <% end %>
           <fieldset>
             <legend>Listado de Anteproyectos</legend>
             <div id="listado_proyectos">
@@ -55,13 +56,12 @@
                 <tr id="proyecto_<%= "#{proyecto.id}" %>">
                   <td><%= proyecto.nombre %></td>
                   <td><%= proyecto.descripcion[0..20] %></td>
-                  <td><%= link_to image_tag('iconos/32x32/remove_from_database.png'), eliminar_proyecto_periodo_electorales_path(:id=>proyecto.id), :confirm => '¿Esta seguro?',:title => 'Eliminar', :class => 'qtip',:remote=>true %></td>
+                  <td><%= link_to image_tag('iconos/32x32/remove_from_database.png'), eliminar_proyecto_periodo_electorales_path(:id=>proyecto.id), :confirm => '¿Esta seguro?',:title => 'Eliminar', :class => 'qtip',:remote=>true if current_user.adm_gob? %></td>
                 </tr>
                 <% end %>
               </table>
             </div>
           </fieldset>
-    
 
     <%#= link_to 'Editar', edit_periodo_electoral_path(@periodo_electoral),:class=>'btn btn-info' %> 
     <%= link_to 'Volver', periodo_electorales_path,:class=>'btn default' %>

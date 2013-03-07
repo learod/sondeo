@@ -31,23 +31,33 @@
         .clearfix
           = label_tag 'tipo', 'Tipo Usuario'
           .input
-            = f.select :tipo, '<option>Seleccione</option>'+options_for_select([["Administrador", "administrador"], ["Provincia", "provincia"], ["Municipio", "municipio"]]) 
+            =# f.select :tipo, '<option>Seleccione</option>'+options_for_select([["Administrador", "administrador"], ["Provincia", "provincia"], ["Municipio", "municipio"]]) 
+            /   button type="button" value="0" class="btn" data-toggle="button">Public</button>
+            /   <button type="button" value="1" class="btn" data-toggle="button">Private</button>
+            / </div>
+
+            .btn-group{:data=>{:toggle=>"buttons-radio"}}
+              
+              %button.btn{:value=>"administrador"}Administrador
+              %button.btn{:value=>"provincia"}Provincia
+              %button.btn{:value=>"municipio"}Municipio
+
+            = f.hidden_field :tipo, :value=>nil 
+              
         %hr
         .input
           = submit_tag 'Guardar', :class => "btn btn-primary"
 
 :javascript
   $(document).ready(function(){
-    $.validator.addMethod("validar", function(value, element, params) {
-      return ((/^"|administrador|provincia|municipio|"]$/).test(value));
-    },'Solo se permiten caracteres alfabeticos');
-    $('form').validate({
-        //debug: true,
-        rules: {
-          "user[tipo]": {
-            required: true,
-            regexp: /^"|administrador|provincia|municipio|"]$/
-          }
-        }
-      })
-  })
+   
+    $('button').click(function(e){
+      e.preventDefault();
+      var button = $(this);
+      $("#user_tipo").val($(this).val());
+      if(button.val() == hidden.val()) {
+        button.addClass('active');
+      }
+    });
+  });
+    

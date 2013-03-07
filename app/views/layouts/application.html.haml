@@ -15,7 +15,7 @@
           - if current_user
             - if current_user.ciudadano?
               = render :partial => 'layouts/menu_cuidadanos'
-            - if current_user.administrador?
+            - if current_user.administrador? ||  current_user.gobierno?
               = render :partial => 'layouts/menu_admin'
     
 
@@ -24,7 +24,7 @@
         .span3
           
             
-          -if current_user.tipo == 'administrador'
+          -if current_user.administrador? ||  current_user.gobierno?
             = render :partial => 'layouts/menu_administrador'
           .alert.alert-error{:style=>"#{ 'display:none' if flash[:error].blank?}"}
             %a.close{:href=>"javascript:cierra_mensaje();"} ×

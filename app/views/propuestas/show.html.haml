@@ -9,15 +9,11 @@
 
       %br
     
-      %b User:
-      = @propuesta.user_id 
+      %b Propuesta por:
+      = link_to "#{@propuesta.user.ciudadano_nombre}" , @propuesta.user.ciudadano if @propuesta.user.ciudadano
 
       %br
     
-      %b Periodo consulta propuesta:
-      = @propuesta.periodo_consulta_propuesta_id 
-
-      %br
       
  
       %hr

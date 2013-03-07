@@ -22,11 +22,11 @@ class SessionsController < ApplicationController
     #logger.info("#{user.login}")
 
     respond_to do |format|
-      if user
+      if user && user.ciudadano
         self.current_user = user
         logger.info("#{user.ciudadano.to_json}")
         # format.json {render :json => @user }
-        format.json{ render :json => { :status => "SUCCESS",  :message=> "Bienvenido", :user => "#{user.id}", :usuario => user ,:ciudadano=>user.ciudadano  }.to_json}
+        format.json{ render :json => { :status => "SUCCESS",  :message=> "Bienvenido", :user => "#{user.id}", :usuario => user ,:ciudadano=>user.ciudadano.as_json(:methods=>[:barrio_nombre,:municipio_nombre])}.to_json}
       else
         format.json{ render :json => {:status => "ERROR",  :message=> "Error de usuario o password"}.to_json.html_safe}
       end

@@ -3,8 +3,11 @@ class PeriodoElectoralesController < ApplicationController
   # GET /periodo_electorales
   # GET /periodo_electorales.json
   def index
-    @periodo_electorales = PeriodoElectoral.all
-
+    if current_user.ciudadano?
+      @periodo_electorales = PeriodoElectoral.where("barrio_id = ?" , current_user.barrio_id)
+    else
+      @periodo_electorales = PeriodoElectoral.all
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @periodo_electorales }

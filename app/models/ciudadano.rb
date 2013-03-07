@@ -10,6 +10,10 @@ class Ciudadano < ActiveRecord::Base
   
   delegate :nombre, :to => :barrio, :prefix => true
 
+  def municipio_nombre
+    barrio.municipio_nombre
+  end
+
   def periodos_abiertos
   	barrio.periodo_propuestas.where("? <= fecha_fin",Date.today)
   end

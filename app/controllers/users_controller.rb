@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       # button. Uncomment if you understand the tradeoffs.
       # reset session
       #self.current_user = @user # !! now logged in
-      redirect_back_or_default(new_user_path, :notice => "Usuario Creado.")
+      redirect_back_or_default(new_user_path, :notice => "Usuario Creado.") 
     else
       flash.now[:error]  = "Lo sentimos, No hemos podido crear el Usuario, Por favor vuelva a intentarlo."
       render :action => 'new'
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @usuarios = User.all
+    @usuarios = User.paginate(:page => params[:page], :per_page => 8,:order=>'name')
     respond_to do |format|
       format.html
     end

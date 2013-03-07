@@ -12,8 +12,14 @@
           
         - @propuestas.each do |propuesta|
           %tr
-            %td= propuesta.descripcion 
-            %td= propuesta.user_id 
+            %td
+              
+              =link_to propuesta.descripcion, propuesta
+            
+              = link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_propuesta_path(propuesta) if current_user.administrador? || current_user.id == propuesta.user_id
+             
+              = link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),propuesta , :confirm => '¿Está Seguro?', :method => :delete if current_user.administrador? || current_user.id == propuesta.user_id
+            %td= propuesta.user.ciudadano_nombre 
             %td
               = link_to image_tag('iconos/32x32/zoom_in.png'), propuesta, :title => 'Ver', :class => 'qtip'
               = link_to image_tag('iconos/32x32/edit_page.png'), edit_propuesta_path(propuesta), :title => 'Editar', :class => 'qtip'

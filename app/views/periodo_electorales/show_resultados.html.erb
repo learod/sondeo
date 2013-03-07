@@ -19,8 +19,18 @@
                 <tr id="proyecto_<%= "#{proyecto.id}" %>">
                   <td><%= proyecto.nombre %></td>
                   <td><%= proyecto.descripcion[0..20] %></td>
-                  <td><%= @wckowa.resultados[proyecto.id] %></td>
-                  <td><%= @media.resultados[proyecto.id] %></td>
+                  <td>
+                    <%= @wckowa.resultados[proyecto.id] if current_user.administrador? || current_user.gobierno? %>
+                    <%= hidden_field_tag "wckowa_#{proyecto["id"]}", @wckowa.resultados[proyecto.id].to_f.round  %>
+                    <div class="star" id="star_wckowa_<%=proyecto["id"]%>" rel="<%=proyecto["id"]%>"></div>
+                    <div class="target" id="target_wckowa_<%=proyecto["id"]%>" style=" background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 90px; float: left; "></div>
+                  </td>
+                  <td>
+                    <%= @media.resultados[proyecto.id] if current_user.administrador? || current_user.gobierno? %>
+                    <%= hidden_field_tag "media_#{proyecto["id"]}", @media.resultados[proyecto.id].to_f.round  %>
+                    <div class="star_1" id="star_media_<%=proyecto["id"]%>" rel="<%=proyecto["id"]%>"></div>
+                    <div class="target" id="target_media_<%=proyecto["id"]%>" style=" background-color: #F0F0F0; border-radius: 3px; float: left; height: 15px; margin-left: 5px; padding-bottom: 2px; padding-left: 8px; padding-right: 8px; text-align: center; width: 90px; float: left; "></div>
+                  </td>
                 </tr>
                 <% end %>
               </table>
@@ -28,3 +38,31 @@
           </fieldset>
         </div>
     </div>
+
+<script type="text/javascript">
+<%= "var hints= ['#{ETIQUETAS[1]["denominacion"].capitalize}','#{ETIQUETAS[2]["denominacion"].capitalize}','#{ETIQUETAS[3]["denominacion"].capitalize}','#{ETIQUETAS[4]["denominacion"].capitalize}','#{ETIQUETAS[5]["denominacion"].capitalize}'];" %>
+  $(document).ready(function  () {
+    $('.star').each(function  () {
+      $(this).raty({  
+        readOnly     : true,
+        //cancelHint : 'Ninguno',
+        target     : '#target_wckowa_'+$(this).attr('rel'),
+        score      : $('#wckowa_' + $(this).attr('rel') ).val(),  
+        hints : hints,
+        targetText: hints[$('#wckowa_' + $(this).attr('rel') ).val() - 1]
+      })
+      
+    })
+    $('.star_1').each(function  () {
+      $(this).raty({  
+        readOnly     : true,
+        //cancelHint : 'Ninguno',
+        target     : '#target_media_'+$(this).attr('rel'),
+        score      : $('#media_' + $(this).attr('rel') ).val(),  
+        hints : hints,
+        targetText: hints[$('#media_' + $(this).attr('rel') ).val() - 1]
+      })
+      
+    })
+  })
+</script>

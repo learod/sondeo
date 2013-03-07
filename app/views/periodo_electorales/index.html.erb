@@ -19,10 +19,10 @@
         <tr>
                 <td>
                   <%= link_to periodo_electoral.descripcion, periodo_electoral %>
-                  <%= link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_periodo_electoral_path(periodo_electoral) %>
+                  <%= link_to content_tag(:i, nil, {:class => "icon-pencil", :title => "Editar"}),edit_periodo_electoral_path(periodo_electoral) if current_user.adm_gob? %>
                   <%= link_to content_tag(:i, nil, {:class => "icon-file", :title => "Proyectos"}),show_proyecto_periodo_electoral_path(periodo_electoral) if periodo_electoral.vigente?  %>
                   <%= link_to content_tag(:i, nil, {:class => "icon-signal", :title => "Resultados"}), show_resultados_periodo_electoral_path(periodo_electoral), :title => 'Resultados' if periodo_electoral.finalizado? %>
-                  <%= link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),periodo_electoral , :confirm => '¿Está Seguro?', :method => :delete %>
+                  <%= link_to content_tag(:i, nil, {:class => "icon-remove", :title => "Eliminar"}),periodo_electoral , :confirm => '¿Está Seguro?', :method => :delete if current_user.adm_gob? %>
                 </td>
                 <td><%= format_fecha periodo_electoral.fecha_inicio %></td>
                 <td><%= format_fecha periodo_electoral.fecha_fin %></td>

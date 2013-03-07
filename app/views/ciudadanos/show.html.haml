@@ -33,9 +33,9 @@
       = @ciudadano.telefono
 
       %br
-
-      %b Password:
-      = @ciudadano.password
+      - if current_user.administrador? || current_user.gobierno?
+        %b Password:
+        = @ciudadano.password
       
 
 

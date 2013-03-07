@@ -41,6 +41,7 @@ class CiudadanosController < ApplicationController
   # POST /ciudadanos.json
   def create
     password = generar_clave
+    params[:ciudadano][:barrio_id] = nil if params[:ciudadano][:barrio_id].to_i == 0 
     @ciudadano = Ciudadano.new(params[:ciudadano])
     @ciudadano.password=password
     @usuario = User.new(
@@ -68,7 +69,7 @@ class CiudadanosController < ApplicationController
   # PUT /ciudadanos/1.json
   def update
     @ciudadano = Ciudadano.find(params[:id])
-
+    params[:ciudadano][:barrio_id] = nil if params[:ciudadano][:barrio_id].to_i == 0 
     respond_to do |format|
       if @ciudadano.update_attributes(params[:ciudadano])
         format.html { redirect_to @ciudadano, :notice => 'Ciudadano ha sido actualizado.' }
@@ -121,9 +122,6 @@ class CiudadanosController < ApplicationController
 
   def anteproyectos
     @ciudadano=Ciudadano.find(params[:id])
-    # if current_user.tipo == 'ciudadano' && current_user.ciudadano != @ciudadano
-    #   render :template => "#{RAILS_ROOT}/public/404.html", :status => 404
-    # end
     @periodo_electoral=@ciudadano.eleccion_abierta
     @anteproyectos = @periodo_electoral ? @periodo_electoral.anteproyectos_ciudadano(@ciudadano.id) : nil
 

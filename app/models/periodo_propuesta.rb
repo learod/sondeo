@@ -11,6 +11,9 @@ class PeriodoPropuesta < ActiveRecord::Base
   delegate :provincia, :to => :municipio 
   delegate :ciudadanos, :to => :barrio , :prefix=>true
   
+  def vigente?
+    fecha_inicio <= Date.today &&   Date.today <= fecha_fin
+  end
 
   def barrio_nombre
     barrio.nombre unless barrio.blank? 

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   set_table_name 'users'
 
   has_one :ciudadano
+
   has_many :permisos, :finder_sql => proc { "SELECT * FROM permisos WHERE tipo_usuario like '#{self.tipo}'" }
 
 
@@ -35,8 +36,8 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation,:nombre
 
-
-
+  delegate :nombre, :to => :ciudadano, :prefix=>true, :allow_nil=>true
+  
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
@@ -71,6 +72,20 @@ class User < ActiveRecord::Base
 
   def ciudadano?  
     tipo == 'ciudadano'
+  end
+
+  def gobierno?  
+    %w(provincia municipio).include?(tipo)
+  end
+
+  def adm_gob?
+    administrador? || gobierno?
+  end
+
+  def barrio_id
+    if ciudadano
+      ciudadano.barrio_id
+    end
   end
 
 
